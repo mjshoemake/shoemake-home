@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="shoemake" default="deploy" basedir=".">
+   <property file="build.properties"/>
+   <property file="number.properties"/>
+
+
+  <!-- Create the Jar File -->
+  <target name="jar">
+    <echo message="Building the JAR  file..."/>
+    <delete>
+      <fileset dir="${lib}" includes="**/${appname}-*.jar"/>
+    </delete>
+    <jar jarfile="${lib}/${jarname}" >
+      <fileset dir="${out}" />
+    </jar>
+
+    <echo message="Incrementing Build # for Next Build..."/>
+    <propertyfile file="number.properties">
+      <entry  key="nextbuild" type="int" value="1" operation="+"/>
+    </propertyfile>
+  </target>
+
+  <!-- Deploy the distribution to Tomcat webapps directory. -->
+  <target name="deploy" depends="jar">
+    <echo message="Creating deploy directory..."/>
+    <delete dir="${webapp}"/>
+    <mkdir dir="${webapp}"/>
+
+    <copy todir="${webapp}" filtering="no"><fileset dir="${websrc}"/></copy>
+  </target>
+
+</project>

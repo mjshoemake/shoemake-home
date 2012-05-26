@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+  "tiles-config_1_3.dtd">
+
+<tiles-definitions>
+
+	<!-- Tiles definition for main layout -->
+	<definition name="main.layout" path="/jsp/fpgLayout.jsp">
+		<put name="header" value="/jsp/fpgHeader.jsp" />
+	</definition>
+	
+</tiles-definitions>

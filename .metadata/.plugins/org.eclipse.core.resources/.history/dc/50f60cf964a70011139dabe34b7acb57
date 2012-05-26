@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<project name="shoemake" default="deploy" basedir=".">
+   <property file="build.properties"/>
+   <property file="number.properties"/>
+
+  <path id="classpath">
+    <pathelement location="${bsf-2.3.0.jar}"/>
+    <pathelement location="${castor-0.9.5.3-xml.jar}"/>
+    <pathelement location="${commons-beanutils-1.8.0.jar}"/>
+    <pathelement location="${commons-chain-1.2.jar}"/>
+    <pathelement location="${commons-digester-1.8.jar}"/>
+    <pathelement location="${commons-fileupload-1.1.1.jar}"/>
+    <pathelement location="${commons-io-1.1.jar}"/>
+    <pathelement location="${commons-logging-1.0.4.jar}"/>
+    <pathelement location="${commons-validator-1.3.1.jar}"/>
+    <pathelement location="${json.jar}"/>
+    <pathelement location="${jstl.jar}"/>
+    <pathelement location="${jstl-1.0.2.jar}"/>
+    <pathelement location="${log4j-1.2.15.jar}"/>
+    <pathelement location="${mysql-connector-java-5.1.15-bin.jar}"/>
+    <pathelement location="${oro-2.0.8.jar}"/>
+    <pathelement location="${relaxngDatatype.jar}"/>
+    <pathelement location="${servlet.jar}"/>
+    <pathelement location="${standard.jar}"/>
+    <pathelement location="${standard-1.0.6.jar}"/>
+    <pathelement location="${struts-core-1.3.10.jar}"/>
+    <pathelement location="${struts-el-1.3.10.jar}"/>
+    <pathelement location="${struts-extras-1.3.10.jar}"/>
+    <pathelement location="${struts-faces-1.3.10.jar}"/>
+    <pathelement location="${struts-mailreader-dao-1.3.10.jar}"/>
+    <pathelement location="${struts-scripting-1.3.10.jar}"/>
+    <pathelement location="${struts-taglib-1.3.10.jar}"/>
+    <pathelement location="${struts-tiles-1.3.10.jar}"/>
+    <pathelement location="${xerces.jar}"/>
+  </path>
+
+  <path id="my-classpath">
+     <fileset dir="${lib}">
+        <include name="*.jar"/>
+     </fileset>
+   </path>
+
+  <!-- Compile  -->
+<!--
+  <target name="compile">
+    <echo message="Path for servlet.jar:  ${servlet.jar}"/>
+    <delete dir="${out}"/>
+    <mkdir dir="${out}"/>
+    <echo message="Compiling..."/>
+    <javac srcdir="${src}"
+           destdir="${out}"
+           debug="on"
+           includeantruntime="false">
+       <classpath refid="my-classpath"/>
+    </javac>
+    <copy todir="${out}/config"><fileset dir="${conf}/config"><include name="**/*.*"/></fileset></copy>
+  </target>
+-->
+
+  <!-- Create the Jar File -->
+  <target name="jar">
+    <echo message="Building the JAR  file..."/>
+    <delete>
+      <fileset dir="${lib}" includes="**/${appname}-*.jar"/>
+    </delete>
+    <jar jarfile="${lib}/${jarname}" >
+      <fileset dir="${out}" />
+    </jar>
+
+    <echo message="Incrementing Build # for Next Build..."/>
+    <propertyfile file="number.properties">
+      <entry  key="nextbuild" type="int" value="1" operation="+"/>
+    </propertyfile>
+  </target>
+
+  <!-- Deploy the distribution to Tomcat webapps directory. -->
+  <target name="deploy" depends="jar">
+    <echo message="Creating deploy directory..."/>
+    <delete dir="${webapp}"/>
+    <mkdir dir="${webapp}"/>
+
+    <copy todir="${webapp}" filtering="no"><fileset dir="${websrc}"/></copy>
+<!--
+    <copy todir="${webapp}/html" filtering="no"><fileset dir="${websrc}/html"/></copy>
+    <copy todir="${webapp}/images" filtering="no"><fileset dir="${websrc}/images"/></copy>
+    <copy todir="${webapp}/js" filtering="no"><fileset dir="${websrc}/js"/></copy>
+    <copy todir="${webapp}/jsp" filtering="no"><fileset dir="${websrc}/jsp"/></copy>
+    <copy todir="${webapp}/tld" filtering="no"><fileset dir="${websrc}/tld"/></copy>
+    <copy todir="${webapp}/WEB-INF" filtering="no"><fileset dir="${websrc}/WEB-INF"/></copy>
+
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+    <copy todir="${webapp}/" filtering="no"><fileset dir="${websrc}/"/></copy>
+
+
+
+
+    <mkdir dir="${deployApp}/WEB-INF/lib"/>
+    <copy todir="${deployApp}/WEB-INF/lib"><fileset dir="${commonDist}/WEB-INF/lib"><include name="**/core-*.jar"/></fileset></copy>
+    <delete><fileset dir="${deploy}/WEB-INF/lib" includes="**/bear-*.jar"/></delete>
+    <copy todir="${deploy}/WEB-INF/lib"><fileset dir="${dist}/WEB-INF/lib"><include name="**/bear-*.jar"/></fileset></copy>
+    <copy todir="${deployApp}/WEB-INF"><fileset dir="${dist}/WEB-INF"><include name="**/*.xml"/></fileset></copy>
+    <copy file="${jstl.jar}" tofile="${deployApp}/WEB-INF/lib/jstl.jar"/>
+    <copy file="${log4j-1.2.8.jar}" tofile="${deployApp}/WEB-INF/lib/log4j-1.2.8.jar"/>
+    <copy file="${standard-1.0.2.jar}" tofile="${deployApp}/WEB-INF/lib/standard-1.0.2.jar"/>
+    <copy file="${struts-1.1b2.jar}" tofile="${deployApp}/WEB-INF/lib/struts-1.1b2.jar"/>
+-->
+  </target>
+
+</project>
