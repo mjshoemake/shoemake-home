@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Xerces/xerces.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxp.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/parser.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/External/castor-0.9.5.3-xml.jar"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

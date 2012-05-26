@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="src" path="/Home - WebService"/>
+    <classpathentry kind="src" path="/Home - Model"/>
+    <classpathentry kind="src" path="/Core - Base"/>
+    <classpathentry kind="src" path="/Home - WebServiceClient"/>
+    <classpathentry kind="src" path="/Home - Struts"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

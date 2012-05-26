@@ -1,0 +1,1 @@
+call C:/jwsdp-1.3/jaxrpc/bin/wscompile.bat -define -f:documentliteral -model M:/work/java/home/webservice/Output/model.gz -f:wsi -d M:/work/java/home/webservice/Output M:/work/java/home/webservice/source/configs/config-stub.xml -classpath "M:/work/java/home/webservice/Output;M:/work/java/jars/shoemake/shoemakeCore.jar;M:/work/java/jars/shoemake/shoemakeHomeModel.jar" -keep

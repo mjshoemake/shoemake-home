@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<project name="HomeStrutsTest" default="deploy-war" basedir=".">
+   <property file="build.properties"/>
+   <property name="config.wsdl" value="${basedir}/configs/config-wsdl.xml"/>
+   <property name="appname" value="${ant.project.name}"/>
+
+  <path id="core.external.classpath">
+    <pathelement location="${logkit-1.2.jar}"/>
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${xerces.jar}"/>
+    <pathelement location="${jaxp.jar}"/>
+    <pathelement location="${parser.jar}"/>
+    <pathelement location="${castor.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-services.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${struts-1.1b2.jar}"/>
+  </path>
+
+  <path id="core.base.classpath">
+    <pathelement location="${logkit-1.2.jar}"/>
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-services.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${struts-1.1b2.jar}"/>
+    <pathelement location="${workhome}/Home/AntOutput/Core/classes"/>
+  </path>
+
+  <path id="home.model.classpath">
+    <pathelement location="${logkit-1.2.jar}"/>
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-services.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${struts-1.1b2.jar}"/>
+    <pathelement location="${workhome}/Home/AntOutput/Core/classes"/>
+  </path>
+
+  <path id="home.struts.classpath">
+    <pathelement location="${logkit-1.2.jar}"/>
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-services.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${struts-1.1b2.jar}"/>
+    <pathelement location="${workhome}/Home/AntOutput/Core/classes"/>
+    <pathelement location="${workhome}/Home/AntOutput/Home/classes"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${workhome}/Home"/>
+    <delete dir="${workhome}/Home/AntOutput/Core/classes"/>
+    <delete dir="${workhome}/Home/AntOutput/Home/classes"/>
+    <mkdir dir="${workhome}/Home/AntOutput/Core/classes"/>
+    <mkdir dir="${workhome}/Home/AntOutput/Home/classes"/>
+  </target>
+
+  <!-- Compile the Core - External  -->
+  <target name="compile-core-external" depends="init">
+    <echo message="Compiling Core - External..."/>    
+    <javac srcdir="${workhome}/Core/External/Source"
+           destdir="${workhome}/Home/AntOutput/Core/classes"
+           debug="off">
+      <classpath refid="core.external.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Core - Base  -->
+  <target name="compile-core-base" depends="compile-core-external">
+    <echo message="Compiling Core - Base..."/>    
+    <javac srcdir="${workhome}/Core/Base/Source"
+           destdir="${workhome}/Home/AntOutput/Core/classes"
+           debug="off">
+      <classpath refid="core.base.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Home - Model  -->
+  <target name="compile-home-model" depends="compile-core-base">
+    <echo message="Compiling Home - Model..."/>    
+    <javac srcdir="${workhome}/Home/Model/Source"
+           destdir="${workhome}/Home/AntOutput/Home/classes"
+           debug="off">
+      <classpath refid="home.model.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Home - Struts  -->
+  <target name="compile-home-struts" depends="compile-home-model">
+    <echo message="Compiling Home - Struts..."/>    
+    <javac srcdir="${workhome}/Home/Struts/Source"
+           destdir="${workhome}/Home/AntOutput/Home/classes"
+           debug="off">
+      <classpath refid="home.struts.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Create the Core Jar File -->
+  <target name="jar-core" depends="compile-home-struts"
+    description="Builds the Core JAR file">
+    <echo message="Building the Core JAR  file..."/>
+    <delete file="${jarshome}/shoemakeCore.jar" />
+    <jar jarfile="${jarshome}/shoemakeCore.jar" >
+      <fileset dir="${workhome}/Home/AntOutput/Core/classes" />
+    </jar>
+    <copy todir="${workhome}/Home/Struts/Dist/WEB-INF/lib" filtering="no">
+      <fileset dir="${jarshome}">
+        <include name="shoemakeCore.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Create the Home Jar File -->
+  <target name="jar-home" depends="jar-core"
+    description="Builds the Home JAR file">
+    <echo message="Building the Home JAR  file..."/>
+    <delete file="${jarshome}/shoemakeHomeStruts.jar" />
+    <jar jarfile="${jarshome}/shoemakeHomeStruts.jar" >
+      <fileset dir="${workhome}/Home/AntOutput/Home/classes" />
+    </jar>
+    <copy todir="${workhome}/Home/Struts/Dist/WEB-INF/lib" filtering="no">
+      <fileset dir="${jarshome}">
+        <include name="shoemakeHomeStruts.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy-war"  depends="jar-home"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/StrutsTest" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- Create the portable WAR FILE. This is the standard J2EE WAR file-->
+  <target name="create-war" depends="undeploy-war">
+    <delete file="${jarshome}/StrutsTest.war"/>
+    <war destfile="${jarshome}/StrutsTest.war" webxml="${disthome}/WEB-INF/web.xml">
+      <fileset dir="${disthome}"/>
+    </war>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy-war"  depends="create-war"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/StrutsTest&amp;war=jar:file:M:/work/java/Jars/Shoemake/StrutsTest.war!/" dest="m:\work\java\home\installContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/StrutsTest" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/StrutsTest&amp;war=jar:file:M:/work/java/Jars/Shoemake/StrutsTest.war!/" dest="m:\work\java\home\installContext.log" username="admin" password="admin"/>
+  </target>
+
+</project>

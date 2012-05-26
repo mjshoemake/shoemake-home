@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<project name="HomeStrutsTest" default="deploy-war" basedir=".">
+   <property file="build.properties"/>
+   <property name="config.wsdl" value="${basedir}/configs/config-wsdl.xml"/>
+   <property name="appname" value="${ant.project.name}"/>
+
+  <path id="core.external.classpath">
+    <pathelement location="${castor.jar}"/>
+  </path>
+
+  <path id="core.base.classpath">
+    <pathelement location="${logkit-1.2.jar}"/>
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${xerces.jar}"/>
+    <pathelement location="${jaxp.jar}"/>
+    <pathelement location="${parser.jar}"/>
+    <pathelement location="${castor.jar}"/>
+    <pathelement location="${workhome}/Home/Servlet/AntOutput/Core/classes"/>
+  </path>
+
+  <path id="home.model.classpath">
+    <pathelement location="${workhome}/Home/Servlet/AntOutput/Core/classes"/>
+  </path>
+
+  <path id="home.servlet.classpath">
+    <pathelement location="${servlet-api.jar}"/>
+    <pathelement location="${castor.jar}"/>
+    <pathelement location="${workhome}/Home/Servlet/AntOutput/Core/classes"/>
+    <pathelement location="${workhome}/Home/Servlet/AntOutput/Home/classes"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${workhome}/Home"/>
+    <delete dir="${workhome}/Home/Servlet/AntOutput/Core/classes"/>
+    <delete dir="${workhome}/Home/Servlet/AntOutput/Home/classes"/>
+    <mkdir dir="${workhome}/Home/Servlet/AntOutput/Core/classes"/>
+    <mkdir dir="${workhome}/Home/Servlet/AntOutput/Home/classes"/>
+  </target>
+
+  <!-- Compile the Core - External  -->
+  <target name="compile-core-external" depends="init">
+    <echo message="Compiling Core - External..."/>    
+    <javac srcdir="${workhome}/Core/External/Source"
+           destdir="${workhome}/Home/Servlet/AntOutput/Core/classes"
+           debug="off">
+      <classpath refid="core.external.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Core - Base  -->
+  <target name="compile-core-base" depends="compile-core-external">
+    <echo message="Compiling Core - Base..."/>    
+    <javac srcdir="${workhome}/Core/Base/Source"
+           destdir="${workhome}/Home/Servlet/AntOutput/Core/classes"
+           debug="off">
+      <classpath refid="core.base.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Home - Model  -->
+  <target name="compile-home-model" depends="compile-core-base">
+    <echo message="Compiling Home - Model..."/>    
+    <javac srcdir="${workhome}/Home/Model/Source"
+           destdir="${workhome}/Home/Servlet/AntOutput/Home/classes"
+           debug="off">
+      <classpath refid="home.model.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Compile the Home - Servlet  -->
+  <target name="compile-home-servlet" depends="compile-home-model">
+    <echo message="Compiling Home - Servlet..."/>    
+    <javac srcdir="${workhome}/Home/Servlet/Source"
+           destdir="${workhome}/Home/Servlet/AntOutput/Home/classes"
+           debug="off">
+      <classpath refid="home.servlet.classpath"/>
+    </javac>
+  </target>
+
+  <!-- Create the Core Jar File -->
+  <target name="jar-core" depends="compile-home-servlet"
+    description="Builds the Core JAR file">
+    <echo message="Building the Core JAR  file..."/>
+    <delete file="${jarshome}/shoemakeCore.jar" />
+    <jar jarfile="${jarshome}/shoemakeCore.jar" >
+      <fileset dir="${workhome}/Home/Servlet/AntOutput/Core/classes" />
+    </jar>
+    <copy todir="${workhome}/Home/Servlet/Dist/WEB-INF/lib" filtering="no">
+      <fileset dir="${jarshome}">
+        <include name="shoemakeCore.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Create the Home Jar File -->
+  <target name="jar-home" depends="jar-core"
+    description="Builds the Home JAR file">
+    <echo message="Building the Home JAR  file..."/>
+    <delete file="${jarshome}/shoemakeHomeServlet.jar" />
+    <jar jarfile="${jarshome}/shoemakeHomeServlet.jar" >
+      <fileset dir="${workhome}/Home/Servlet/AntOutput/Home/classes" />
+    </jar>
+    <copy todir="${workhome}/Home/Servlet/Dist/WEB-INF/lib" filtering="no">
+      <fileset dir="${jarshome}">
+        <include name="shoemakeHomeServlet.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy-war"  depends="jar-home"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/UserServlet" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- Create the portable WAR FILE. This is the standard J2EE WAR file-->
+  <target name="create-war" depends="undeploy-war">
+    <delete file="${jarshome}/UserServlet.war"/>
+    <war destfile="${jarshome}/UserServlet.war" webxml="${disthome}/WEB-INF/web.xml">
+      <fileset dir="${disthome}"/>
+    </war>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy-war"  depends="create-war"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/UserServlet&amp;war=jar:file:M:/work/java/Jars/Shoemake/UserServlet.war!/" dest="m:\work\java\home\installContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/UserServlet" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/UserServlet&amp;war=jar:file:M:/work/java/Jars/Shoemake/UserServlet.war!/" dest="m:\work\java\home\installContext.log" username="admin" password="admin"/>
+  </target>
+
+</project>

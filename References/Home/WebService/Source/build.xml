@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+
+
+<project name="shoemakeHomeWebService" default="deploy" basedir=".">
+ <property file="build.properties"/>
+  
+  <property name="config.stub" value="${basedir}/configs/config-stub.xml"/>
+  <property name="webapp.webxml" value="${basedir}/configs/web.xml"/>
+  <property name="wscompile" value="${jaxrpchome}/bin/wscompile.bat"/>
+  <property name="wsdeploy" value="${jaxrpchome}/bin/wsdeploy.bat"/>
+  <property name="genBindings" value="${basedir}/generateBindings.bat"/>
+  <property name="generateWar" value="${basedir}/createWarFile.bat"/>
+  <property name="appname" value="${ant.project.name}"/>
+  <property file="build.properties"/>
+
+  <path id="compile.classpath">
+    <pathelement location="${core.jar}"/>
+    <pathelement location="${model.jar}"/>
+    <pathelement location="${javamail.jar}"/>
+    <pathelement location="${jaf.jar}"/>
+    <pathelement location="${jaxp-api.jar}"/>
+    <pathelement location="${dom.jar}"/>
+    <pathelement location="${sax.jar}"/>
+    <pathelement location="${xalan.jar}"/>
+    <pathelement location="${xercesImpl.jar}"/>
+    <pathelement location="${jaxrpc-api.jar}"/>
+    <pathelement location="${jaxrpc-impl.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${saaj-api.jar}"/>
+    <pathelement location="${saaj-impl.jar}"/>
+    <pathelement location="${saaj-dom4j.jar}"/>
+    <pathelement location="${relaxngDatatype.jar}"/>
+    <pathelement location="${xsdlib.jar}"/>
+    <pathelement location="${jax-qname.jar}"/>
+    <pathelement location="${buildhome}"/>
+  </path>
+
+<!-- Run wsdeploy on the standard WAR file -->
+ <target name="process-war" depends="create-war"
+      description="Runs wsdeploy to generate the ties and create a deployable WAR file">
+      <echo message="Running wsdeploy...."/>
+    <exec executable="${generateWar}"/>
+  </target>
+
+<!-- Create the portable WAR FILE. This is the standard J2EE WAR file-->
+  <target name="create-war" depends="generate-server-from-code">
+    <war warfile="${buildhome}/${appname}-raw.war"
+         webxml="${webapp.webxml}">
+        <lib dir="${jarhome}">
+           <include name="shoemakeCore.jar"/>
+           <include name="shoemakeHomeModel.jar"/>
+        </lib>
+        <webinf dir="${basedir}/configs/" includes="*.wsdl,jaxrpc-ri.xml"/>
+        <webinf dir="${buildhome}/" includes="model.gz"/>
+        <webinf dir="${basedir}/configs/" includes="${webapp.jaxrpc.file}" defaultexcludes="no"/>
+        <classes dir="${buildhome}" includes="**/*.class" defaultexcludes="no"/>
+    </war>
+  </target>
+
+<!-- Generate the server bindings from the code -->
+  <target name="generate-server-from-code" depends="init,compile-server"
+	description="Runs wscompile to generate the client stub classes">
+      <echo message="Running wscompile...."/>
+    <exec executable="${genBindings}"/>
+  </target>
+
+<!-- compile the server -->
+  <target name="compile-server" depends="init">
+    <javac srcdir="mjs/home/commands/users"
+           destdir="${buildhome}"
+           debug="off">
+      <classpath refid="compile.classpath"/>
+    </javac>
+  </target>
+  
+  <target name="init">
+    <mkdir dir="${buildhome}"/>
+    <mkdir dir="${buildhome}/wsdeploy-generated"/>
+  </target>
+
+<!-- Tomcat specific tasks, needed for deploy and undeplot targets" -->
+  <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
+  <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
+
+<!-- The Tomcat deploy task , Deploys a WAR file to Tomcat -->
+  <target name="deploy" depends="process-war"
+     description="Deploys the processed WAR file">
+      <deploy url="http://127.0.0.1:8080/manager" username="admin" password="admin" 
+        path="/shoemake" war="file:${jarhome}/${appname}.war" />
+  </target>
+
+<!-- The Tomcat undeploy task , Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy" 
+     description="Undeploys a Web application">
+      <undeploy url="http://127.0.0.1:8080/manager" username="admin" password="admin" 
+        path="/shoemake" />
+  </target>
+
+<!-- clean the build directory -->
+  <target name="clean">
+    <delete dir="${buildhome}"/>    
+  </target>
+</project>

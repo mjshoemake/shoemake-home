@@ -1,0 +1,19 @@
+<ResourceBundle>
+   <MessageResource messageID="10001">
+      <Localization locale="en_US">
+         <MessageText>First Message Text</MessageText>
+         <Component>Core</Component>
+         <SubComponent>TestApp</SubComponent>
+         <Category>Business Logic</Category>
+      </Localization>
+   </MessageResource>
+   <MessageResource messageID="10002">
+      <Localization locale="en_US">
+         <MessageText>Second Message Text</MessageText>
+         <Component>Core</Component>
+         <SubComponent>TestApp</SubComponent>
+         <Category>Business Logic</Category>
+      </Localization>
+   </MessageResource>
+</ResourceBundle>      
+         

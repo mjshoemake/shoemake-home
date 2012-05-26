@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN" "http://castor.exolab.org/mapping.dtd">
+<mapping>
+   
+   <class name="mjs.home.model.UserList">
+      <map-to xml="UserList"/>
+
+      <field name="UserList" type="mjs.home.model.User" collection="vector"> 
+         <bind-xml name="User" node="element"/>
+      </field>
+   </class>
+
+   <class name="mjs.home.model.User">
+      <map-to xml="User"/>
+
+      <field name="UserID" type="int">
+         <bind-xml name ="UserID" node="element"/>
+      </field>
+
+      <field name="UserName" type="string">
+         <bind-xml name ="UserName" node="element"/>
+      </field>
+
+      <field name="Password" type="string">
+         <bind-xml name ="Password" node="element"/>
+      </field>
+
+      <field name="FirstName" type="string">
+         <bind-xml name="FirstName" node="element"/>
+      </field>
+
+      <field name="LastName" type="string">
+         <bind-xml name="LastName" node="element"/>
+      </field>
+   </class>
+</mapping>

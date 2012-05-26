@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="HtmlTest" default="deploy-war" basedir=".">
+   <property file="build.properties"/>
+   <property name="appname" value="${ant.project.name}"/>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy-war"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/htmltest" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- Create the portable WAR FILE. This is the standard J2EE WAR file-->
+  <target name="create-war" depends="undeploy-war">
+    <delete file="${jarshome}/htmltest.war"/>
+    <war destfile="${jarshome}/htmltest.war" webxml="${disthome}/WEB-INF/web.xml">
+      <fileset dir="${disthome}"/>
+    </war>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy-war"  depends="create-war"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/htmltest&amp;war=jar:file:M:/work/java/Jars/Shoemake/htmltest.war!/" dest="m:\work\java\htmltest\installContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat undeploy task, Un-deploys a context and deletes the deployed WAR file -->
+  <target name="undeploy"
+    description="Deploys the processed WAR file">
+    <echo message="Uninstall the previous war file..."/>
+    <get src="http://mike/manager/remove?path=/htmltest" dest="m:\work\java\home\uninstallContext.log" username="admin" password="admin"/>
+  </target>
+
+  <!-- The Tomcat deploy task, deploys a WAR file -->
+  <target name="deploy"
+    description="Deploys the processed WAR file">
+    <echo message="Install the new war file......."/>
+    <get src="http://mike/manager/install?path=/htmltestt&amp;war=jar:file:M:/work/java/Jars/Shoemake/htmltest.war!/" dest="m:\work\java\htmltest\installContext.log" username="admin" password="admin"/>
+  </target>
+
+</project>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UserService" targetNamespace="http://www.shoemake.com/wsdl/UserService" xmlns:tns="http://www.shoemake.com/wsdl/UserService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.shoemake.com/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema targetNamespace="http://www.shoemake.com/types" xmlns:tns="http://www.shoemake.com/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="addUser">
+        <sequence>
+          <element name="User_1" type="tns:User" nillable="true"/></sequence></complexType>
+      <complexType name="User">
+        <sequence>
+          <element name="firstName" type="string" nillable="true"/>
+          <element name="lastName" type="string" nillable="true"/>
+          <element name="password" type="string" nillable="true"/>
+          <element name="userID" type="int"/>
+          <element name="userName" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="deleteUser">
+        <sequence>
+          <element name="int_1" type="int"/></sequence></complexType>
+      <complexType name="deleteUser2">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="getUser">
+        <sequence>
+          <element name="int_1" type="int"/></sequence></complexType>
+      <complexType name="getUserResponse">
+        <sequence>
+          <element name="result" type="tns:User" nillable="true"/></sequence></complexType>
+      <complexType name="getUser2">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="getUser2Response">
+        <sequence>
+          <element name="result" type="tns:User" nillable="true"/></sequence></complexType>
+      <complexType name="getUserList">
+        <sequence/></complexType>
+      <complexType name="getUserListResponse">
+        <sequence>
+          <element name="result" type="tns:User" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="updateUser">
+        <sequence>
+          <element name="int_1" type="int"/>
+          <element name="User_2" type="tns:User" nillable="true"/></sequence></complexType>
+      <complexType name="updateUser2">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/>
+          <element name="User_2" type="tns:User" nillable="true"/></sequence></complexType>
+      <element name="addUser" type="tns:addUser"/>
+      <element name="deleteUser" type="tns:deleteUser"/>
+      <element name="deleteUser2" type="tns:deleteUser2"/>
+      <element name="getUser" type="tns:getUser"/>
+      <element name="getUserResponse" type="tns:getUserResponse"/>
+      <element name="getUser2" type="tns:getUser2"/>
+      <element name="getUser2Response" type="tns:getUser2Response"/>
+      <element name="getUserList" type="tns:getUserList"/>
+      <element name="getUserListResponse" type="tns:getUserListResponse"/>
+      <element name="updateUser" type="tns:updateUser"/>
+      <element name="updateUser2" type="tns:updateUser2"/></schema></types>
+  <message name="UserWebService_addUser">
+    <part name="parameters" element="ns2:addUser"/></message>
+  <message name="UserWebService_addUserResponse"/>
+  <message name="UserWebService_deleteUser">
+    <part name="parameters" element="ns2:deleteUser"/></message>
+  <message name="UserWebService_deleteUserResponse"/>
+  <message name="UserWebService_deleteUser2">
+    <part name="parameters" element="ns2:deleteUser2"/></message>
+  <message name="UserWebService_deleteUser2Response"/>
+  <message name="UserWebService_getUser">
+    <part name="parameters" element="ns2:getUser"/></message>
+  <message name="UserWebService_getUserResponse">
+    <part name="result" element="ns2:getUserResponse"/></message>
+  <message name="UserWebService_getUser2">
+    <part name="parameters" element="ns2:getUser2"/></message>
+  <message name="UserWebService_getUser2Response">
+    <part name="result" element="ns2:getUser2Response"/></message>
+  <message name="UserWebService_getUserList">
+    <part name="parameters" element="ns2:getUserList"/></message>
+  <message name="UserWebService_getUserListResponse">
+    <part name="result" element="ns2:getUserListResponse"/></message>
+  <message name="UserWebService_updateUser">
+    <part name="parameters" element="ns2:updateUser"/></message>
+  <message name="UserWebService_updateUserResponse"/>
+  <message name="UserWebService_updateUser2">
+    <part name="parameters" element="ns2:updateUser2"/></message>
+  <message name="UserWebService_updateUser2Response"/>
+  <portType name="UserWebService">
+    <operation name="addUser">
+      <input message="tns:UserWebService_addUser"/>
+      <output message="tns:UserWebService_addUserResponse"/></operation>
+    <operation name="deleteUser">
+      <input message="tns:UserWebService_deleteUser"/>
+      <output message="tns:UserWebService_deleteUserResponse"/></operation>
+    <operation name="deleteUser2">
+      <input message="tns:UserWebService_deleteUser2"/>
+      <output message="tns:UserWebService_deleteUser2Response"/></operation>
+    <operation name="getUser">
+      <input message="tns:UserWebService_getUser"/>
+      <output message="tns:UserWebService_getUserResponse"/></operation>
+    <operation name="getUser2">
+      <input message="tns:UserWebService_getUser2"/>
+      <output message="tns:UserWebService_getUser2Response"/></operation>
+    <operation name="getUserList">
+      <input message="tns:UserWebService_getUserList"/>
+      <output message="tns:UserWebService_getUserListResponse"/></operation>
+    <operation name="updateUser">
+      <input message="tns:UserWebService_updateUser"/>
+      <output message="tns:UserWebService_updateUserResponse"/></operation>
+    <operation name="updateUser2">
+      <input message="tns:UserWebService_updateUser2"/>
+      <output message="tns:UserWebService_updateUser2Response"/></operation></portType>
+  <binding name="UserWebServiceBinding" type="tns:UserWebService">
+    <operation name="addUser">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="deleteUser">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="deleteUser2">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getUser">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getUser2">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getUserList">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="updateUser">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="updateUser2">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/></binding>
+  <service name="UserService">
+    <port name="UserWebServicePort" binding="tns:UserWebServiceBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

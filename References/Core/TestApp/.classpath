@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="src" path="/Core - External"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/External/castor-0.9.5.3-xml.jar"/>
+    <classpathentry kind="src" path="/Core - Base"/>
+    <classpathentry kind="src" path="/Home - Model"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

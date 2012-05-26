@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<!-- This is the Struts configuration file for the Shoemake Home Site -->
+
+<struts-config>
+  <!-- ======== Datasource Definitions ====================================== -->
+
+  <!-- ======== Form Bean Definitions ======================================= -->
+  <form-beans>
+     <form-bean name = "AddUserForm" 
+                type = "mjs.home.struts.actions.AddUserForm">
+     </form-bean>
+     <form-bean name = "UpdateUserForm" 
+                type = "mjs.home.struts.actions.AddUserForm">
+     </form-bean>
+     <form-bean name = "GetUserListForm" 
+                type = "mjs.home.struts.actions.GetUserListForm">
+     </form-bean>
+  </form-beans>
+   
+
+  <!-- ======== Global Exception Definitions ================================ -->
+
+  <!-- ======== Global Forward Definitions ================================== -->
+  <global-forwards>
+    <forward name="GetUserList" path="/GetUserList.do?method=sortMostRecent"/>
+    <forward name="AddUser" path="/AddUser.do"/>
+  </global-forwards>
+
+  <!-- ======== Action Mapping Definitions ================================== -->
+  <action-mappings>
+
+    <!-- GET USER LIST - DISPLAY PAGE -->
+    <action path = "/GetUserList" 
+            type = "mjs.home.struts.actions.GetUserListAction"
+            scope = "request" 
+            name = "GetUserListForm"
+            validate = "false"
+            parameter = "method"> 
+            <forward name="success" path="/userlist.jsp"/>
+    </action>        
+    
+    <!-- ADD USER - DISPLAY PAGE -->
+    <action path = "/AddUserPage" 
+            forward = "/addUser.jsp"
+            name = "AddUserForm"/>
+
+    <!-- ADD USER - SAVE TO SERVER -->
+    <action path = "/AddUser" 
+            type = "mjs.home.struts.actions.AddUserSubmitAction"
+            name = "AddUserForm"
+            scope = "request" 
+            validate = "false"
+            input = "/addUser.jsp"> 
+            <forward name="success" path="/GetUserList.do?method=sortMostRecent"/>
+    </action>        
+    
+    <!-- DELETE USERS - REMOVE FROM SERVER -->
+    <action path = "/DeleteUsers" 
+            type = "mjs.home.struts.actions.DeleteUserSubmitAction"
+            name = "GetUserListForm"
+            scope = "request" 
+            validate = "false"
+            input = "/userlist.jsp"> 
+            <forward name="success" path="/GetUserList.do?method=sortMostRecent"/>
+    </action>        
+    
+    <!-- DELETE ALL USERS - REMOVE FROM SERVER -->
+    <action path = "/DeleteAllUsers" 
+            type = "mjs.home.struts.actions.DeleteAllUsersSubmitAction"
+            scope = "request" 
+            validate = "false"> 
+            <forward name="success" path="/GetUserList.do?method=sortMostRecent"/>
+    </action>        
+    
+    <!-- UPDATE USER - DISPLAY PAGE -->
+    <action path = "/UpdateUserPage" 
+            type = "mjs.home.struts.actions.UpdateUserAction"
+            name = "UpdateUserForm"
+            validate = "false"
+            scope = "request">
+            <forward name="success" path="/updateUser.jsp"/>
+    </action>        
+
+    <!-- UPDATE USER - SAVE TO SERVER -->
+    <action path = "/UpdateUser" 
+            type = "mjs.home.struts.actions.UpdateUserSubmitAction"
+            name = "UpdateUserForm"
+            scope = "request" 
+            validate = "false"
+            input = "/updateUser.jsp"> 
+            <forward name="success" path="/GetUserList.do?method=sortMostRecent"/>
+    </action>        
+    
+  </action-mappings>
+
+  <!-- ======== Controller Definitions ====================================== -->
+
+  <!-- ======== Message Resources Definitions =============================== -->
+
+  <message-resources parameter="ApplicationResources"/>
+
+</struts-config>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/struts-1.1b2.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-beanutils.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-collections.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-dbcp.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-digester.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-logging.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-pool.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-services.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Struts11/commons-validator.jar"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2EE 1.4.2 SDK"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/servlet-api.jar"/>
+    <classpathentry kind="src" path="/Core"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

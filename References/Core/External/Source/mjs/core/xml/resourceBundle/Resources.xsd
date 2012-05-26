@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DOCTYPE schema PUBLIC "-//W3C/DTD XML Schema Version 1.0//EN"
+                        "http://www.w3.org/TR/2000/WD-xmlschema-1-20000225/structures.dtd"-->
+<!DOCTYPE schema [
+<!ENTITY app-types SYSTEM "src/examples/oes/schema/app-types.ent">
+<!ENTITY global-codes SYSTEM "src/examples/oes/schema/global-codes.ent">
+]>
+
+<!-- Schema for Order Entry System Product Catalog -->
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:sh="http://www.shoemake.com/exceptions"
+            targetNamespace="http://castor.exolab.org/OES"
+            version="0.1">
+  
+  <element name="ResourceBundle" type="BaseResourceBundle"/>
+
+  <!-- ResourceBundle -->
+  <complexType name="BaseResourceBundle">
+    <sequence>
+      <element name="MessageResource" type="BaseMessageResource" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>  
+
+  <!-- MessageResource -->
+  <complexType name="BaseMessageResource">
+    <sequence>
+      <element name="Localization" type="BaseLocalization" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="messageID" type="string" minOccurs="1"/>
+  </complexType>  
+
+  <!-- Localization -->
+  <complexType name="BaseLocalization">
+    <sequence>
+      <element name="MessageText" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="Component" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="SubComponent" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="Category" type="string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+    <attribute name="locale" type="string" minOccurs="1"/>
+  </complexType>  
+</xsd:schema>

@@ -1,0 +1,98 @@
+<?cocoon-format type="text/html">
+<html>
+   <head>
+      <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Users</title>
+      <base href="http://mike/htmltest/">
+      <link type="text/css" rel="stylesheet" href="css/shoemake.css">
+      <style type="text/css">
+         td.desc {font-weight: bold} 
+      </style>
+      <script type="text/javascript">
+         function setCheckboxes()
+         {
+            var form = document.forms[0];
+            var val = form.selectAll.checked;
+            for (var i=0; i < form.elements.length; i++)
+            {
+               if (form.elements[i].type == "checkbox")
+               {
+                  form.elements[i].checked = val;
+               }  
+            }
+         }
+      </script>
+   </head>
+   <body>
+      <table align="center" width="80%">
+         <!--  BREADCRUMBS  -->
+         <tr>
+            <td>
+               <table cellpadding="0" cellspacing="0">
+                  <tr>
+                     <td class="breadcrumb"><a href="Shoemake/UserAdd.xhtml">User List</a></td>
+                     <td class="breadcrumb" width="20">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</td>
+                     <td class="breadcrumb">Add a User</td>
+                  </tr>
+               </table>
+            </td>
+            <td>&nbsp;</td>
+         </tr>
+         <!--  BLANK LINE  -->
+         <tr><td>&nbsp;</td></tr>
+         <!--  TOOLBAR  -->
+         <tr>
+            <td>
+               <table cellpadding="0" cellspacing="0" align="center">
+                  <tr>
+                     <td><a href="Shoemake/UserAdd.xhtml"><img border="0" src="images/buttonAddUser4.gif" alt="Add User" height="26"></a></td>
+                     <td width="30">&nbsp;</td>
+                     <td><a href="Shoemake/UserAdd.xhtml"><img border="0" src="images/buttonDeleteUser4.gif" alt="Delete Users" height="26"></a></td>
+                     <td width="30">&nbsp;</td>
+                     <td><a href="Shoemake/UserAdd.xhtml"><img border="0" src="images/buttonDeleteAll4.gif" alt="Delete All" height="26"></a></td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <!--  TITLE  -->
+         <tr><td>&nbsp;</td></tr>
+         <tr>
+            <td class="title" align="center">The List of Users</td>
+         </tr>
+         <tr>
+            <td>
+               <table cellpadding="0" cellspacing="0" align="right">
+                  <tr>
+                     <td class="breadcrumb"><a href="Shoemake/UserAdd.xhtml">User List</a></td>
+                     <td class="breadcrumb" width="20">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</td>
+                     <td class="breadcrumb">Add a User</td>
+                  </tr>
+               </table>
+            </td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td>
+               <!--   GRID  --> 
+               <form name="userListForm" method="post" action="/cgi/junk.cgi">
+                  <table align="center" width="100%">
+                     <tr>
+                        <th><input name="selectAll" type="checkbox" onclick="setCheckboxes()"/></th><th>Login</th><th>First Name</th><th>Last Name</th>
+                     </tr>
+                     <TR class="plain">
+                        <td align="center"><input name="rowSelect" value="1" type="checkbox"/></td><TD><a href="Shoemake/User1.xhtml" target="body">mshoemake</a></TD><TD>Mike</TD><TD>Shoemake</TD>
+                     </TR>
+                     <TR class="highlight">
+                        <td align="center"><input name="rowSelect" value="2"  type="checkbox"/><TD><a href="Shoemake/User2.xhtml" target="body">sshoemake</a></TD><TD>Susan</TD><TD>Shoemake</TD>
+                     </TR>
+                     <TR class="plain">
+                        <td align="center"><input name="rowSelect" value="3"  type="checkbox"/><TD><a href="Shoemake/User3.xhtml" target="body">fflintstone</a></TD><TD>Fred</TD><TD>Flintstone</TD>
+                     </TR>
+                  </table>
+               </form>
+            </td>
+         </tr>
+      </table>&nbsp;
+   </body>
+</html>
+

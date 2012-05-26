@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="src" path="/Core - Base"/>
+    <classpathentry kind="src" path="/Core - External"/>
+    <classpathentry kind="src" path="/Core - TestApp"/>
+    <classpathentry kind="src" path="/Home - Controller"/>
+    <classpathentry kind="src" path="/Home - Model"/>
+    <classpathentry kind="src" path="/Home - WebService"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/JUnit/junit.jar"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

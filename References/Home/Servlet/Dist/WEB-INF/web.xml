@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <display-name>Shoemake Home</display-name>
+  <description>Shoemake home web site.</description>
+  <servlet>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>mjs.home.controller.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+</web-app>

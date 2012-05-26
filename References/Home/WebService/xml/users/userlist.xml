@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8?>
+<userlist>
+  <user>
+    <username>brubble</username>
+    <password>1234</password>
+    <firstname>Barney</firstname>
+    <lastname>Rubble</lastname>
+  </user>
+  <user>
+    <username>dino</username>
+    <password>1234</password>
+    <firstname>Dino</firstname>
+    <lastname>Flintstone</lastname>
+  </user>
+</userlist>  

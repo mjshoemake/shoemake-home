@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="Source"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/servlet-api.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxp.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/parser.jar"/>
+    <classpathentry kind="src" path="/Core - External"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/log4j-1.2.8.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxb-xjc.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxb-api.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxb-impl.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jaxb-libs.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/relaxngDatatype.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/namespace.jar"/>
+    <classpathentry kind="lib" path="M:/Work/Java/Jars/Core/jax-qname.jar"/>
+    <classpathentry kind="output" path="Output"/>
+</classpath>

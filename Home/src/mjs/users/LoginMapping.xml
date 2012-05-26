@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="username"  type="string"/>
+   <field name="password"  type="string"/>
+</fielddef>
+
+     

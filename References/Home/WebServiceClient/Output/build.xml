@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+
+<project name="UserServiceClient" default="jar-clientbindings" basedir=".">
+ <property file="build.properties"/>
+
+  <property name="config.wsdl" value="${basedir}/configs/config-wsdl.xml"/>
+  <property name="wscompile" value="${jaxrpchome}/bin/wscompile.bat"/>
+  <property name="wsdeploy" value="${jaxrpchome}/bin/wsdeploy.bat"/>
+  <property name="appname" value="${ant.project.name}"/>
+  <property file="build.properties"/>
+
+  <path id="compile.classpath">
+    <pathelement location="${javamail.jar}"/>
+    <pathelement location="${jaf.jar}"/>
+    <pathelement location="${jaxp-api.jar}"/>
+    <pathelement location="${dom.jar}"/>
+    <pathelement location="${sax.jar}"/>
+    <pathelement location="${xalan.jar}"/>
+    <pathelement location="${xercesImpl.jar}"/>
+    <pathelement location="${jaxrpc-api.jar}"/>
+    <pathelement location="${jaxrpc-spi.jar}"/>
+    <pathelement location="${jaxrpc-impl.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${saaj-api.jar}"/>
+    <pathelement location="${saaj-impl.jar}"/>
+    <pathelement location="${saaj-dom4j.jar}"/>
+    <pathelement location="${relaxngDatatype.jar}"/>
+    <pathelement location="${xsdlib.jar}"/>
+    <pathelement location="${jax-qname.jar}"/>
+    <pathelement location="${ant.jar}"/>
+    <pathelement location="${jarhome}/shoemakeHomeSoapClient.jar"/>
+    <pathelement location="${buildhome}"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${buildhome}"/>
+    <mkdir dir="${buildhome}/mjs/home/commands/users/bindings"/>
+  </target>
+
+  <!-- Generate the client stubs code from the WSDL -->
+  <target name="generate-client-from-wsdl" depends="init"
+	description="Runs wscompile to generate the client stub classes">
+      <echo message="Running wscompile...."/>
+    <exec executable="${wscompile}">
+	<arg line="-f:wsi"/>
+       <arg line="-gen:client"/>
+       <arg line="-d ${buildhome}"/>
+       <arg line="${config.wsdl}"/>
+       <arg line="-keep"/> 
+    </exec>
+  </target>
+
+  <!-- Compile the Client generated from the WSDL of the service 
+   classpath="${buildhome}/${appname}/classes/client"
+   -->
+  <target name="compile-clientbindings" depends="generate-client-from-wsdl">
+    <echo message="${jaxrpc-impl.jar}"/>    
+  
+    <javac srcdir="${buildhome}/mjs/home/commands/users/bindings"
+           destdir="${buildhome}"
+           debug="off">
+      <classpath refid="compile.classpath"/>
+    </javac>
+
+  </target>
+
+  <!-- Create the Client stubs from the serverice 
+  -->
+    <target name="jar-clientbindings" depends="compile-clientbindings"
+            description="Builds the JAR file that contains all the client files">
+      <echo message="Building the clientbindings JAR  file...."/>
+      <delete file="${jarhome}/shoemakeHomeSoapClient.jar" />
+      <jar jarfile="${jarhome}/shoemakeHomeSoapClient.jar" >
+        <fileset dir="${buildhome}" />
+      </jar>
+
+      <copy todir="${basedir}/mjs/home/commands/users/bindings" filtering="no">
+        <fileset dir="${buildhome}/mjs/home/commands/users/bindings">
+           <exclude name="build.properties"/>   
+           <exclude name="buildEnv.bat"/>   
+           <exclude name="build.xml"/>   
+           <exclude name="config-wsdl.xml"/>   
+        </fileset>
+      </copy>
+    </target>
+
+<!-- run the Client generated form the WSDL 
+  <target name="run" depends="jar-clientbindings"
+     description="Runs the client">
+     <echo message="Running the Client program...." />
+      <java fork="on"
+	    classname="com.witsys.client.WSDLClient" >
+		<classpath refid="compile.classpath"/>
+      </java>
+  </target>
+  -->
+
+<!-- clean the build directory 
+  <target name="clean">
+    <delete dir="${buildhome}"/>
+    <delete dir="${basedir}/../../clientbindings" />
+  </target>
+  -->
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/config">
+   <service name="UserService" 
+            targetNamespace="http://www.shoemake.com/wsdl/UserService" 
+            typeNamespace="http://www.shoemake.com/types" 
+            packageName="mjs.home.commands.users.bindings"> 
+      <interface name="mjs.home.commands.users.UserWebService" 
+                 servantName="mjs.home.commands.users.UserWebServiceImpl"/> 
+   </service>
+</configuration> 

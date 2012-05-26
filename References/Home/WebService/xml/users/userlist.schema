@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8?>
+<schema xmlns=http://www.w3.org/2001/XMLSchema"
+        xmlns:user="http://www.shoemake.com/user"
+        targetNamespace="http://www.shoemake.com/user" >
+  
+  <element name="userlist" type="user:userlist" />
+  <element name="user" type="user:user" />
+  
+  <complexType name="userlist">
+    <all>
+      <element name="user"  type="user:user" minOccurs="0" maxOccurs="unbounded" />
+    </all>
+  </complexType>
+  
+  <complexType name="user">
+    <sequence>
+      <element name="username"   type="string" minOccurs="1" maxOccurs="1" />
+      <element name="password"   type="string" minOccurs="1" maxOccurs="1" />
+      <element name="firstname"  type="string" minOccurs="1" maxOccurs="1" />
+      <element name="lastname"   type="string" minOccurs="1" maxOccurs="1" />
+    </sequence>
+  </complexType>
+</schema>

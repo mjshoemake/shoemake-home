@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-rpc/ri/runtime' version='1.0'>
+  <endpoint
+    name='UserService'
+    interface='mjs.home.commands.users.UserWebService'
+    implementation='mjs.home.commands.users.UserWebServiceImpl'
+    tie='mjs.home.commands.users.UserWebService_Tie'
+    model='/WEB-INF/model.gz'
+    wsdl='/WEB-INF/UserService.wsdl'
+    service='{http://www.shoemake.com/wsdl/UserService}UserService'
+    port='{http://www.shoemake.com/wsdl/UserService}UserWebServicePort'
+    urlpattern='/UserService'/>
+</endpoints>
