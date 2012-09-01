@@ -24,12 +24,13 @@ public interface Constants {
     //public static final String ATT_TOPNAV = "topnav";
     //public static final String ATT_PREV_LOGIN = "prevlogin";
     //public static final String ATT_ROLENAME = "rolename";
+    //public static final String ATT_ALLOWED_FEATURES = "allowedFeatures";
     public static final String ATT_SEARCH_CRITERIA = "SearchCriteria";
     public static final String ATT_USER_ID = "userID";
     public static final String ATT_STATUS_MSG = "statusmsg";
     public static final String ATT_BREADCRUMBS = "breadcrumbs";
-    //public static final String ATT_ALLOWED_FEATURES = "allowedFeatures";
     public static final String ATT_PAGINATED_LIST_CACHE = "paginatedListCache";
+    public static final String ATT_PAGINATED_LIST_DIRTY = "paginatedListDirty";
     public static final String ATT_LETTER = "letter";
 	
     // Request Parameter Names

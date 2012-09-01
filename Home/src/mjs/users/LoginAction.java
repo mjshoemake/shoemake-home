@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mjs.aggregation.OrderedMap;
 import mjs.core.AbstractAction;
-import mjs.database.DatabaseDriver;
+import mjs.database.DatabaseConfig;
+import mjs.database.TableDataManager;
 import mjs.exceptions.ActionException;
 import mjs.utils.Constants;
 import mjs.utils.SingletonInstanceManager;
@@ -31,21 +32,26 @@ public class LoginAction extends AbstractAction {
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("Login", "action");
       LoginForm loginForm = (LoginForm) form;
-      UserForm userForm = new UserForm();
-      UserManager dbMgr = null;
+      User user = new User();
+      TableDataManager dbMgr = null;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
+         SingletonInstanceManager imgr = SingletonInstanceManager.getInstance();
+         DatabaseConfig config = (DatabaseConfig)imgr.getInstance(DatabaseConfig.class.getName());
+         dbMgr = config.getTable("LoginMapping.xml");
+         
+         //DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
+         //if (driver == null)
+         //   throw new ActionException("Unable to create database managers.  Driver is null.");
+         //String mappingFile = "/mjs/users/LoginMapping.xml";
+         //String tableName = "users";
+         //dbMgr = new TableDataManager(driver, "users", mappingFile, User.class);
+         
          // Create the instance of SampleDataManager
-         dbMgr = new UserManager(driver);
          log.debug("UserManager created.");
 
          // Validate form data.
-         String mappingFile = "mjs/users/LoginMapping.xml";
-         OrderedMap dataMapping = driver.loadMapping(mappingFile);
+         OrderedMap dataMapping = dbMgr.loadMapping();
          log.debug("DataMapping file loaded.");
          ValidationErrorList errors = loginForm.validate(dataMapping);
          if (errors.isEmpty()) {
@@ -53,7 +59,7 @@ public class LoginAction extends AbstractAction {
             // Validate the password.
             try {
                dbMgr.open();
-               dbMgr.getUserByUserName(userForm, loginForm.getUsername());
+               dbMgr.loadBean(user, " where username = '" + loginForm.getUsername() + "'");
                dbMgr.close();
                log.debug("User object retrieve for username " + loginForm.getUsername());
             }
@@ -64,8 +70,8 @@ public class LoginAction extends AbstractAction {
 
             // Verify password.
             String pwEntered = loginForm.getPassword();
-            log.debug("Entered: " + pwEntered + "  From DB: " + userForm.getPassword());
-            if (userForm.getPassword().equals(pwEntered)) {
+            log.debug("Entered: " + pwEntered + "  From DB: " + user.getPassword());
+            if (user.getPassword().equals(pwEntered)) {
                // Successful login.
                log.debug("Login successful.");
                SessionManager.getInstance().invalidatePrevSession(loginForm.getUsername(), req.getSession());

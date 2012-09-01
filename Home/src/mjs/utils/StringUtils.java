@@ -546,5 +546,103 @@ public class StringUtils {
 		return msgEventTimeMilliseconds;
 	}
 
+    /**
+     * This method replaces tokens that start with "${" and
+     * end with "}" with the value of the specified environment 
+     * variable.
+     * <p/>
+     * Ex. ${RMS-CONF}/dcc.properties  
+     *     ${RMS-CONF} is replaced by the value of the environment
+     *     variable named "RMS-CONF".
+     * <p/>
+     * In addition, the token "WORKING_DIR" can be used to substitute
+     * in the current working directory.  This is especially useful 
+     * for scripts where you want the logs to be generated to the
+     * current working directory (the directory from which the script
+     * was called) instead of a predefined directory.
+     * <p/>
+     * Ex. ${WORKING_DIR}/logs/audit.log     
+     *     
+     * @param input String
+     * @return String
+     */
+    public static String replaceTokensWithEnvVariables(String input) {
+    	String timestamp = StringUtils.dateToString(new Date(), "yyyyMMdd-HHmmss"); 
+    	return replaceTokensWithEnvVariables(input, null, timestamp);
+    }
+    
+    /**
+     * This method replaces tokens that start with "${" and
+     * end with "}" with the value of the specified environment 
+     * variable.
+     * <p/>
+     * Ex. ${RMS-CONF}/dcc.properties  
+     *     ${RMS-CONF} is replaced by the value of the environment
+     *     variable named "RMS-CONF".
+     * <p/>
+     * In addition, the token "WORKING_DIR" can be used to substitute
+     * in the current working directory.  This is especially useful 
+     * for scripts where you want the logs to be generated to the
+     * current working directory (the directory from which the script
+     * was called) instead of a predefined directory.
+     * <p/>
+     * Ex. ${WORKING_DIR}/logs/audit.log     
+     *     
+     * @param input String
+     * @param scriptName String Optional. The name of the script to use when 
+     *                          replacing ${SCRIPT_NAME}.
+     * @return String
+     */
+    public static String replaceTokensWithEnvVariables(String input,
+    		                                           String scriptName,
+    		                                           String timestamp) {
+    	// If received null, return null.
+    	if (input == null)
+    		return null;
+    	
+    	String current = input;
+    	StringBuilder builder = new StringBuilder();
+    	int startPos = current.indexOf("${");
+    	EnvironmentVariables env = EnvironmentVariablesLive.getInstance();
+    	if (scriptName != null) {
+    	    scriptName = FileUtils.stripClassPath(scriptName);
+    	}    
+    	
+    	while (startPos != -1) {
+    		
+        	int endPos = current.indexOf("}");
+
+        	// Found token.  Keep stuff before token.
+            if (startPos != 0) {
+                String prefix = current.substring(0,startPos);
+                builder.append(prefix);
+            }
+            String name = current.substring(startPos+2, endPos);
+            String remainder = current.substring(endPos+1);
+            String value = null;
+            if (name.equals("WORKING_DIR")) {
+            	value = System.getProperty("user.dir"); 
+            } else if (name.equals("SCRIPTNAME")) {
+                value = scriptName; 
+            } else if (name.equals("TIMESTAMP")) {
+            	value = timestamp;
+            } else {	
+                value = env.getValue(name);
+            }    
+            if (value != null) {
+                builder.append(value);
+            } else {
+            	builder.append("${");
+            	builder.append(name);
+            	builder.append("}");
+            }
+            current = remainder;
+            
+            // Look for more tokens.
+        	startPos = current.indexOf("${");
+    	}
+    	builder.append(current);
+    	return builder.toString().trim();
+    }
 
 }

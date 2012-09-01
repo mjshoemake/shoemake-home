@@ -4,10 +4,13 @@ import java.beans.PropertyDescriptor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import mjs.aggregation.OrderedMap;
 import mjs.utils.BeanUtils;
 import mjs.utils.LogUtils;
 import mjs.utils.StringUtils;
+import mjs.view.SelectOption;
 
 /**
  * The DataManager class is the class that retrieves from 
@@ -31,8 +34,7 @@ public class DataManager extends AbstractDataManager
    /**
     * Constructor.
     */
-   public DataManager(DatabaseDriver driver) 
-   {
+   public DataManager(DatabaseDriver driver) throws DataLayerException {
       super(driver);
    }
 
@@ -294,6 +296,41 @@ public class DataManager extends AbstractDataManager
       return bean;
    }
 
+   /**
+    * Get a list of select options from the specified table.
+    * 
+    * @param table String
+    * @param pkField String
+    * @param captionField String
+    * @return ArrayList<SelectOption>
+    * @throws DataLayerException
+    */
+   public ArrayList<SelectOption> getSelectOptions(String table,
+		                                           String pkField, 
+		                                           String captionField) throws DataLayerException {
+      ArrayList<SelectOption> result = new ArrayList<SelectOption>();
+
+      try {
+         StringBuffer sql = new StringBuffer();
+         sql.append("select " + pkField + ", " + captionField + " ");
+         sql.append("from " + table + " ");
+         sql.append("order by " + captionField);
+
+         ResultSet resultSet = executeSQL(sql.toString());
+         if (resultSet != null) {
+            while (resultSet.next()) {
+               String pk = resultSet.getString(1);
+               String name = resultSet.getString(2);
+               result.add(new SelectOption(pk, name));
+            }
+         }
+      }
+      catch (Exception e) {
+         throw new DataLayerException("Error while retrieving list of select options. " + e.getMessage(), e);
+      }
+      return result;
+   }
+   
    /**
     * Count the number of rows in the result set.
     * @param table          The table to load from.

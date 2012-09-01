@@ -52,7 +52,7 @@
                     &nbsp;&nbsp;&nbsp;
                     <input type="button" value="New Recipe"  onclick="addButton()" alt="Add New Recipe" />
                     &nbsp;&nbsp;&nbsp;
-                    <input type="button" value="New Test Recipe"  onclick="addTestRecipeButton()" alt="Add Test Recipe" />
+                    <input type="button" value="New Recipe To Try"  onclick="addTestRecipeButton()" alt="Add Recipe To Try" />
                   </td>
                 </tr>
               </table>

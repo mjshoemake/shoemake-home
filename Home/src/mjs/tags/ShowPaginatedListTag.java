@@ -295,6 +295,9 @@ public class ShowPaginatedListTag extends AbstractTag {
                            out.println("            <td>");
                            // Get the value for this field.
                            String fieldName = nextField.getName();
+                           if (fieldName.startsWith("@")) {
+                        	   fieldName = fieldName.substring(1);
+                           }
                            String value = beanValues.get(fieldName);
                            if (nextField.getIsLink()) {
                               out.println("<a href=\"" + newUrl + "\">" + value + "</a>");

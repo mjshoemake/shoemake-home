@@ -1,5 +1,12 @@
 package mjs.database;
 
+import java.util.ArrayList;
+
+import mjs.aggregation.OrderedMap;
+import mjs.core.Form;
+import mjs.view.SelectOption;
+import mjs.view.ValidationErrorList;
+
 //import java.util.ArrayList;
 
 
@@ -39,8 +46,7 @@ public class TableDataManager extends DataManager
     * @param mappingFile  Description of Parameter
     * @param datatype     Description of Parameter
     */
-   public TableDataManager(DatabaseDriver driver, String tableName, String mappingFile, Class datatype)
-   {
+   public TableDataManager(DatabaseDriver driver, String tableName, String mappingFile, Class datatype) throws DataLayerException {
       super(driver);
       this.table = tableName;
       this.mappingFile = mappingFile;
@@ -192,4 +198,66 @@ public class TableDataManager extends DataManager
       return type;
    }
 
+   /**
+    * Loads the mapping file at the specified location and stores the
+    * data in a Hashtable where the key is the field name and the
+    * value .
+    *
+    * @param mappingFile             String
+    * @return                        Hashtable
+    * @exception DataLayerException  Description of Exception
+    */
+   public OrderedMap loadMapping() throws DataLayerException
+   {
+      try
+      {
+         if (mappingFile == null)
+            throw new DataLayerException("Error loading mapping file.  Mapping file path is null.");
+
+         log.debug("Loading mapping file...");
+         return getDriver().loadMapping(mappingFile);
+      }
+      catch (DataLayerException e)
+      {
+         throw e;
+      }
+      catch (java.lang.Exception e)
+      {
+         throw new DataLayerException("Error loading mapping file.", e);
+      }
+   }
+
+   /**
+    * Validate the specified form object.
+    * @param form
+    * @throws DataLayerException
+    */
+   public ValidationErrorList validateForm(Form form) throws DataLayerException {
+       DatabaseDriver driver = getDriver();
+       if (driver == null)
+          throw new DataLayerException("Unable to validate the specified form. The database driver is null.");
+
+       try {
+           OrderedMap dataMapping = driver.loadMapping(mappingFile);
+           return form.validate(dataMapping);
+       } catch (Exception e) {
+           throw new DataLayerException("Unable to validate the specified form. " + e.getMessage(), e);
+       }
+   }
+   
+   /**
+    * Get a list of select options from the specified table.
+    * 
+    * @param table String
+    * @param pkField String
+    * @param captionField String
+    * @return ArrayList<SelectOption>
+    * @throws DataLayerException
+    */
+   public ArrayList<SelectOption> getSelectOptions(String pkField, 
+		                                           String captionField) throws DataLayerException {
+	   
+	  return getSelectOptions(table, pkField, captionField);
+   }
+   
 }

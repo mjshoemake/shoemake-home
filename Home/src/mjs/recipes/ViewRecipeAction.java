@@ -5,11 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mjs.core.AbstractAction;
 import mjs.exceptions.ActionException;
-import mjs.database.DatabaseDriver;
+import mjs.database.home.SearchManager;
 import mjs.recipes.RecipeForm;
-import mjs.recipes.RecipeManager;
 import mjs.utils.Constants;
-import mjs.utils.SingletonInstanceManager;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -31,19 +29,12 @@ public class ViewRecipeAction extends AbstractAction
    {
       metrics.startEvent("GetRecipe", "action");
       RecipeForm recipeForm = (RecipeForm)form;
-      RecipeManager dbMgr = null;
+      SearchManager dbMgr = null;
 
       try
       {
-          SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-          DatabaseDriver driver = (DatabaseDriver)mgr.getInstance("mjs.database.DatabaseDriver");
-
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
          //Create the instance of SampleDataManager
-         dbMgr = new RecipeManager(driver);
-         log.debug("RecipeManager created.");
-
+         dbMgr = new SearchManager();
          String pk = req.getParameter(Constants.PARAM_ID);
          addBreadcrumbs(req, "View Recipe", "../ViewRecipe.do?id=" + pk);
          

@@ -9,7 +9,10 @@
 package mjs.setup;
 
 //import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Properties;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -18,14 +21,20 @@ import javax.servlet.http.HttpServlet;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import mjs.database.DatabaseConfig;
 import mjs.database.DatabaseDriver;
+import mjs.exceptions.CoreException;
 import mjs.utils.SingletonInstanceManager;
+import mjs.utils.StringUtils;
 //import com.cisco.ca.sse.femto.common.ads.ADSManager;
 //import mjs.setup.FileMonitor;
 //import com.cisco.ca.sse.femto.common.utils.SingletonInstanceManager;
 //import mjs.utils.FemtoConstants;
-//import mjs.utils.FileUtils;
+import mjs.utils.FileUtils;
+import mjs.xml.CastorObjectConverter;
 
 /**
  * Setup Servlet.
@@ -62,6 +71,8 @@ public final class SetupServlet extends HttpServlet implements Servlet {
         System.out.println("Shoemake Home SetupServlet:init() Setting up DB.");
         // Database Initialization
         setupDB(sc);
+        setupMybatis(sc);
+        
         auditLog.info("**********  Server initialized.  **********");
 
         System.out.println("Shoemake Home SetupServlet:init() END.");
@@ -74,21 +85,25 @@ public final class SetupServlet extends HttpServlet implements Servlet {
 	 */
 	private void loadLoggingConfiguration(ServletConfig sc) throws ServletException {
 
-	    // Lookup the file name for log4j configuration
-        String fileName = LOG4J_PROP_FILE_LOCATION;
-        URL url = SetupServlet.class.getResource(fileName);
-        PropertyConfigurator.configure(url);
-
-        // create an instance of the logger so it maybe used
-        log = Logger.getLogger("Servlet");
-        log.debug("Logger is created.");
-        
-        // We also need to cache the log4j config info separately for use by 
-        // the administration framework to display the log files.
-        Log4jProperties log4jProperties = Log4jProperties.getInstance();
-        log4jProperties.loadProperties(url);
-        log.debug("Log4J properties loaded.");
-        log4jProperties.logProperties();
+		try {
+		    // Lookup the file name for log4j configuration
+	        String fileName = LOG4J_PROP_FILE_LOCATION;
+	        Properties props = FileUtils.getContents(fileName, null, null, true, true);
+	        PropertyConfigurator.configure(props);
+	 
+	        // create an instance of the logger so it maybe used
+	        log = Logger.getLogger("Servlet");
+	        log.debug("Logger is created.");
+	        
+	        // We also need to cache the log4j config info separately for use by 
+	        // the administration framework to display the log files.
+	        Log4jProperties log4jProperties = Log4jProperties.getInstance();
+	        log4jProperties.loadProperties(fileName);
+	        log.debug("Log4J properties loaded.");
+	        log4jProperties.logProperties();
+		} catch (CoreException e) {
+			throw new ServletException("Failed to load the logging configuration.", e);
+		}
 	}
 
     /**
@@ -102,12 +117,11 @@ public final class SetupServlet extends HttpServlet implements Servlet {
 
     	    // Lookup the file name for log4j configuration
             String fileName = MAIN_PROP_FILE_LOCATION;
-            URL url = SetupServlet.class.getResource(fileName);
 
             // We also need to cache the log4j config info separately for use by 
             // the administration framework to display the log files.
             MainProperties mainProperties = MainProperties.getInstance();
-            mainProperties.loadProperties(url);
+            mainProperties.loadProperties(fileName);
             log.debug("Log4J properties loaded.");
             mainProperties.logProperties();
         	auditLog.info("Loaded FPG configuration.");
@@ -125,17 +139,43 @@ public final class SetupServlet extends HttpServlet implements Servlet {
 
 	    Logger auditLog = Logger.getLogger("Audit"); 
         try {
-
-    	    // Lookup the file name for log4j configuration
-            DatabaseDriver databaseDriver = new DatabaseDriver();
-            SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-            mgr.storeInstance(databaseDriver);
+        	DatabaseConfig.initialize("/config/database.xml");
         	auditLog.info("Configured MySQL database.");
         } catch (Exception e) {
         	auditLog.error("Error configuring MySQL database.", e);
         	throw new ServletException(e);
         }
     }
+    
+    /**
+     * Load the main configuration information.
+     * @param sc ServletConfig - The servlet configuration object.
+     */
+    private void setupMybatis(ServletConfig sc) throws ServletException {
+
+	    Logger auditLog = Logger.getLogger("Audit"); 
+        try {
+
+    	    // Lookup the file name for log4j configuration
+        	String resource = "/config/mybatis-config.xml";
+        	InputStream inputStream = FileUtils.getFileAsStream(resource, true);
+        	InputStreamReader reader = new InputStreamReader(inputStream);
+        	SqlSessionFactory sqlSessionFactory = null;
+        	try {
+        	    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        	} catch (Throwable t) {
+        		auditLog.error("Error creating SqlSessionFactory!!! " + t.getMessage(), t);
+        	}
+            SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
+            mgr.putInstanceForKey(SqlSessionFactory.class.getName(), sqlSessionFactory);
+        	auditLog.info("Configured Mybatis database access... DONE.");
+        	
+        } catch (Exception e) {
+           	auditLog.error("Error configuring Mybatis database access.", e);
+        	throw new ServletException(e);
+        }
+    }
+    
     
 	/* (non-Javadoc)
 	 * @see javax.servlet.GenericServlet#destroy()

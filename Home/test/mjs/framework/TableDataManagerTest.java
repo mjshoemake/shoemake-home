@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import mjs.aggregation.OrderedMap;
+import mjs.database.DatabaseConfig;
 import mjs.database.DatabaseDriver;
 import mjs.database.PaginatedList;
+import mjs.database.TableDataManager;
+import mjs.users.User;
 import mjs.users.UserForm;
 import mjs.users.UserManager;
 import mjs.utils.LogUtils;
 import mjs.utils.SingletonInstanceManager;
 
 @SuppressWarnings("rawtypes")
-public class TableDataManagerTest extends AbstractServletTest {
+public class TableDataManagerTest extends ServletStarter {
 
     @Before
     public void setUp() throws Exception {
@@ -28,9 +32,20 @@ public class TableDataManagerTest extends AbstractServletTest {
     public void testLoadUsers() {
 
         try {
-            SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-            DatabaseDriver driver = (DatabaseDriver)mgr.getInstance(DatabaseDriver.class.getName());
+            SingletonInstanceManager imgr = SingletonInstanceManager.getInstance();
+            DatabaseConfig config = (DatabaseConfig)imgr.getInstance(DatabaseConfig.class.getName());
+            TableDataManager dbMgr = config.getTable("LoginMapping.xml");
+            OrderedMap dataMapping = dbMgr.loadMapping();
+            
+            User userForm = new User();
+            
+            dbMgr.open();
+            dbMgr.loadBean(userForm, " where username = 'mjshoemake'");
+            dbMgr.close();
 
+            
+            
+/*
             // Get user counts.
             UserManager dbMgr = new UserManager(driver);
             dbMgr.open();
@@ -52,6 +67,7 @@ public class TableDataManagerTest extends AbstractServletTest {
                 }
             }
 
+        	/*
             int pk = -1;
             UserForm target = null;
             if (rows > 0) {
@@ -158,6 +174,7 @@ public class TableDataManagerTest extends AbstractServletTest {
             
             System.out.println("Test complete.  Exiting.");
             
+*/    
         } catch (Exception e) {
             e.printStackTrace();
             assertFailed("Execution with no exceptions.  " + e.getMessage());
@@ -165,5 +182,4 @@ public class TableDataManagerTest extends AbstractServletTest {
             //reportResults();         	
         }
     }
-    
 }

@@ -9,7 +9,7 @@ import mjs.database.DatabaseDriver;
 import mjs.setup.SetupServlet;
 import mjs.utils.SingletonInstanceManager;
 
-public class SetupServletTest extends AbstractServletTest {
+public class SetupServletTest extends ServletStarter {
 
     SetupServlet setupServlet = new SetupServlet();
 

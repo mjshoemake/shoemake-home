@@ -48,6 +48,11 @@ public class RecipeSearchForm extends AbstractForm implements BusinessObject {
     * Calories per serving.
     */
    private String calories_per_serving = "";
+   
+   /**
+    * Favorite (Y/N).
+    */
+   private String favorite = "";
 
 	/**
 	 * Constructor.
@@ -141,6 +146,20 @@ public class RecipeSearchForm extends AbstractForm implements BusinessObject {
 	 */
 	public void setCookbook(String value) {
 		cookbook = value;
+	}
+
+	/**
+	 * Favorite (Y/N).
+	 */
+	public void setFavorite(String value) {
+		favorite = value;
+	}
+
+	/**
+	 * Favorite (Y/N).
+	 */
+	public String getFavorite() {
+		return favorite;
 	}
 
 	/**

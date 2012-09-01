@@ -79,6 +79,11 @@ public class RecipeForm extends AbstractForm implements BusinessObject {
 	private String notes = "";
 
 	/**
+	 * Favorite (Y/N)?
+	 */
+	private String favorite = "";
+
+	/**
 	 * Constructor.
 	 */
 	public RecipeForm(String recipes_pk, String name, String directions,
@@ -291,6 +296,25 @@ public class RecipeForm extends AbstractForm implements BusinessObject {
 	 */
 	public void setServing_size(String value) {
 		serving_size = value;
+	}
+
+	/**
+	 * Favorite (Y/N)?  If not, this recipe is considered a recipe to try.
+	 */
+	public String getFavorite() {
+		return favorite;
+	}
+
+	/**
+	 * Favorite (Y/N)?  If not, this recipe is considered a recipe to try.
+	 */
+	public void setFavorite(String value) {
+		if (value != null && value.toUpperCase().startsWith("Y")) {
+			value = "Yes";
+		} else {
+			value = "No";
+		}
+		favorite = value;
 	}
 
 	/**

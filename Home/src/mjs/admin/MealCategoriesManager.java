@@ -78,6 +78,7 @@ public class MealCategoriesManager extends Loggable {
     * @return ArrayList
     * @throws DataLayerException
     */
+   /*
    public ArrayList<SelectOption> getMealCategoriesAsSelectOptions() throws DataLayerException {
       ArrayList<SelectOption> result = new ArrayList<SelectOption>();
 
@@ -110,6 +111,7 @@ public class MealCategoriesManager extends Loggable {
     * @return PaginatedList
     * @throws DataLayerException
     */
+   /*
    public PaginatedList getMealCategoryList(int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList("order by name", pageSize, maxRows, globalForward);
@@ -128,6 +130,7 @@ public class MealCategoriesManager extends Loggable {
     * @return PaginatedList
     * @throws DataLayerException
     */
+   /*
    public PaginatedList getMealCategoryList(String whereClause, int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList(whereClause, pageSize, maxRows, globalForward);
@@ -145,6 +148,7 @@ public class MealCategoriesManager extends Loggable {
     * @param applicationPK String
     * @throws DataLayerException
     */
+   /*
    public void updateMealCategory(MealCategoryForm bean) throws DataLayerException {
       try {
          String whereClause = "where meal_categories_pk = " + bean.getPK();
@@ -162,6 +166,7 @@ public class MealCategoriesManager extends Loggable {
     * @param bean
     * @throws DataLayerException
     */
+   /*
    public void deleteMealCategory(MealCategoryForm bean) throws DataLayerException {
       try {
          String whereClause = "where meal_categories_pk = " + bean.getPK();
@@ -179,6 +184,7 @@ public class MealCategoriesManager extends Loggable {
     * @param pk
     * @throws DataLayerException
     */
+   /*
    public void deleteMealCategory(int pk) throws DataLayerException {
       try {
          String whereClause = "where meal_categories_pk = " + pk;
@@ -196,6 +202,7 @@ public class MealCategoriesManager extends Loggable {
     * @param bean 
     * @throws DataLayerException
     */
+   /*
    public void insertMealCategory(MealCategoryForm bean) throws DataLayerException {
       try {
          log.debug("Calling Insert Bean...");
@@ -214,6 +221,7 @@ public class MealCategoriesManager extends Loggable {
     * @return int
     * @throws DataLayerException
     */
+   /*
    public int countRows(String whereClause) throws DataLayerException {
       try {
          int results = manager.countRows(table, whereClause);
@@ -232,6 +240,7 @@ public class MealCategoriesManager extends Loggable {
     * 
     * @throws DataLayerException
     */
+   /*
    public void getMealCategory(int pk, MealCategoryForm form) throws DataLayerException {
       try {
          if (form == null)

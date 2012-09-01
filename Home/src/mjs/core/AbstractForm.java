@@ -1,6 +1,9 @@
 package mjs.core;
 
+import mjs.aggregation.OrderedMap;
 import mjs.exceptions.CoreException;
+import mjs.view.ValidationErrorList;
+
 import org.apache.log4j.Logger;
 
 
@@ -9,7 +12,7 @@ import org.apache.log4j.Logger;
  * Struts applications. It includes a Log4J integration, so
  * log messages can be sent without instantiating the Logger object.
  */
-public abstract class AbstractForm extends org.apache.struts.action.ActionForm
+public abstract class AbstractForm extends org.apache.struts.action.ActionForm  implements Form
 {
     static final long serialVersionUID = -4174504602386548113L;
 
@@ -54,4 +57,18 @@ public abstract class AbstractForm extends org.apache.struts.action.ActionForm
          log.error(new CoreException("Error creating action form.", e));
       }
    }
+   
+
+	/**
+	 * Check to see if this form is valid.
+	 * 
+	 * @param mapping Description of Parameter
+	 * @return ValidationErrorList
+	 */
+	public ValidationErrorList validate(OrderedMap mapping) {
+		ValidationErrorList errors = new ValidationErrorList();
+
+		return errors;
+	}
+   
 }

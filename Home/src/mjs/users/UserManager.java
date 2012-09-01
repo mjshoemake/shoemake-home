@@ -38,6 +38,11 @@ public class UserManager extends Loggable
     * The default mapping file.
     */
    protected String mappingFile = "mjs/users/UserMapping.xml";
+   
+   /**
+    * The name of the database table.
+    */
+   protected String tableName = "users";
 
    /**
     * Constructor.
@@ -49,7 +54,7 @@ public class UserManager extends Loggable
    public UserManager(DatabaseDriver newDriver) throws DataLayerException
    {
       manager = new TableDataManager(newDriver,
-                                     "users",
+                                     tableName,
                                      mappingFile,
                                      UserForm.class);
    }
@@ -61,11 +66,12 @@ public class UserManager extends Loggable
     * @return                     Description of Return Value
     * @throws DataLayerException
     */
+/*   
    public Connection open() throws DataLayerException
    {
       return manager.open();
    }
-
+*/
    /**
     * Closes the transaction. If unsuccessful, the transaction
     * performs a rollback.
@@ -73,22 +79,24 @@ public class UserManager extends Loggable
     * @param successful           Description of Parameter
     * @throws DataLayerException
     */
+/*   
    public void close(boolean successful) throws DataLayerException
    {
       manager.close(successful);
    }
-
+*/
    /**
     * Closes the current transaction and releases the connection back
     * to the connection pool.
     *
     * @throws DataLayerException
     */
+/*   
    public void close() throws DataLayerException
    {
       manager.close();
    }
-
+*/
    /**
     * @param applicationPK        Description of Parameter
     * @return
@@ -156,6 +164,7 @@ public class UserManager extends Loggable
     * @return                     The value of the UserList property.
     * @throws DataLayerException
     */
+/*   
    public PaginatedList getUserList(int pageSize, int maxRows) throws DataLayerException
    {
       try
@@ -169,7 +178,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error loading the sample bean list.", ex);
       }
    }
-
+*/
    /**
     * Update this user in the database.
     *
@@ -177,6 +186,7 @@ public class UserManager extends Loggable
     * @param applicationPK        String
     * @throws DataLayerException
     */
+/*   
    public void updateUser(UserForm bean) throws DataLayerException
    {
       try
@@ -192,7 +202,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error inserting the user " + bean.getFname() + " " + bean.getLname() + ".", ex);
       }
    }
-   
+*/   
    /**
     * Delete this user in the database.
     *
@@ -200,6 +210,7 @@ public class UserManager extends Loggable
     * @param applicationPK        String
     * @throws DataLayerException
     */
+/*   
    public void deleteUser(UserForm bean) throws DataLayerException
    {
       try
@@ -214,7 +225,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error inserting the user " + bean.getFname() + " " + bean.getLname() + ".", ex);
       }
    }
-   
+*/   
    /**
     * Delete this user in the database.
     *
@@ -222,6 +233,7 @@ public class UserManager extends Loggable
     * @param applicationPK        String
     * @throws DataLayerException
     */
+/*
    public void deleteUser(int user_pk) throws DataLayerException
    {
       try
@@ -236,6 +248,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error inserting the user primary key " + user_pk + ".", ex);
       }
    }
+*/   
    
    /**
     * Insert this user in the database.
@@ -243,6 +256,7 @@ public class UserManager extends Loggable
     * @param bean                 UserForm
     * @throws DataLayerException
     */
+/*   
    public void insertUser(UserForm bean) throws DataLayerException
    {
       try
@@ -256,7 +270,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error inserting the user " + bean.getFname() + " " + bean.getLname() + ".", ex);
       }
    }
-   
+*/   
    /**
     * Returns the number of rows in the specified table that match the
     * specified where clause.
@@ -266,6 +280,7 @@ public class UserManager extends Loggable
     * @return                     int
     * @throws DataLayerException
     */
+/*   
    public int countRows(String table, String whereClause) throws DataLayerException
    {
       try
@@ -284,11 +299,12 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error counting rows in table " + table + ".", e);
       }
    }
-
+*/
    /**
     * Loads the specified user based on the UID.
     * @throws DataLayerException
     */
+ /*   
    public void getUser(int user_pk, UserForm form)
           throws DataLayerException
    {
@@ -308,11 +324,13 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error loading the user for user ID " + user_pk + ".", e);
       }
    }
-
+*/
+   
    /**
     * Loads the specified user based on the UID.
     * @throws DataLayerException
     */
+/*   
    public void getUserByUserName(UserForm form, String username)
           throws DataLayerException
    {
@@ -332,6 +350,7 @@ public class UserManager extends Loggable
          throw new DataLayerException("Error loading the user for username " + username + ".", e);
       }
    }
+*/   
 
    /**
     * Generate the SQL for the user search.
@@ -408,9 +427,10 @@ public class UserManager extends Loggable
     *
     * @return   String
     */
+/*   
    public String getMappingFile()
    {
       return mappingFile;
    }
-
+*/
 }

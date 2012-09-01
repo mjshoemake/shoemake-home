@@ -5,11 +5,10 @@ package mjs.admin;
 //import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mjs.aggregation.OrderedMap;
 import mjs.core.AbstractAction;
-import mjs.database.DatabaseDriver;
+import mjs.core.Form;
+import mjs.database.TableDataManager;
 import mjs.exceptions.ActionException;
-import mjs.utils.SingletonInstanceManager;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -29,30 +28,19 @@ public class AddMealAction extends AbstractAction {
     */
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("AddMeal", "action");
-      MealForm myForm = (MealForm)form;
-      MealsManager dbMgr = null;
+      Form myForm = (Form)form;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
-
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
-         // Create the instance of SampleDataManager
-         dbMgr = new MealsManager(driver);
-         log.debug("MealsManager created.");
-
          // Validate form data.
-         String mappingFile = "mjs/admin/MealsMapping.xml";
-         OrderedMap dataMapping = driver.loadMapping(mappingFile);
-         log.debug("DataMapping file loaded.");
-         ValidationErrorList errors = myForm.validate(dataMapping);
+         TableDataManager dbMgr = getTable("MealsMapping.xml");
+         ValidationErrorList errors = dbMgr.validateForm(myForm);
+
          if (errors.isEmpty()) {
             log.debug("Form validated successfully.");
             // Insert recipe.
             try {
                dbMgr.open();
-               dbMgr.insertMeal(myForm);
+               dbMgr.insertBean(myForm);
                dbMgr.close(true);
             }
             catch (Exception e) {

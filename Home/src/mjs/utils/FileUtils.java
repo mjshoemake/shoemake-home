@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -1416,18 +1417,53 @@ public class FileUtils {
     /**
      * This method can be used to determine if a file is present or not.
      * 
-     * @param fileName
-     *           The path + filename to check for existence.
+     * @param fileName The path + filename to check for existence.
      * 
      * @return true if the file exists.
      */
     public static boolean doesFileExist(String fileName) {
-        boolean rtn = false;
-        if(fileName != null && fileName.length() > 0) {
-            File file = new File(fileName);
-            rtn = file.isFile();
-        }   
-        return rtn;
+    	return doesFileExist(fileName, false);
+    }
+    
+    /**
+     * This method can be used to determine if a file is present or not.
+     * <p>
+     * If readFilesFromClassLoader is true, the filepath will be
+     * used to do a lookup of the configuration file in the classpath using
+     * the classloader. If not, it will look in the file system.
+     * 
+     * @param fileName The path + filename to check for existence.
+     * 
+     * @return true if the file exists.
+     */
+    public static boolean doesFileExist(String fileName, boolean readFilesFromClassLoader) {
+
+    	if (fileName == null) {
+    		return false;
+    	}
+    	
+        // synchronize on a common reference "filename",
+        // allow only one synchronized block at a time access
+        synchronized (SyncReference.getInstance().get(fileName)) {
+        	
+            File file = null;
+        	if (readFilesFromClassLoader) {
+        		InputStream stream = FileUtils.class.getResourceAsStream(fileName);
+        		if (stream == null) {
+        			return false;
+        		} else {
+        			return true;
+        		}
+        	} else {
+                file = new File(fileName);
+        	}
+
+            if (file.exists() && file.isFile()) {
+            	return true;
+            } else {
+            	return false;
+            }
+        }    
     }
 
     /**
@@ -1435,15 +1471,59 @@ public class FileUtils {
      * <code>fileName</code> in as a FileInputStream and load it into the
      * Properties parameter and returned.
      * 
-     * @param fileName
-     *           The path + fileName to read the contents from.
+     * @param fileName The path + fileName to read the contents from.
      * 
      * @return A Properties initialized with the contents of the fileName.
      *         Properties.isEmpty() = true if the fileName could not be found or
      *         it is empty.
      */
-    @SuppressWarnings("unchecked")
-    public static Properties getContents(String fileName) {
+    public static Properties getContents(String fileName) throws CoreException {
+    	String timestamp = StringUtils.dateToString(new Date(), "yyyyMMdd-HHmmss"); 
+    	return getContents(fileName, null, timestamp, false, false);
+    }
+
+    /**
+     * This method is utilized to read the contents of a file:
+     * <code>fileName</code> in as a FileInputStream and load it into the
+     * Properties parameter and returned.
+     * <p>
+     * If readFilesFromClassLoader is true, the filepath will be
+     * used to do a lookup of the configuration file in the classpath using
+     * the classloader. If not, it will look in the file system.
+     * 
+     * @param fileName The path + fileName to read the contents from.
+     * 
+     * @return A Properties initialized with the contents of the fileName.
+     *         Properties.isEmpty() = true if the fileName could not be found or
+     *         it is empty.
+     */
+    public static Properties getContents(String fileName, boolean readFilesFromClassLoader) throws CoreException {
+    	String timestamp = StringUtils.dateToString(new Date(), "yyyyMMdd-HHmmss"); 
+    	return getContents(fileName, null, timestamp, false, readFilesFromClassLoader);
+    }
+
+	/**
+     * This method is utilized to read the contents of a file:
+     * <code>fileName</code> in as a FileInputStream and load it into the
+     * Properties parameter and returned.  
+     * <p>
+     * If readFilesFromClassLoader is true, the filepath will be
+     * used to do a lookup of the configuration file in the classpath using
+     * the classloader. If not, it will look in the file system.
+     * 
+     * @param fileName The path + fileName to read the contents from.
+     * @param enableEnvironmentVariableReplacement Replace ${name} with
+     *        environment variable value.  Ex. ${RMS_CONF}/dcc.properties  
+     * 
+     * @return A Properties initialized with the contents of the fileName.
+     *         Properties.isEmpty() = true if the fileName could not be found or
+     *         it is empty.
+     */
+    public static Properties getContents(String fileName,
+                                         String scriptName,
+                                         String timestamp,
+    		                             boolean enableParameterSubstitution,
+    		                             boolean readFilesFromClassLoader) throws CoreException {
         String logPrefix = "FileUtil - getContents(): ";
 
         // Properties object to load the file into
@@ -1453,39 +1533,65 @@ public class FileUtils {
         // synchronize on a common reference "filename",
         // allow only one synchronized block at a time access
         synchronized (SyncReference.getInstance().get(fileName)) {
-            File file = new File(fileName);
-
-            if (file.exists()) {
-                FileInputStream fin = null;
-
-                try {
-                    fin = new FileInputStream(fileName);
-                    tempProps.load(fin);
-                    Iterator keys = tempProps.keySet().iterator();
-                    while(keys.hasNext()){
-                    	String key = (String) keys.next();
-                    	String value = (String) tempProps.get(key);
-                    	key = (key != null) ? key.trim() : key;
-                    	value = (value != null) ? value.trim() : value;                    	
-                    	props.put(key, value);                    	
-                    }
-                } catch (FileNotFoundException fnfe) {
-                    log.warn(logPrefix + "Could not find file: " + fileName + ": "
-                            + fnfe.getMessage());
-                } catch (IOException ioe) {
-                    log.warn(logPrefix + "Could not read from " + "file: "
-                            + fileName + ": " + ioe.getMessage());
-                } catch (Exception e) {
-                    log.warn(logPrefix, e);
-                } finally {
+        	
+            File file = null;
+            InputStream stream = null;
+        	
+            try {
+                if (readFilesFromClassLoader) {
                     try {
-                        if (fin != null) {
-                            fin.close();
-                        }
-                    } catch (IOException ioe) {
-                        log.info(logPrefix + "Exception caught while closing "
-                                + "FileInputStream: " + ioe.getMessage());
+                		stream = FileUtils.class.getResourceAsStream(fileName);
+                		if (stream == null) {
+                			return new Properties();
+                		}
+                    } catch (Exception e) {
+                    	throw new CoreException("Failed to load file " + fileName + ".  " + e.getMessage(), e);
                     }
+                    
+            	} else {
+                    file = new File(fileName);
+                    if (! file.exists()) {
+            			return new Properties();
+            		}
+                    stream = new FileInputStream(file);
+            	}
+
+                tempProps.load(stream);
+                Iterator it = tempProps.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry entry = (Map.Entry) it.next();
+                    String key = (String) entry.getKey();
+                    String value = (String) entry.getValue();
+                    key = (key != null) ? key.trim() : key;
+                    
+                    // Cleanup value (trim, parameter substitution, etc.). 
+                    if (enableParameterSubstitution) {
+                    	// Trim happens inside this method.
+                        value = StringUtils.replaceTokensWithEnvVariables(value, scriptName, timestamp);
+                    } else {
+                        value = (value != null) ? value.trim() : value;
+                    }
+                    props.put(key, value);
+                }
+            } catch (FileNotFoundException fnfe) {
+                throw new CoreException("Could not find file: " + fileName, fnfe);
+            } catch (IOException ioe) {
+                throw new CoreException("Could not read from file: " + fileName, ioe);
+            } catch (Exception e) {
+            	throw new CoreException("Failed to get contents of file: " + fileName, e);
+            } finally {
+                try {
+                    if (stream != null) {
+                        stream.close();
+                    }
+                } catch (IOException ioe) {
+                	if (LogUtils.isLog4jConfigured()) {
+                        log.info(logPrefix + "Exception caught while closing "
+                            + "FileInputStream: " + ioe.getMessage());
+                	} else {
+                		System.out.println("Error loading properties file (" + fileName + ").");
+                		ioe.printStackTrace();
+                	}
                 }
             }
         }
@@ -1494,63 +1600,61 @@ public class FileUtils {
     }
 
     /**
-     * This method is utilized to read the contents of a file:
-     * <code>fileName</code> in as a FileInputStream and load it into the
-     * Properties parameter and returned.
+     * Read this file into an InputStream and return the stream to the
+     * caller.  If readFilesFromClassLoader is true, the filepath will be
+     * used to do a lookup of the configuration file in the classpath using
+     * the classloader. If not, it will look in the file system. 
      * 
-     * @param fileName
-     *           The path + fileName to read the contents from.
-     * 
-     * @return A Properties initialized with the contents of the fileName.
-     *         Properties.isEmpty() = true if the fileName could not be found or
-     *         it is empty.
+     * @param fileName String
+     * @param readFilesFromClassLoader boolean
+     * @return InputStream
+     * @throws CoreException
      */
-    @SuppressWarnings("unchecked")
-    public static Properties getContents(URL url) {
-        String logPrefix = "FileUtil - getContents(): ";
-
-        // Properties object to load the file into
-        Properties tempProps = new Properties();
-        Properties props = new Properties();
-        BufferedReader in = null;
-        
+    public static InputStream getFileAsStream(String fileName,
+    		                                  boolean readFilesFromClassLoader) throws CoreException {
         // synchronize on a common reference "filename",
         // allow only one synchronized block at a time access
-        synchronized (SyncReference.getInstance().get(url)) {
+        synchronized (SyncReference.getInstance().get(fileName)) {
+        	
+            File file = null;
+            InputStream stream = null;
+        	
             try {
-            	in = new BufferedReader(new InputStreamReader(url.openStream()));        	
-                tempProps.load(in);
-                Iterator keys = tempProps.keySet().iterator();
-                while(keys.hasNext()){
-                	String key = (String) keys.next();
-                	String value = (String) tempProps.get(key);
-                	key = (key != null) ? key.trim() : key;
-                	value = (value != null) ? value.trim() : value;                    	
-                	props.put(key, value);                    	
-                }
+                if (readFilesFromClassLoader) {
+                    try {
+                		return FileUtils.class.getResourceAsStream(fileName);
+                    } catch (Exception e) {
+                    	throw new CoreException("Failed to load file " + fileName + ".  " + e.getMessage(), e);
+                    }
+                    
+            	} else {
+                    file = new File(fileName);
+                    if (! file.exists()) {
+                    	throw new FileNotFoundException("Could not find the file " + fileName + ".");
+            		}
+                    return new FileInputStream(file);
+            	}
             } catch (FileNotFoundException fnfe) {
-                log.warn(logPrefix + "Could not find file: " + url.toString() + ": "
-                        + fnfe.getMessage());
-            } catch (IOException ioe) {
-                log.warn(logPrefix + "Could not read from " + "file: "
-                        + url.toString() + ": " + ioe.getMessage());
+                throw new CoreException("Could not find file: " + fileName, fnfe);
             } catch (Exception e) {
-                log.warn(logPrefix, e);
+            	throw new CoreException("Failed to get contents of file: " + fileName, e);
             } finally {
                 try {
-                    if (in != null) {
-                        in.close();
+                    if (stream != null) {
+                        stream.close();
                     }
                 } catch (IOException ioe) {
-                    log.info(logPrefix + "Exception caught while closing "
-                            + "FileInputStream: " + ioe.getMessage());
+                	if (LogUtils.isLog4jConfigured()) {
+                        log.info("Exception caught while closing file.  FileInputStream: " + ioe.getMessage());
+                	} else {
+                        System.out.println("Exception caught while closing file.  FileInputStream: " + ioe.getMessage());
+                		ioe.printStackTrace();
+                	}
                 }
             }
         }
-
-        return props;
     }
-
+    
     /**
      * Get the base file name (everything before the last '.').
      * 
@@ -1888,6 +1992,22 @@ public class FileUtils {
            }
         }
         return wroteToFile;
+    }
+
+    /**
+     * Returns the actual classname without the package information.
+     *
+     * @param filename String
+     * @return String - The new filename.
+     */
+    public static String stripClassPath(String fullClassName) {
+        int pos = fullClassName.lastIndexOf('.');
+        String after = null;
+        if (pos != -1)
+            after = fullClassName.substring(pos + 1);
+        else
+            after = fullClassName;
+        return after;
     }
 
 }

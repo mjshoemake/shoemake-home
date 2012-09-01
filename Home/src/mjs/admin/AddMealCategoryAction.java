@@ -2,11 +2,10 @@ package mjs.admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mjs.aggregation.OrderedMap;
 import mjs.core.AbstractAction;
+import mjs.core.Form;
 import mjs.exceptions.ActionException;
-import mjs.database.DatabaseDriver;
-import mjs.utils.SingletonInstanceManager;
+import mjs.database.TableDataManager;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -26,42 +25,32 @@ public class AddMealCategoryAction extends AbstractAction {
     */
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("AddMealCategory", "action");
-      MealCategoryForm myForm = (MealCategoryForm)form;
-      MealCategoriesManager dbMgr = null;
+      Form myForm = (Form)form;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
+          // Validate form data.
+          TableDataManager dbMgr = getTable("MealCategoriesMapping.xml");
+          ValidationErrorList errors = dbMgr.validateForm(myForm);
 
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
-         // Create the instance of SampleDataManager
-         dbMgr = new MealCategoriesManager(driver);
-         log.debug("MealCategoriesManager created.");
-
-         // Validate form data.
-         String mappingFile = "mjs/admin/MealCategoriesMapping.xml";
-         OrderedMap dataMapping = driver.loadMapping(mappingFile);
-         log.debug("DataMapping file loaded.");
-         ValidationErrorList errors = myForm.validate(dataMapping);
-         if (errors.isEmpty()) {
-            log.debug("Form validated successfully.");
-            // Insert recipe.
-            try {
-               dbMgr.open();
-               dbMgr.insertMealCategory(myForm);
-               dbMgr.close(true);
-            }
-            catch (Exception e) {
-               dbMgr.close(false);
-               throw e;
-            }
-            return (mapping.findForward("success"));
-         } else {
-            // Validation failed.
-            log.debug("Form validation failed.");
-            return (mapping.findForward("invalid"));
-         }
+          // Validate form data.
+          if (errors.isEmpty()) {
+             log.debug("Form validated successfully.");
+             // Insert recipe.
+             try {
+                dbMgr.open();
+                dbMgr.insertBean(myForm);
+                dbMgr.close(true);
+             }
+             catch (Exception e) {
+                dbMgr.close(false);
+                throw e;
+             }
+             return (mapping.findForward("success"));
+          } else {
+             // Validation failed.
+             log.debug("Form validation failed.");
+             return (mapping.findForward("invalid"));
+          }
       }
       catch (java.lang.Exception e) {
          ActionException ex = new ActionException("Error trying to save a new meal category.", e);

@@ -77,11 +77,32 @@ public class DatabaseDriver
    /**
     * Constructor.
     *
-    * @param props
+    * @param driver String
+    * @param url String
+    * @param username String
+    * @param password String
+    * @param maxConnections int
     * @throws DataLayerException
     */
-   public DatabaseDriver() throws DataLayerException
-   {
+   public DatabaseDriver(String driver, 
+		                 String url, 
+		                 String username, 
+		                 String password,
+		                 int maxConnections) throws DataLayerException {
+	   
+	   if (username == null || username.trim().equals("")) {
+	       username = null;
+	   }    
+	   connectionPool = new DBConnectionPool(driver, url, username, password, maxConnections);
+   }
+   
+   /**
+    * Constructor.
+    *
+    * @throws DataLayerException
+    */
+   public DatabaseDriver() {
+	   
        MainProperties props = MainProperties.getInstance();
 	   String url = props.getProperty(PROP_URL);
 	   String driver = props.getProperty(PROP_DRIVER);
@@ -597,7 +618,11 @@ public class DatabaseDriver
             if (method == null)
                throw new DataLayerException("Error generating bean from result set.  Write method for property " + fieldType + " is null.");
 
-            method.invoke(bean, args);
+            try {
+                method.invoke(bean, args);
+            } catch (Exception e) {
+            	throw new DataLayerException("Failure to invoke " +  method.getName() + " method on bean of class " + bean.getClass().getName() + " with " + args.length + " arguments.", e);
+            }
          }
 
          log.debug("RETURNING bean: " + bean.toString());

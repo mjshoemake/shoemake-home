@@ -77,6 +77,7 @@ public class CookbookManager extends Loggable {
     * @return
     * @throws DataLayerException
     */
+   /*
    public ArrayList<SelectOption> getCookbooksAsSelectOptions() throws DataLayerException {
       ArrayList<SelectOption> result = new ArrayList<SelectOption>();
 
@@ -109,6 +110,7 @@ public class CookbookManager extends Loggable {
     * @return PaginatedList
     * @throws DataLayerException
     */
+   /*
    public PaginatedList getCookbookList(int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList("order by name", pageSize, maxRows, globalForward);
@@ -127,6 +129,7 @@ public class CookbookManager extends Loggable {
     * @return The value of the UserList property.
     * @throws DataLayerException
     */
+   /*
    public PaginatedList getCookbookList(String whereClause, int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList(whereClause, pageSize, maxRows, globalForward);
@@ -144,6 +147,7 @@ public class CookbookManager extends Loggable {
     * @param applicationPK String
     * @throws DataLayerException
     */
+   /*
    public void updateCookbook(CookbookForm bean) throws DataLayerException {
       try {
          String whereClause = "where cookbooks_pk = " + bean.getCookbooks_pk();
@@ -161,6 +165,7 @@ public class CookbookManager extends Loggable {
     * @param bean
     * @throws DataLayerException
     */
+   /*
    public void deleteCookbook(CookbookForm bean) throws DataLayerException {
       try {
          String whereClause = "where cookbooks_pk = " + bean.getCookbooks_pk();
@@ -178,6 +183,7 @@ public class CookbookManager extends Loggable {
     * @param pk
     * @throws DataLayerException
     */
+   /*
    public void deleteCookbook(int pk) throws DataLayerException {
       try {
          String whereClause = "where cookbooks_pk = " + pk;
@@ -195,6 +201,7 @@ public class CookbookManager extends Loggable {
     * @param bean UserForm
     * @throws DataLayerException
     */
+   /*
    public void insertCookbook(CookbookForm bean) throws DataLayerException {
       try {
          log.debug("Calling Insert Bean...");
@@ -213,6 +220,7 @@ public class CookbookManager extends Loggable {
     * @return int
     * @throws DataLayerException
     */
+   /*
    public int countRows(String whereClause) throws DataLayerException {
       try {
          int results = manager.countRows(table, whereClause);
@@ -231,6 +239,7 @@ public class CookbookManager extends Loggable {
     * 
     * @throws DataLayerException
     */
+   /*
    public void getCookbook(int pk, CookbookForm form) throws DataLayerException {
       try {
          if (form == null)
@@ -251,8 +260,9 @@ public class CookbookManager extends Loggable {
     * 
     * @return String
     */
+   /*
    public String getMappingFile() {
       return mappingFile;
    }
-
+*/
 }

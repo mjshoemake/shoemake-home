@@ -5,12 +5,11 @@ package mjs.admin;
 //import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mjs.admin.CookbookManager;
 import mjs.core.AbstractAction;
+import mjs.core.Form;
 import mjs.exceptions.ActionException;
-import mjs.database.DatabaseDriver;
+import mjs.database.TableDataManager;
 import mjs.utils.Constants;
-import mjs.utils.SingletonInstanceManager;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -29,32 +28,20 @@ public class EditCookbookAction extends AbstractAction {
     */
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("EditCookbook", "action");
-      CookbookForm myForm = (CookbookForm) form;
-      CookbookManager dbMgr = null;
+      Form myForm = (Form)form;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
-
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
-         // Create the instance of SampleDataManager
-         dbMgr = new CookbookManager(driver);
-         log.debug("CookbookManager created.");
-
          String pk = req.getParameter(Constants.PARAM_ID);
          addBreadcrumbs(req, "Edit Cookbook", "../EditCookbook.do?id=" + pk);
 
-         // Validate form data.
-         //String mappingFile = "mjs/admin/CookbooksMapping.xml";
-         //Hashtable dataMapping = driver.loadMapping(mappingFile);
+         TableDataManager dbMgr = getTable("CookbooksMapping.xml");
          log.debug("DataMapping file loaded.");
          if (pk != null) {
             log.debug("Form validated successfully.");
             // Insert recipe.
             try {
                dbMgr.open();
-               dbMgr.getCookbook(Integer.parseInt(pk), myForm);
+               dbMgr.loadBean(myForm, " where cookbooks_pk = " + pk);
             } finally {
                dbMgr.close();
             }

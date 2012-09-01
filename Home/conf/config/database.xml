@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database driver="com.mysql.jdbc.Driver" 
+          url="jdbc:mysql://localhost/test" 
+          userName="" 
+          password="Ihcsppp1" 
+          maxConnections="20" > 
+
+   <table tableName="meals" 
+          mappingFileName="/mjs/admin/MealsMapping.xml" 
+          className="mjs.admin.MealForm" />
+
+   <table tableName="cookbooks" 
+          mappingFileName="/mjs/admin/CookbooksMapping.xml" 
+          className="mjs.admin.CookbookForm" />
+
+   <table tableName="users" 
+          mappingFileName="/mjs/users/LoginMapping.xml" 
+          className="mjs.users.User" />
+
+   <table tableName="users" 
+          mappingFileName="/mjs/users/UserMapping.xml" 
+          className="mjs.users.User" />
+
+   <table tableName="users" 
+          mappingFileName="/mjs/users/PersonMapping.xml" 
+          className="mjs.users.User" />
+
+   <table tableName="recipes" 
+          mappingFileName="/mjs/recipes/RecipeMapping.xml" 
+          className="mjs.recipes.RecipeForm" />
+
+   <table tableName="recipes" 
+          mappingFileName="/mjs/recipes/RecipeSearchMapping.xml" 
+          className="mjs.recipes.RecipeSearchForm" />
+
+</database>

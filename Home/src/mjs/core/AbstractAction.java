@@ -9,10 +9,16 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
+import mjs.database.DatabaseConfig;
+import mjs.database.DatabaseDriver;
+import mjs.database.TableDataManager;
+import mjs.exceptions.CoreException;
 import mjs.exceptions.InvalidSessionException;
 import mjs.setup.MainProperties;
 import mjs.utils.Constants;
 import mjs.utils.PerformanceMetrics;
+import mjs.utils.SingletonInstanceManager;
 import mjs.view.Breadcrumbs;
 
 /**
@@ -38,13 +44,21 @@ public abstract class AbstractAction extends Action {
 	 * Used to track and monitor performance statistics.
 	 */
 	protected PerformanceMetrics metrics = new PerformanceMetrics();
-    
+ 
+	/**
+	 * The database driver used to communicate to the database.
+	 */
+	private DatabaseDriver driver = null;
+	
+	
     /**
      * Constructor. Because no category is specified in this constructor, the
      * category defaults to "Action".
      */
     public AbstractAction() {
         this(null);
+        SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
+        driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
     }
 
     /**
@@ -306,5 +320,35 @@ public abstract class AbstractAction extends Action {
         Breadcrumbs breadcrumbs = getBreadcrumbs(req);
         breadcrumbs.clear();
     }
+
+    /**
+     * Get the asociated Table object for the specified mapping file
+     * (ex. "myMapping.xml").
+     * 
+     * @param mappingFileName String
+     * @return Table
+     * @throws CoreException
+     */
+    protected TableDataManager getTable(String mappingFileName) throws CoreException {
+    	if (mappingFileName == null) {
+    		throw new CoreException("Unable to get Table object for the specified mapping file (null).");
+    	}
+    	
+    	try {
+            SingletonInstanceManager imgr = SingletonInstanceManager.getInstance();
+            DatabaseConfig config = (DatabaseConfig)imgr.getInstance(DatabaseConfig.class.getName());
+            return config.getTable(mappingFileName);
+    	} catch (Exception e) {
+    		throw new CoreException("Unable to get Table object for the specified mapping file (" + 
+    	          mappingFileName + "). " + e.getMessage(), e);
+    	}
+    }
     
+    /**
+     * The database driver used to communicate to the database.
+     * @return DatabaseDriver
+     */
+    public DatabaseDriver getDriver() {
+        return driver;
+    }
 }

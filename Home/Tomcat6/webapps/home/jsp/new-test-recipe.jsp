@@ -48,7 +48,16 @@
                       </html:select>
                     </td>
                   </tr>
-                  <html:hidden property="meals_pk">test</html:hidden>
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">Meal: </td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">
+                      <html:select property="meals_pk">
+                        <html:options collection="meals" property="value" labelProperty="caption"/>
+                      </html:select>
+                    </td>
+                  </tr>
                   <tr>
                     <td class="form">&nbsp;</td>
                     <td class="form">Food Category: </td>

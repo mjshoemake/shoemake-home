@@ -57,12 +57,12 @@ public class FieldDefMappingLoader extends Loggable
 
       try
       {
-          URL mappingUrl = SetupServlet.class.getResource("/mjs/database/FieldDefMapping.xml");
+          URL mappingUrl = FieldDefMappingLoader.class.getResource("/mjs/database/FieldDefMapping.xml");
       	
           // Convert mappingFile to String.
-          InputStream stream = this.getClass().getClassLoader().getResourceAsStream(mappingFile);
+          InputStream stream = FieldDefMappingLoader.class.getResourceAsStream(mappingFile);
           if (stream == null)
-              throw new CoreException("Error occured loading mapping file.  InputStream is null.");
+              throw new CoreException("Error occured loading mapping file(" + mappingFile + ").  InputStream is null.");
 
           String xml = StringUtils.inputStreamToString(stream);          
           if (xml == null)

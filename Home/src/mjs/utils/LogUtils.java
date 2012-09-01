@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import mjs.utils.BeanUtils;
 import mjs.exceptions.CoreException;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.LogManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -544,4 +546,27 @@ public class LogUtils {
 
     }
     
+	/**
+	 * Returns true if it appears that log4j have been previously configured.
+	 * This code checks to see if there are any appenders defined for log4j
+	 * which is the definitive way to tell if log4j is already initialized.
+	 *
+	 * NOTE:  This is used because in Ops-Tools, the dcc.properties file must
+	 * be loaded before log4j is configured.  Use of this method prevents
+	 * notifications to the console saying that log4j is not configured.
+	 */
+	public static boolean isLog4jConfigured() {
+		Enumeration appenders = Logger.getRoot().getAllAppenders();
+		if (appenders.hasMoreElements()) {
+			return true;
+		} else {
+			Enumeration loggers = LogManager.getCurrentLoggers();
+			while (loggers.hasMoreElements()) {
+				Logger c = (Logger) loggers.nextElement();
+				if (c.getAllAppenders().hasMoreElements())
+					return true;
+			}
+		}
+		return false;
+	}
 }

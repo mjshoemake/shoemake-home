@@ -48,34 +48,37 @@
                   <td class="form"><c:out value="${requestScope.RecipeForm.name}"/></td>
                 </tr>  
                 <tr><td class="form" colspan="4">&nbsp;</td></tr>  
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Ingredients:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.ingredients}" escapeXml="false"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Directions:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.directions}" escapeXml="false"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Nutrition:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.nutrition}" escapeXml="false"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Servings:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.servings}"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                
+                <c:if test="${requestScope.RecipeForm.favorite == 'Yes'}">
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Ingredients:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.ingredients}" escapeXml="false"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Directions:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.directions}" escapeXml="false"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Nutrition:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.nutrition}" escapeXml="false"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Servings:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.servings}"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                </c:if>  
                 <tr>
                   <td class="form">&nbsp;</td>
                   <td class="form"><b>Cookbook:</b></td>
@@ -97,20 +100,22 @@
                   <td class="form"><c:out value="${requestScope.RecipeForm.meal_categories_pk}"/></td>
                 </tr>
                 <tr><td class="form" colspan="4">&nbsp;</td></tr>
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Calories Per Serving:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.calories_per_serving}"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
-                <tr>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><b>Serving Size:</b></td>
-                  <td class="form">&nbsp;</td>
-                  <td class="form"><c:out value="${requestScope.RecipeForm.serving_size}"/></td>
-                </tr>
-                <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                <c:if test="${requestScope.RecipeForm.favorite == 'Yes'}">
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Calories Per Serving:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.calories_per_serving}"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                  <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><b>Serving Size:</b></td>
+                    <td class="form">&nbsp;</td>
+                    <td class="form"><c:out value="${requestScope.RecipeForm.serving_size}"/></td>
+                  </tr>
+                  <tr><td class="form" colspan="4">&nbsp;</td></tr>
+                </c:if>  
                 <tr>
                   <td class="form">&nbsp;</td>
                   <td class="form"><b>Notes:</b></td>

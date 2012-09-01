@@ -6,10 +6,9 @@ package mjs.admin;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mjs.core.AbstractAction;
-import mjs.aggregation.OrderedMap;
+import mjs.core.Form;
 import mjs.exceptions.ActionException;
-import mjs.database.DatabaseDriver;
-import mjs.utils.SingletonInstanceManager;
+import mjs.database.TableDataManager;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -29,30 +28,18 @@ public class AddCookbookAction extends AbstractAction {
     */
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("AddCookbook", "action");
-      CookbookForm myForm = (CookbookForm)form;
-      CookbookManager dbMgr = null;
+      Form myForm = (Form)form;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
-
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
-         // Create the instance of SampleDataManager
-         dbMgr = new CookbookManager(driver);
-         log.debug("CookbookManager created.");
-
-         // Validate form data.
-         String mappingFile = "mjs/admin/CookbooksMapping.xml";
-         OrderedMap dataMapping = driver.loadMapping(mappingFile);
-         log.debug("DataMapping file loaded.");
-         ValidationErrorList errors = myForm.validate(dataMapping);
-         if (errors.isEmpty()) {
-            log.debug("Form validated successfully.");
-            // Insert recipe.
-            try {
+          // Validate form data.
+          TableDataManager dbMgr = getTable("CookbooksMapping.xml");
+          ValidationErrorList errors = dbMgr.validateForm(myForm);
+          if (errors.isEmpty()) {
+             log.debug("Form validated successfully.");
+             // Insert recipe.
+             try {
                dbMgr.open();
-               dbMgr.insertCookbook(myForm);
+               dbMgr.insertBean(myForm);
                dbMgr.close(true);
             }
             catch (Exception e) {

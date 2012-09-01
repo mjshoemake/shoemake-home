@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import mjs.aggregation.OrderedMap;
+import mjs.database.DataLayerException;
 import mjs.database.Field;
 import mjs.utils.BeanUtils;
 import mjs.utils.DateUtils;
@@ -69,9 +70,11 @@ public abstract class AbstractDataManager
     *
     * @param newDriver  Description of Parameter
     */
-   public AbstractDataManager(DatabaseDriver newDriver)
+   public AbstractDataManager(DatabaseDriver newDriver) throws DataLayerException
    {
-      setDriver(newDriver);
+       setDriver(newDriver);
+       if (driver == null)
+           throw new DataLayerException("Unable to create database manager.  Driver is null.");
    }
 
    /**
@@ -242,19 +245,25 @@ public abstract class AbstractDataManager
 
          for (int i = 0; i < pds.length; i++)
          {
+            //PropertyDescriptor pd = pds[i];        	 
             Method method = pds[i].getReadMethod();
-            Object[] args = {};
-            Object value = method.invoke(bean, args);
+            Object value = null;
+            if (method != null) {
+
+            	Object[] args = {};
+               value = method.invoke(bean, args);
+            }   
 
             String fieldName = pds[i].getName().toLowerCase();
             Field fieldDef = (Field)(mapping.get(fieldName));
-
+            
             
             if (fieldDef != null && ! fieldDef.getType().equalsIgnoreCase("key"))
             {
                setPreparedStatementParam(statement, pds[i], value, fieldDef, fieldNum);
                fieldNum++;
             }
+            
          }
          log.debug("Populated prepared statement values.  ParamCount: " + fieldNum);
       }

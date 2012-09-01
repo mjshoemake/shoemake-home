@@ -3,6 +3,7 @@ package mjs.recipes;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.apache.log4j.Logger;
 //import java.util.ArrayList;
 //import java.util.Hashtable;
@@ -137,6 +138,7 @@ public class RecipeManager extends Loggable {
     * @return The value of the UserList property.
     * @throws DataLayerException
     */
+/*   
    public PaginatedList getRecipeList(int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList("", pageSize, maxRows, globalForward);
@@ -147,7 +149,6 @@ public class RecipeManager extends Loggable {
          throw new DataLayerException("Error loading the sample bean list.", ex);
       }
    }
-
    /**
     * Loads the list of objects from the database.
     * 
@@ -156,6 +157,7 @@ public class RecipeManager extends Loggable {
     * @return The value of the UserList property.
     * @throws DataLayerException
     */
+   /*
    public PaginatedList getRecipeList(String whereClause, int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
          PaginatedList list = manager.loadList(whereClause, pageSize, maxRows, globalForward);
@@ -174,6 +176,7 @@ public class RecipeManager extends Loggable {
     * @param applicationPK String
     * @throws DataLayerException
     */
+   /*
    public void updateRecipe(RecipeForm bean) throws DataLayerException {
       try {
          String whereClause = "where recipes_pk = " + bean.getRecipes_pk();
@@ -192,6 +195,7 @@ public class RecipeManager extends Loggable {
     * @param applicationPK String
     * @throws DataLayerException
     */
+   /*
    public void deleteRecipe(RecipeForm bean) throws DataLayerException {
       try {
          String whereClause = "where recipes_pk = " + bean.getRecipes_pk();
@@ -210,6 +214,7 @@ public class RecipeManager extends Loggable {
     * @param applicationPK String
     * @throws DataLayerException
     */
+   /*
    public void deleteRecipe(int recipes_pk) throws DataLayerException {
       try {
          String whereClause = "where recipes_pk = " + recipes_pk;
@@ -227,6 +232,7 @@ public class RecipeManager extends Loggable {
     * @param bean UserForm
     * @throws DataLayerException
     */
+   /*
    public void insertRecipe(RecipeForm bean) throws DataLayerException {
       try {
          String table = "recipes";
@@ -247,6 +253,7 @@ public class RecipeManager extends Loggable {
     * @return int
     * @throws DataLayerException
     */
+   /*
    public int countRows(String whereClause) throws DataLayerException {
       try {
          int results = manager.countRows(table, whereClause);
@@ -265,6 +272,7 @@ public class RecipeManager extends Loggable {
     * 
     * @throws DataLayerException
     */
+   /*
    public void getRecipe(int recipes_pk, RecipeForm form) throws DataLayerException {
       try {
          if (form == null)
@@ -286,6 +294,7 @@ public class RecipeManager extends Loggable {
     * @param form
     * @throws DataLayerException
     */
+   /*
    public void getRecipeForView(int recipes_pk, RecipeForm form) throws DataLayerException {
       ResultSet rs = null; 
       try {
@@ -294,7 +303,7 @@ public class RecipeManager extends Loggable {
          StringBuilder builder = new StringBuilder();
          builder.append("select r.name, r.directions, r.ingredients, r.servings, r.serving_size, ");
          builder.append("       r.nutrition, r.calories_per_serving, r.notes, r.picture_filename, ");
-         builder.append("       c.name as cname, m.name as mname, mc.name as mcname ");
+         builder.append("       c.name as cname, m.name as mname, mc.name as mcname, r.favorite ");
          builder.append("from recipes r, cookbooks c, meals m, meal_categories mc ");
          builder.append("where r.cookbook_pk = c.cookbooks_pk ");
          builder.append("  and r.meals_pk = m.meals_pk ");
@@ -318,6 +327,7 @@ public class RecipeManager extends Loggable {
          form.setCookbook_pk(rs.getString(10));
          form.setMeals_pk(rs.getString(11));
          form.setMeal_categories_pk(rs.getString(12));
+         form.setFavorite(rs.getString(13));
       }
       catch (DataLayerException e) {
          throw e;
@@ -343,16 +353,22 @@ public class RecipeManager extends Loggable {
     * @return The value of the UserList property.
     * @throws DataLayerException
     */
-   public PaginatedList searchRecipes(HashMap<String,String> formData, int pageSize, int maxRows, String globalForward) throws DataLayerException {
+   /*
+   public PaginatedList searchRecipes(HashMap<String,String> searchCriteria, int pageSize, int maxRows, String globalForward) throws DataLayerException {
       try {
-         if (formData == null)
-            formData = new HashMap<String,String>();
+    	 HashMap<String,String> formData = null; 
+         if (searchCriteria == null) {
+            formData = new HashMap<String,String>(); 
+         } else {
+            formData = removeAtSignFromKeys(searchCriteria);
+         }
+         
          PaginatedList list = new PaginatedList(RecipeSearchForm.class, pageSize, maxRows, globalForward);
          list.setPageLength(10);
          StringBuilder builder = new StringBuilder();
          builder.append("select r.recipes_pk, r.name, r.serving_size, ");
          builder.append("       r.calories_per_serving, c.name as cname, ");
-         builder.append("       m.name as mname, mc.name as mcname ");
+         builder.append("       m.name as mname, mc.name as mcname, r.favorite ");
          builder.append("from recipes r, cookbooks c, meals m, meal_categories mc ");
          builder.append("where r.cookbook_pk = c.cookbooks_pk ");
          builder.append("  and r.meals_pk = m.meals_pk ");
@@ -363,6 +379,7 @@ public class RecipeManager extends Loggable {
          likeFilter("c.name", formData.get("cookbook"), builder);
          likeFilter("m.name", formData.get("meal"), builder);
          likeFilter("mc.name", formData.get("meal_category"), builder);
+         likeFilter("r.favorite", formData.get("favorite"), builder);
          likeFilter("r.serving_size", formData.get("serving_size"), builder);
          intFilter("r.calories_per_serving", formData.get("calories_per_serving"), builder);
          builder.append("order by r.name ");
@@ -378,12 +395,14 @@ public class RecipeManager extends Loggable {
             item.setCookbook(rs.getString(5));
             item.setMeal(rs.getString(6));
             item.setMeal_category(rs.getString(7));
+            item.setFavorite(rs.getString(8));
             list.add(item);
             logResultSet.debug("Next Item:");
             logResultSet.debug("   Name: " + item.getName());
             logResultSet.debug("   Cookbook: " + item.getCookbook());
             logResultSet.debug("   Meal: " + item.getMeal());
             logResultSet.debug("   Meal_category: " + item.getMeal_category());
+            logResultSet.debug("   Favorite: " + item.getFavorite());
          }
 
          logResultSet.info("ResultSet size: " + list.size());
@@ -398,6 +417,31 @@ public class RecipeManager extends Loggable {
       }
    }
 
+   /**
+    * Returns a the input Map with leading "@" signs removed from the names
+    * of the keys.  Ex. The key "@name" becomes "name". 
+    * @param map HashMap<String,String>
+    * @return HashMap<String,String>
+    */
+   /*
+   private HashMap<String,String> removeAtSignFromKeys(HashMap<String,String> map) {
+	   HashMap<String,String> result = new HashMap<String,String>();
+	   
+	   Iterator<String> iterator = map.keySet().iterator();
+	   while (iterator.hasNext()) {
+		   String key = iterator.next();
+		   if (key.startsWith("@")) {
+			   result.put(key.substring(1), map.get(key));
+		   } else {
+			   result.put(key, map.get(key));
+		   }
+	   }
+	   
+	   return result;
+   }
+   
+   
+/*
    private void likeFilter(String name, String value, StringBuilder sql) {
       if (value != null && value.length() > 0) {
          String newValue = StringUtils.replaceAll(value, '*', '%');
@@ -511,8 +555,9 @@ public class RecipeManager extends Loggable {
     * 
     * @return String
     */
+   /*
    public String getMappingFile() {
       return mappingFile;
    }
-
+*/
 }

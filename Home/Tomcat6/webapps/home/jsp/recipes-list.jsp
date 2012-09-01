@@ -20,6 +20,11 @@
           window.location="/home/GetRecipesByLetter.do";
        }
 
+       function addTestRecipeButton()
+       {
+          window.location="/home/NewTestRecipe.do";
+       }
+
        function getRecipesDetailedButton()
        {
           window.location="/home/GetRecipesDetailed.do";
@@ -46,6 +51,8 @@
                     <input type="button" value="Show Details"  onclick="getRecipesDetailedButton()" alt="Show Detailed Recipe List" />
                     &nbsp;&nbsp;&nbsp;
                     <input type="button" value="New Recipe"  onclick="addButton()" alt="Add New Recipe" />
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="button" value="New Recipe To Try"  onclick="addTestRecipeButton()" alt="Add Recipe To Try" />
                   </td>
                 </tr>
               </table>

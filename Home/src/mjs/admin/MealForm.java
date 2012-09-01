@@ -87,8 +87,7 @@ public class MealForm extends AbstractForm implements BusinessObject {
 	/**
 	 * Check to see if this form is valid.
 	 * 
-	 * @param mapping
-	 *            Description of Parameter
+	 * @param mapping Description of Parameter
 	 * @return ValidationErrorList
 	 */
 	public ValidationErrorList validate(OrderedMap mapping) {

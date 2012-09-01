@@ -9,6 +9,7 @@ import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.mocks.MockHttpSession;
+import mjs.recipes.AddTestRecipeAction;
 import mjs.recipes.RecipeForm;
 import mjs.recipes.RecipeManager;
 import mjs.recipes.GetRecipesByLetterAction;
@@ -17,63 +18,94 @@ import mjs.utils.LogUtils;
 import mjs.utils.SingletonInstanceManager;
 
 @SuppressWarnings("rawtypes")
-public class RecipeActionsTest extends AbstractServletTest {
+public class RecipeActionsTest extends ServletStarter {
 
-   @Before
-   public void setUp() throws Exception {
-      // Start server.
-      startServer();
-   }
+	@Before
+	public void setUp() throws Exception {
+		// Start server.
+		startServer();
+	}
 
-   /**
-    * Test method.
-    */
-   @Test
-   public void testGetRecipesByLetter() {
+	/**
+	 * Test method.
+	 */
+	@Test
+	public void tesAddTestRecipes() {
 
-      try {
-         MockActionMapping mapping = new MockActionMapping();
-         MockHttpServletRequest request = new MockHttpServletRequest();
-         MockHttpServletResponse response = new MockHttpServletResponse();
-         request.setParameter("letter", "G");
-         GetRecipesByLetterAction action = new GetRecipesByLetterAction();
-         action.execute(mapping, null, request, response);
+		try {
+			MockActionMapping mapping = new MockActionMapping();
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			MockHttpServletResponse response = new MockHttpServletResponse();
+			request.setParameter("letter", "G");
+			RecipeForm recipeForm = new RecipeForm();
+			recipeForm.setMeals_pk("test");
+			recipeForm.setMeal_categories_pk("7");
+			recipeForm.setName("My First Test Recipe");
+			recipeForm.setNotes("blah");
+			recipeForm.setCookbook_pk("4");
+			
+			/*
+			request.setParameter("meals_pk", "test");
+		    request.setParameter("meal_categories_pk", "7");
+		    request.setParameter("name", "My First Test Recipe");
+		    request.setParameter("note", "blah");
+		    request.setParameter("cookbook_pk", "4");
+		    */
+			
+			AddTestRecipeAction action = new AddTestRecipeAction();
+			action.execute(mapping, null, request, response);
 
-         System.out.println("Test complete.  Exiting.");
+			System.out.println("Test complete.  Exiting.");
 
-      }
-      catch (Exception e) {
-         e.printStackTrace();
-         assertFailed("Execution with no exceptions.  " + e.getMessage());
-      }
-      finally {
-         // reportResults();
-      }
-   }
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertFailed("Execution with no exceptions.  " + e.getMessage());
+		} finally {
+			// reportResults();
+		}
+	}
 
-   @Test
-   public void testViewRecipe() {
+	public void testGetRecipesByLetter() {
 
-      try {
-         MockActionMapping mapping = new MockActionMapping();
-         MockHttpServletRequest request = new MockHttpServletRequest();
-         MockHttpServletResponse response = new MockHttpServletResponse();
-         // request.setParameter("id", recipe.getRecipes_pk());
-         request.setParameter("id", "7");
-         RecipeForm recipeForm = new RecipeForm();
-         ViewRecipeAction action = new ViewRecipeAction();
-         action.execute(mapping, recipeForm, request, response);
+		try {
+			MockActionMapping mapping = new MockActionMapping();
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			MockHttpServletResponse response = new MockHttpServletResponse();
+			request.setParameter("letter", "G");
+			GetRecipesByLetterAction action = new GetRecipesByLetterAction();
+			action.execute(mapping, null, request, response);
 
-         System.out.println("Test complete.  Exiting.");
+			System.out.println("Test complete.  Exiting.");
 
-      }
-      catch (Exception e) {
-         e.printStackTrace();
-         assertFailed("Execution with no exceptions.  " + e.getMessage());
-      }
-      finally {
-         // reportResults();
-      }
-   }
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertFailed("Execution with no exceptions.  " + e.getMessage());
+		} finally {
+			// reportResults();
+		}
+	}
+
+	@Test
+	public void testViewRecipe() {
+
+		try {
+			MockActionMapping mapping = new MockActionMapping();
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			MockHttpServletResponse response = new MockHttpServletResponse();
+			// request.setParameter("id", recipe.getRecipes_pk());
+			request.setParameter("id", "7");
+			RecipeForm recipeForm = new RecipeForm();
+			ViewRecipeAction action = new ViewRecipeAction();
+			action.execute(mapping, recipeForm, request, response);
+
+			System.out.println("Test complete.  Exiting.");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertFailed("Execution with no exceptions.  " + e.getMessage());
+		} finally {
+			// reportResults();
+		}
+	}
 
 }

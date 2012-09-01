@@ -1,21 +1,13 @@
 package mjs.recipes;
 
-//import java.text.SimpleDateFormat;
-//import java.util.ArrayList;
-//import java.util.Date;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mjs.admin.CookbookManager;
-import mjs.admin.MealsManager;
-import mjs.admin.MealCategoriesManager;
 import mjs.core.AbstractAction;
-import mjs.database.DatabaseDriver;
+import mjs.database.DataManager;
 import mjs.exceptions.ActionException;
 import mjs.recipes.RecipeForm;
-import mjs.recipes.RecipeManager;
 import mjs.utils.Constants;
-import mjs.utils.SingletonInstanceManager;
 import mjs.view.SelectOption;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -36,27 +28,10 @@ public class EditRecipeAction extends AbstractAction {
    public ActionForward processRequest(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
       metrics.startEvent("EditRecipe", "action");
       RecipeForm recipeForm = (RecipeForm) form;
-      RecipeManager dbMgr = null;
-      CookbookManager cbMgr = null;
-      MealsManager meMgr = null;
-      MealCategoriesManager mcMgr = null;
 
       try {
-         SingletonInstanceManager mgr = SingletonInstanceManager.getInstance();
-         DatabaseDriver driver = (DatabaseDriver) mgr.getInstance("mjs.database.DatabaseDriver");
-
-         if (driver == null)
-            throw new ActionException("Unable to create database managers.  Driver is null.");
-         // Create the instance of SampleDataManager
-         dbMgr = new RecipeManager(driver);
-         log.debug("RecipeManager created.");
-         cbMgr = new CookbookManager(driver);
-         log.debug("CookbookManager created.");
-         meMgr = new MealsManager(driver);
-         log.debug("MealsManager created.");
-         mcMgr = new MealCategoriesManager(driver);
-         log.debug("MealCategoriesManager created.");
-
+         DataManager dbMgr = new DataManager(getDriver()); 
+ 
          String pk = req.getParameter(Constants.PARAM_ID);
          addBreadcrumbs(req, "Edit Recipe", "../EditRecipe.do?id=" + pk);
 
@@ -67,38 +42,38 @@ public class EditRecipeAction extends AbstractAction {
             // Insert recipe.
             try {
                dbMgr.open();
-               dbMgr.getRecipe(Integer.parseInt(pk), recipeForm);
-               dbMgr.close(true);
+               dbMgr.loadBean(recipeForm, "recipes", RecipeForm.class, "/mjs/recipes/RecipeMapping.xml", " where recipes_pk = " + pk);
             }
             catch (Exception e) {
-               dbMgr.close(false);
                throw e;
+            } finally {
+                dbMgr.close();
             }
 
             try {
-               cbMgr.open();
-               ArrayList<SelectOption> options = cbMgr.getCookbooksAsSelectOptions();
+               dbMgr.open();
+               ArrayList<SelectOption> options = dbMgr.getSelectOptions("cookbooks", "cookbooks_pk", "name");
                req.setAttribute("cookbooks", options);
             } finally {
-               cbMgr.close();
+               dbMgr.close();
             }
 
             try {
-               meMgr.open();
-               ArrayList<SelectOption> options = meMgr.getMealsAsSelectOptions();
-               req.setAttribute("meals", options);
-            } finally {
-               meMgr.close();
-            }
-            
+                dbMgr.open();
+                ArrayList<SelectOption> options = dbMgr.getSelectOptions("meals", "meals_pk", "name");
+                req.setAttribute("meals", options);
+             } finally {
+                dbMgr.close();
+             }
+
             try {
-               mcMgr.open();
-               ArrayList<SelectOption> options = mcMgr.getMealCategoriesAsSelectOptions();
-               req.setAttribute("categories", options);
-            } finally {
-               mcMgr.close();
-            }
-            
+                dbMgr.open();
+                ArrayList<SelectOption> options = dbMgr.getSelectOptions("meal_categories", "meal_categories_pk", "name");
+                req.setAttribute("categories", options);
+             } finally {
+                dbMgr.close();
+             }
+
             return (mapping.findForward("success"));
          } else {
             // Validation failed.

@@ -24,6 +24,8 @@
      <forward name="/SimulateError" path="/SimulateError.do"/>
      <forward name="/Stub" path="/Stub.do"/>
      <forward name="/GetRecipesByLetter" path="/GetRecipesByLetter.do"/>
+     <forward name="/GetRecipesDetailed" path="/GetRecipesDetailed.do"/>
+     <forward name="/GetRecipeList" path="/GetRecipeList.do"/>
      <forward name="/NewRecipe" path="/NewRecipe.do"/>
      <forward name="/NewTestRecipe" path="/NewTestRecipe.do"/>
      <forward name="/Login" path="/Login.do"/>
@@ -127,6 +129,15 @@
        scope = "request"
        validate = "false">
        <forward name="success" path="/GetRecipesByLetter.do"/>
+       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/MakeRecipeFavorite"
+       type = "mjs.recipes.MakeRecipeFavoriteAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/EditRecipe.do"/>
        <forward name="invalid" path="/jsp/new-recipe.jsp"/>
     </action>
 

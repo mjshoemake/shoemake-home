@@ -17,6 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.log4j.Logger;
 
+import mjs.exceptions.CoreException;
 import mjs.utils.FileUtils;
 
 /**
@@ -57,9 +58,9 @@ public class MainProperties {
 	/**
 	 * Method loads the properties for the object.
 	 */
-	public void loadProperties(java.net.URL url) {
+	public void loadProperties(String filename) throws CoreException {
         lock.lock();
-		props = FileUtils.getContents(url);
+		props = FileUtils.getContents(filename, true);
 		log.info("Log4J property file loaded.");
         lock.unlock();
 	}
