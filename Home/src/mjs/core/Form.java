@@ -1,10 +1,8 @@
 package mjs.core;
 
 import mjs.aggregation.OrderedMap;
-import mjs.exceptions.CoreException;
+import mjs.exceptions.ValidationException;
 import mjs.view.ValidationErrorList;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -20,5 +18,5 @@ public interface Form {
 	 * @param mapping Description of Parameter
 	 * @return ValidationErrorList
 	 */
-	public ValidationErrorList validate(OrderedMap mapping);   
+    public ValidationErrorList validate(OrderedMap mapping) throws ValidationException;
 }

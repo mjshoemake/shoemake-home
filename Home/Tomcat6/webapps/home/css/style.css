@@ -287,6 +287,18 @@ a:hover {
 }
 
 /* MJS */
+.errorlist {
+	font-size: 12px;
+	font-weight: bold;
+	color: red;
+}
+
+.error2 {
+	font-size: 12px;
+	font-weight: bold;
+	color: red;
+}
+
 .letterlinks {
 	font-size: 16px;
 	font-weight: bold;

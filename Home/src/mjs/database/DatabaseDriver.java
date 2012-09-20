@@ -177,14 +177,17 @@ public class DatabaseDriver
       {
          int i = 0;
 
+         log.debug("Loading bean list...");
          while (rs.next())
          {
             i++;
-            log.debug("Loading data into bean #" + i + "...");
-
             Class type = data.getDataType();
             Object obj = generateBean(rs, mapping, type, type.newInstance());
-
+            String[] lines = LogUtils.dataToStrings(obj);
+            logResults.debug("   Bean #" + i + " (" + obj.getClass().getName() + ")");
+            for (int j=0; j <= lines.length-1; j++) {
+                logResults.debug("      " + lines[j]);
+            }
             data.add(obj);
          }
 

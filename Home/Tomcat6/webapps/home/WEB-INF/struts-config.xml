@@ -9,6 +9,13 @@
 
   <!-- ======== Form Bean Definitions ======================================= -->
   <form-beans>
+     <form-bean name="FamilyMemberForm" type="mjs.core.DynaForm">
+        <form-property name="family_member_pk" type="java.lang.String" />
+        <form-property name="fname" type="java.lang.String" />
+        <form-property name="lname" type="java.lang.String" />
+        <form-property name="description" type="java.lang.String" />
+        <form-property name="dob" type="java.lang.String" />
+     </form-bean>
      <form-bean name="CookbookForm" type="mjs.admin.CookbookForm"/>
      <form-bean name="LoginForm" type="mjs.users.LoginForm"/>
      <form-bean name="MealCategoryForm" type="mjs.admin.MealCategoryForm"/>
@@ -26,14 +33,17 @@
      <forward name="/GetRecipesByLetter" path="/GetRecipesByLetter.do"/>
      <forward name="/GetRecipesDetailed" path="/GetRecipesDetailed.do"/>
      <forward name="/GetRecipeList" path="/GetRecipeList.do"/>
+     <forward name="/GetFamilyMemberList" path="/GetFamilyMemberList.do"/>
      <forward name="/NewRecipe" path="/NewRecipe.do"/>
      <forward name="/NewTestRecipe" path="/NewTestRecipe.do"/>
      <forward name="/Login" path="/Login.do"/>
      <forward name="/LoginPage" path="/jsp/login.jsp"/>
      <forward name="/SessionTimeout" path="/jsp/login.jsp"/>
+     <forward name="/SearchUsers" path="/SearchUsers.do"/>
      <forward name="/recipeListJsp" path="/jsp/recipes-list.jsp"/>
      <forward name="/recipesDetailedJsp" path="/jsp/recipes-details.jsp"/>
      <forward name="/recipesByLetterJsp" path="/jsp/recipes-a-z.jsp"/>
+     <forward name="/searchUsersJsp" path="/jsp/search-users.jsp"/>
      <forward name="/mealListJsp" path="/jsp/meal-list.jsp"/>
      <forward name="/cookbookListJsp" path="/jsp/cookbook-list.jsp"/>
      <forward name="/mealCategoryListJsp" path="/jsp/meal-category-list.jsp"/>
@@ -89,104 +99,6 @@
        scope = "request"
        validate = "false">
     </action>
-
-    <!-- Recipes -->
-    <action path = "/NewRecipe"
-       type = "mjs.recipes.NewRecipeAction"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/new-recipe.jsp"/>
-    </action>
-
-    <action path = "/NewTestRecipe"
-       type = "mjs.recipes.NewRecipeAction"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/new-test-recipe.jsp"/>
-    </action>
-
-    <action path = "/AddRecipe"
-       type = "mjs.recipes.AddRecipeAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/GetRecipesByLetter.do"/>
-       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
-    </action>
-
-    <action path = "/AddTestRecipe"
-       type = "mjs.recipes.AddTestRecipeAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/GetRecipesByLetter.do"/>
-       <forward name="invalid" path="/jsp/new-test-recipe.jsp"/>
-    </action>
-
-    <action path = "/UpdateRecipe"
-       type = "mjs.recipes.UpdateRecipeAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/GetRecipesByLetter.do"/>
-       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
-    </action>
-
-    <action path = "/MakeRecipeFavorite"
-       type = "mjs.recipes.MakeRecipeFavoriteAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/EditRecipe.do"/>
-       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
-    </action>
-
-    <action path = "/EditRecipe"
-       type = "mjs.recipes.EditRecipeAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/edit-recipe.jsp"/>
-       <forward name="invalid" path="/GetRecipesByLetter.do"/>
-    </action>
-
-    <action path = "/ViewRecipe"
-       type = "mjs.recipes.ViewRecipeAction"
-       name = "RecipeForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/view-recipe.jsp"/>
-       <forward name="invalid" path="/GetRecipesByLetter.do"/>
-    </action>
-
-    <action path = "/GetRecipeList"
-       type = "mjs.recipes.GetRecipeListAction"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/recipes-list.jsp"/>
-    </action>
-
-    <action path = "/GetRecipesByLetter"
-       type = "mjs.recipes.GetRecipesByLetterAction"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/recipes-a-z.jsp"/>
-    </action>
-
-    <action path = "/GetRecipesDetailed"
-       type = "mjs.recipes.GetRecipesDetailedAction"
-       validate = "false">
-       <forward name="success" path="/jsp/recipes-details.jsp"/>
-    </action>
-<!--
-    <action path = "/FilterRecipesDetailed"
-       type = "mjs.recipes.FilterRecipesDetailedAction"
-       name = "RecipeSearchForm"
-       scope = "request"
-       validate = "false">
-       <forward name="success" path="/jsp/recipes-details.jsp"/>
-    </action>
--->
 
     <!-- Admin -->
     <action path = "/ShowAdminPage"
@@ -284,6 +196,143 @@
        validate = "false">
        <forward name="success" path="/GetMealCategoryList.do"/>
        <forward name="invalid" path="/jsp/new-meal-category.jsp"/>
+    </action>
+
+    <!-- Recipes -->
+    <action path = "/NewRecipe"
+       type = "mjs.recipes.NewRecipeAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/NewTestRecipe"
+       type = "mjs.recipes.NewRecipeAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/new-test-recipe.jsp"/>
+    </action>
+
+    <action path = "/AddRecipe"
+       type = "mjs.recipes.AddRecipeAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/GetRecipesByLetter.do"/>
+       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/AddTestRecipe"
+       type = "mjs.recipes.AddTestRecipeAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/GetRecipesByLetter.do"/>
+       <forward name="invalid" path="/jsp/new-test-recipe.jsp"/>
+    </action>
+
+    <action path = "/UpdateRecipe"
+       type = "mjs.recipes.UpdateRecipeAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/GetRecipesByLetter.do"/>
+       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/MakeRecipeFavorite"
+       type = "mjs.recipes.MakeRecipeFavoriteAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/EditRecipe.do"/>
+       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/EditRecipe"
+       type = "mjs.recipes.EditRecipeAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/edit-recipe.jsp"/>
+       <forward name="invalid" path="/GetRecipesByLetter.do"/>
+    </action>
+
+    <action path = "/ViewRecipe"
+       type = "mjs.recipes.ViewRecipeAction"
+       name = "RecipeForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/view-recipe.jsp"/>
+       <forward name="invalid" path="/GetRecipesByLetter.do"/>
+    </action>
+
+    <action path = "/GetRecipeList"
+       type = "mjs.recipes.GetRecipeListAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/recipes-list.jsp"/>
+    </action>
+
+    <action path = "/GetRecipesByLetter"
+       type = "mjs.recipes.GetRecipesByLetterAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/recipes-a-z.jsp"/>
+    </action>
+
+    <action path = "/GetRecipesDetailed"
+       type = "mjs.recipes.GetRecipesDetailedAction"
+       validate = "false">
+       <forward name="success" path="/jsp/recipes-details.jsp"/>
+    </action>
+
+    <!-- Users -->
+    <action path = "/GetFamilyMemberList"
+       type = "mjs.users.GetFamilyMemberListAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/family-member-list.jsp"/>
+    </action>
+
+    <action path = "/NewFamilyMember"
+       type = "mjs.users.NewFamilyMemberAction"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/jsp/new-family-member.jsp"/>
+    </action>
+
+    <action path = "/AddFamilyMember"
+       type = "mjs.users.AddFamilyMemberAction"
+       name = "FamilyMemberForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/GetFamilyMemberList.do"/>
+       <forward name="invalid" path="/jsp/new-family-member.jsp"/>
+    </action>
+
+    <action path = "/EditFamilyMember"
+       type = "mjs.recipes.EditFamilyMemberAction"
+       name = "FamilyMemberForm"
+       scope = "request"
+       validate = "false">
+       <forward name="" path="/GetFamilyMemberList.do"/>
+       <forward name="success" path="/jsp/edit-family-member.jsp"/>
+    </action>
+
+    <action path = "/UpdateFamilyMember"
+       type = "mjs.recipes.UpdateFamilyMemberAction"
+       name = "FamilyMemberForm"
+       scope = "request"
+       validate = "false">
+       <forward name="success" path="/GetFamilyMemberList.do"/>
+       <forward name="invalid" path="/jsp/new-recipe.jsp"/>
+    </action>
+
+    <action path = "/SearchUsers"
+       type = "mjs.users.SearchUsersAction"
+       validate = "false">
+       <forward name="success" path="/jsp/search-users.jsp"/>
     </action>
 
 

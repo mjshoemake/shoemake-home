@@ -38,12 +38,20 @@
             <bind-xml name="isPercent" node="attribute"/>
          </field>
 
+         <field name="isRequired" type="boolean">
+            <bind-xml name="isRequired" node="attribute"/>
+         </field>
+
          <field name="isLink" type="boolean">
             <bind-xml name="isLink" node="attribute"/>
          </field>
 
          <field name="listColumnWidth" type="java.lang.String">
             <bind-xml name="listColumnWidth" node="attribute"/>
+         </field>
+
+         <field name="pattern" type="java.lang.String">
+            <bind-xml name="pattern" node="attribute"/>
          </field>
 
    </class>

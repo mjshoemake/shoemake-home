@@ -180,8 +180,12 @@ public class FormatUtils
          SimpleDateFormat df = new SimpleDateFormat(format);
 
          df.setLenient(false);
-         df.parse(date);
-         return true;
+         Date dDate = df.parse(date);
+         if (dDate != null) {
+             return true;
+         } else {
+             return false;
+         }
       }
       catch (java.lang.Exception e)
       {

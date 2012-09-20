@@ -42,7 +42,7 @@ public class TopNavTag extends AbstractNavTag {
             out.println("         </div>");
             out.println("         <!-- end #header -->");
             out.println("         <div id=\"menu\" width=\"100%\">");
-            out.println("    		<ul width=\"100%\"><li class=\"current_page_item\"><a href=\"#\">Family</a></li>");
+            out.println("    		<ul width=\"100%\"><li class=\"current_page_item\"><a href=\"/home/GetFamilyMemberList.do\">Family</a></li>");
             out.println("             <li><a href=\"#\">House</a></li>");
             out.println("             <li><a href=\"/home/GetRecipesByLetter.do\">Recipes</a></li>");
             out.println("             <li><a href=\"#\">Finances</a></li>");

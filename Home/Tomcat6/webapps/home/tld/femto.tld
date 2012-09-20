@@ -60,6 +60,16 @@
       </attribute>
    </tag>
 
+   <tag>
+      <name>showError</name>
+      <tagclass>mjs.tags.ShowErrorTag</tagclass>
+      <attribute>
+         <name>property</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
 <!--
    <tag>
       <name>urlOut</name>

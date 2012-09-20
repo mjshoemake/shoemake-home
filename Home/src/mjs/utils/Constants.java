@@ -32,6 +32,7 @@ public interface Constants {
     public static final String ATT_PAGINATED_LIST_CACHE = "paginatedListCache";
     public static final String ATT_PAGINATED_LIST_DIRTY = "paginatedListDirty";
     public static final String ATT_LETTER = "letter";
+    public static final String ATT_VALIDATION_ERRORS = "validationErrors";
 	
     // Request Parameter Names
     public static final String PARAM_ID = "id";

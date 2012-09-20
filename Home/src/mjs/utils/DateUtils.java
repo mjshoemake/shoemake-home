@@ -30,20 +30,18 @@ public class DateUtils
    public static final String DATE_TIME_PATTERN = "MM/dd/yyyy hh:mm:ss a";
 
    /**
-    * The date format manager.  This handles all the date formatting functionality.
-    */
-   private static SimpleDateFormat fmtDateHandler = new SimpleDateFormat();
-
-   /**
     * Parse the String to return a valid Date object. <p> This method uses the time zone.
     * @param    sDateTime    The String value that contains the date.
     * @param    sPattern     The String value that contains the pattern to use
     * (ie. "yyyy/MM/dd hh:mm:ss") during the conversion.
     */
-   public static Date parseDate(String sDateTime, String sPattern)
+   public static Date parseDate(String sDateTime, String sPattern) throws CoreException
    {
       TimeZone timeZone = TimeZone.getDefault();
       Date date = parseDate(sDateTime, sPattern, timeZone);
+      if (date == null) {
+          throw new CoreException("Invalid date '" + sDateTime + "'. Expected format " + sPattern + ".");
+      }
       return date;
    }
 
@@ -54,13 +52,19 @@ public class DateUtils
     * (ie. "yyyy/MM/dd hh:mm:ss") during the conversion.
     * @param    timeZone     The specified time zone to use during the conversion.
     */
-   public static Date parseDate(String sDateTime, String sPattern, TimeZone timeZone)
+   public static Date parseDate(String sDateTime, String sPattern, TimeZone timeZone) throws CoreException
    {
       ParsePosition pos = new ParsePosition(0);
+      SimpleDateFormat fmtDateHandler = new SimpleDateFormat();
       fmtDateHandler.applyPattern(sPattern);
       fmtDateHandler.setTimeZone(timeZone);
-      // Parse the input string.
-      return fmtDateHandler.parse(sDateTime, pos);
+      Date result = fmtDateHandler.parse(sDateTime, pos);
+      if (result != null) {
+          return result;
+      } else {
+          throw new CoreException("Unable to parse date '" + sDateTime + "' because it doe not match the correct format (" + sPattern + ").");
+      }
+      
    }
 
    /**
@@ -128,7 +132,7 @@ public class DateUtils
    public static Date localToGMT(Date normalDate)
    {
       long GMTOffset;
-      boolean isDaylightSavings = false;
+      //boolean isDaylightSavings = false;
       Calendar cal = Calendar.getInstance(TimeZone.getDefault());
       Date GMTDate = new Date();
       cal.setTime(normalDate);
@@ -143,7 +147,7 @@ public class DateUtils
    public static Date gmtToLocal(Date gmtDate)
    {
       long GMTOffset;
-      boolean isDaylightSavings = false;
+      //boolean isDaylightSavings = false;
       Calendar cal = Calendar.getInstance(TimeZone.getDefault());
       Date NewGMTDate = new Date();
       cal.setTime(gmtDate);
@@ -235,9 +239,6 @@ public class DateUtils
       // If the length is 10 (ie. "10/12/2005" then just return
       // the original string.
       date = forceMMDDYYYY(date);
-
-      Date newDate = null;
-
       try
       {
          SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -448,7 +449,7 @@ public class DateUtils
       if (intmonth == 1)
       {
          intmonth = 12;
-         intyear = --intyear;
+         --intyear;
       }
       else
          --intmonth;
@@ -480,7 +481,7 @@ public class DateUtils
       if (intmonth == 12)
       {
          intmonth = 1;
-         intyear = ++intyear;
+         ++intyear;
       }
       else
          ++intmonth;

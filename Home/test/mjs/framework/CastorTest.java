@@ -30,8 +30,8 @@ public class CastorTest extends AbstractTest {
 
         	FieldDefs defs = new FieldDefs();
         	ArrayList<Field> items = new ArrayList<Field>();
-        	Field next = new Field("field1", "int", "99,999,999,990", 50, true, false, "", "Field #1");
-        	Field next2 = new Field("field2", "boolean", "Ja/Nein", 4, false, false, "", "Field #2");
+        	Field next = new Field("field1", "int", "99,999,999,990", 50, true, false, "", "Field #1", false, null);
+        	Field next2 = new Field("field2", "boolean", "Ja/Nein", 4, false, false, "", "Field #2", true, null);
         	items.add(next);
         	items.add(next2);
         	defs.setItems(items);

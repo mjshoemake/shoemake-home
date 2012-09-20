@@ -1,22 +1,24 @@
 package mjs.model;
 
+import java.io.Serializable;
+
 /**
  * This is the business object interface implemented by objects that
  * will be assigned to PaginatedList.  
  */
-public interface BusinessObject
+public interface BusinessObject extends Serializable
 {
    /**
     * The primary key.  Implemented from BusinessObject interface which
     * allows this object to be used in conjunction with PaginatedList.
     */
-   String getPK();
+   String getPk();
 
    /**
     * The primary key.  Implemented from BusinessObject interface which
     * allows this object to be used in conjunction with PaginatedList.
     */
-   void setPK(String value);
+   void setPk(String value);
 
    /**
     * The name associated with the object.

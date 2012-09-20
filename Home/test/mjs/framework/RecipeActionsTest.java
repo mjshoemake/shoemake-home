@@ -1,23 +1,15 @@
 package mjs.framework;
 
-import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
-import mjs.database.DatabaseDriver;
-import mjs.database.PaginatedList;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
-import mjs.mocks.MockHttpSession;
 import mjs.recipes.AddTestRecipeAction;
 import mjs.recipes.RecipeForm;
-import mjs.recipes.RecipeManager;
 import mjs.recipes.GetRecipesByLetterAction;
 import mjs.recipes.ViewRecipeAction;
-import mjs.utils.LogUtils;
-import mjs.utils.SingletonInstanceManager;
 
-@SuppressWarnings("rawtypes")
 public class RecipeActionsTest extends ServletStarter {
 
 	@Before

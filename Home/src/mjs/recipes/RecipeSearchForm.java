@@ -80,7 +80,7 @@ public class RecipeSearchForm extends AbstractForm implements BusinessObject {
     * The primary key. Implemented from BusinessObject interface which allows
     * this object to be used in conjunction with PaginatedList.
     */
-   public String getPK() {
+   public String getPk() {
       return recipes_pk;
    }
 
@@ -88,7 +88,7 @@ public class RecipeSearchForm extends AbstractForm implements BusinessObject {
     * The primary key. Implemented from BusinessObject interface which allows
     * this object to be used in conjunction with PaginatedList.
     */
-   public void setPK(String value) {
+   public void setPk(String value) {
       recipes_pk = value;
    }
 

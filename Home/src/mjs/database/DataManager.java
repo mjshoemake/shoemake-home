@@ -1,13 +1,11 @@
 package mjs.database;
 
-import java.beans.PropertyDescriptor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import mjs.aggregation.OrderedMap;
-import mjs.utils.BeanUtils;
 import mjs.utils.LogUtils;
 import mjs.utils.StringUtils;
 import mjs.view.SelectOption;
@@ -555,7 +553,6 @@ public class DataManager extends AbstractDataManager
          
          // Load the mapping file.
          OrderedMap mapping = driver.loadMapping(mappingFile);  
-         PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(bean.getClass());
 
          // Create prepared statement.
          insertSQL = getInsertSqlForPreparedStatement(table, mapping, bean.getClass());
@@ -563,7 +560,7 @@ public class DataManager extends AbstractDataManager
          PreparedStatement statement = getConnection().prepareStatement(insertSQL);
 
          // Bind the values of the insert statement.
-         populatePreparedStatementValues(bean, statement, mapping, pds);
+         populatePreparedStatementValues(bean, statement, mapping);
 
          // Execute the statement.
          statement.executeUpdate();
@@ -806,8 +803,7 @@ public class DataManager extends AbstractDataManager
          PreparedStatement statement = getConnection().prepareStatement(updateSQL);
 
          // Bind the values of the insert statement.
-         PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(bean.getClass());
-         populatePreparedStatementValues(bean, statement, mapping, pds);
+         populatePreparedStatementValues(bean, statement, mapping);
 
          // Execute the statement.
          statement.executeUpdate();

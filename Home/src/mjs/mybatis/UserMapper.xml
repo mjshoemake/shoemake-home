@@ -4,19 +4,18 @@
 
 <mapper namespace="mjs.mybatis.UserMapper">
 
-  <cache />
+<!--  <cache />  -->
 
-  <select id="getPersonList" resultType="mjs.users.User">
-      select user_pk, 
-             username,
+  <select id="getFamilyMemberList" resultType="hashmap">
+      select description, 
+             dob, 
+             family_member_pk, 
              fname, 
-             lname, 
-             password, 
-             description,
-             login_enabled,
-             dob
-      from users
-      order by lname + fname
+             lname,
+             family_member_pk as pk,
+             concat(fname, ' ', lname) name 
+      from family_members  
+      order by lname, fname
   </select>
 
 <!--

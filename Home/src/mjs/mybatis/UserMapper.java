@@ -1,11 +1,11 @@
 package mjs.mybatis;
 
+import java.util.HashMap;
 import java.util.List;
-import mjs.users.User;
 
 public interface UserMapper {
 
-	List<User> getPersonList();
+	List<HashMap> getFamilyMemberList();
 
 /*	
   Account getAccountByUsername(String username);

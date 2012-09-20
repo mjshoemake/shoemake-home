@@ -1,13 +1,11 @@
 package mjs.framework;
 
-import static org.junit.Assert.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import mjs.core.AbstractTest;
 import mjs.tags.TagExpressionHandler;
-import mjs.utils.LogUtils;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.mocks.MockPageContext;
@@ -23,7 +21,7 @@ public class TagExpressionHandlerTest extends AbstractTest
 
    public final void testTagExpressionHandler()
    {
-      String formatted = null;
+      //String formatted = null;
       String result = null;
 
          try

@@ -9,9 +9,9 @@
 package mjs.setup;
 
 //import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.Properties;
 
 import javax.servlet.Servlet;
@@ -21,20 +21,14 @@ import javax.servlet.http.HttpServlet;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import mjs.database.DatabaseConfig;
-import mjs.database.DatabaseDriver;
 import mjs.exceptions.CoreException;
 import mjs.utils.SingletonInstanceManager;
-import mjs.utils.StringUtils;
-//import com.cisco.ca.sse.femto.common.ads.ADSManager;
-//import mjs.setup.FileMonitor;
-//import com.cisco.ca.sse.femto.common.utils.SingletonInstanceManager;
-//import mjs.utils.FemtoConstants;
 import mjs.utils.FileUtils;
-import mjs.xml.CastorObjectConverter;
 
 /**
  * Setup Servlet.
@@ -158,11 +152,24 @@ public final class SetupServlet extends HttpServlet implements Servlet {
 
     	    // Lookup the file name for log4j configuration
         	String resource = "/config/mybatis-config.xml";
-        	InputStream inputStream = FileUtils.getFileAsStream(resource, true);
-        	InputStreamReader reader = new InputStreamReader(inputStream);
+            InputStream inputStream = FileUtils.getFileAsStream(resource, true);
+            InputStreamReader reader = new InputStreamReader(inputStream);
+            BufferedReader buff = new BufferedReader(reader);
+            
+            auditLog.debug("Reading file " + resource + ":");
+        	String line = buff.readLine();
+        	while (line != null) {
+        	    auditLog.debug("   " + line);
+        	    line = buff.readLine();
+        	}
+        	
+        	inputStream = FileUtils.getFileAsStream(resource, true);
+        	reader = new InputStreamReader(inputStream);
         	SqlSessionFactory sqlSessionFactory = null;
         	try {
         	    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        	    SqlSession session = sqlSessionFactory.openSession();
+        	    session.close();
         	} catch (Throwable t) {
         		auditLog.error("Error creating SqlSessionFactory!!! " + t.getMessage(), t);
         	}

@@ -7,3 +7,13 @@ UPDATE `test`.`users` SET `description`='Dad', `login_enabled`='Y', `dob`='1972-
 -- Creating quotes table
 CREATE  TABLE `test`.`user_quotes` (  `user_quotes_pk` INT(11) NOT NULL ,  `quote_date` DATETIME NOT NULL ,  `quote` VARCHAR(1000) NOT NULL ,  `user_pk` INT(11) NOT NULL ,  PRIMARY KEY (`user_quotes_pk`) ,  INDEX `user_pk` (`user_pk` ASC) );
 
+-- Create family members table
+CREATE  TABLE `test`.`family_members` (  `family_member_pk` INT NOT NULL ,  `fname` VARCHAR(20) NOT NULL ,  `lname` VARCHAR(20) NOT NULL ,  `description` VARCHAR(255) NULL ,  `dob` DATETIME NULL ,  PRIMARY KEY (`family_member_pk`) ,  INDEX `lname + fname` (`lname` ASC, `fname` ASC) ,  INDEX `dob` (`dob` ASC) )COMMENT = 'The family members (dad, mom, etc.).';
+
+-- Drop unnecessary columns from users table
+ALTER TABLE `test`.`users` DROP COLUMN `dob` , DROP COLUMN `description` ;
+ALTER TABLE `test`.`family_members` CHANGE COLUMN `family_member_pk` `family_member_pk` INT(11) NOT NULL AUTO_INCREMENT  , ADD UNIQUE INDEX `family_member_pk_UNIQUE` (`family_member_pk` ASC) ;
+-- Add family members
+
+INSERT INTO `test`.`family_members` (`fname`, `lname`, `description`, `dob`) VALUES ('Mike', 'Shoemake', 'Dad', '1972-09-09');
+

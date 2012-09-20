@@ -33,4 +33,8 @@
           mappingFileName="/mjs/recipes/RecipeSearchMapping.xml" 
           className="mjs.recipes.RecipeSearchForm" />
 
+   <table tableName="family_members" 
+          mappingFileName="/mjs/users/FamilyMemberMapping.xml" 
+          className="mjs.core.DynaForm" />
+
 </database>

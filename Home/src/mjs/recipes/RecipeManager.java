@@ -1,9 +1,6 @@
 package mjs.recipes;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Iterator;
 import org.apache.log4j.Logger;
 //import java.util.ArrayList;
 //import java.util.Hashtable;
@@ -16,13 +13,11 @@ import org.apache.log4j.Logger;
 //import mjs.database.AbstractDataManager;
 import mjs.database.DataLayerException;
 import mjs.database.DatabaseDriver;
-import mjs.database.PaginatedList;
 import mjs.database.TableDataManager;
 //import mjs.database.fielddef.FieldDefinition;
 //import mjs.database.fielddef.impl.FieldDefinitionImpl;
 //import mjs.utils.FormatUtils;
 import mjs.utils.Loggable;
-import mjs.utils.StringUtils;
 //import mjs.utils.StringUtils;
 //import com.accenture.core.view.SelectOption;
 

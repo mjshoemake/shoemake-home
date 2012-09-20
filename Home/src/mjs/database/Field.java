@@ -10,6 +10,8 @@ public class Field {
 	private String listColumnWidth = "";
 	private String caption = "";
 	private boolean isLink = false;
+	private boolean isRequired = false;
+	private String pattern = "";
 	
 	public Field() {
 	}
@@ -19,9 +21,11 @@ public class Field {
 			     String format,
 			     int maxLen,
 			     boolean isPercent,
-              boolean isLink,
+                 boolean isLink,
 			     String listColumnWidth,
-			     String caption) {
+			     String caption,
+			     boolean required, 
+			     String pattern) {
 		this.name = name;
 		this.type = type;
 		this.format = format;
@@ -30,6 +34,8 @@ public class Field {
 		this.isLink = isLink;
 		this.listColumnWidth = listColumnWidth;
 		this.caption = caption;
+		this.isRequired = required;
+		this.pattern = pattern;
 	}
 	
 	public void setName(String value) {
@@ -80,12 +86,28 @@ public class Field {
       return isLink;
    }
    
+   public void setIsRequired(boolean value) {
+       isRequired = value;
+    }
+    
+   public boolean getIsRequired() {
+       return isRequired;
+    }
+    
 	public void setListColumnWidth(String value) {
 	   listColumnWidth = value;
 	}
 	
 	public String getListColumnWidth() {
 	   return listColumnWidth;
+	}
+	
+	public String getPattern() {
+	    return pattern;
+	}
+	
+	public void setPattern(String value) {
+	    pattern = value;
 	}
 	
 	public void setCaption(String value) {

@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="mjs.framework.AbstractServletTest"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+<fullyQualifiedTypeName name="mjs.xml.CastorObjectConverter"/>
+<fullyQualifiedTypeName name="mjs.database.TableConfig"/>
+<fullyQualifiedTypeName name="mjs.database.TableDataManager"/>
+<fullyQualifiedTypeName name="mjs.utils.FileUtils"/>
+<fullyQualifiedTypeName name="mjs.exceptions.ActionException"/>
+<fullyQualifiedTypeName name="mjs.database.PaginatedList"/>
+<fullyQualifiedTypeName name="mjs.exceptions.CoreException"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="mjs.utils.DateUtils"/>
+<fullyQualifiedTypeName name="mjs.users.FamilyMemberForm"/>
+</qualifiedTypeNameHistroy>

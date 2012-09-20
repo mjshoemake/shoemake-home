@@ -29,7 +29,9 @@ public class PaginatedListTagTest extends AbstractTest {
                                  false,
                                  false,
                                  "120px",
-                                 "Meal");     
+                                 "Meal", 
+                                 false,
+                                 null);     
          
          String newWidth = tag.getFilterFieldWidth(field);
          System.out.println("StartWidth: " + field.getListColumnWidth());
