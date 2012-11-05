@@ -13,7 +13,9 @@ CREATE  TABLE `test`.`family_members` (  `family_member_pk` INT NOT NULL ,  `fna
 -- Drop unnecessary columns from users table
 ALTER TABLE `test`.`users` DROP COLUMN `dob` , DROP COLUMN `description` ;
 ALTER TABLE `test`.`family_members` CHANGE COLUMN `family_member_pk` `family_member_pk` INT(11) NOT NULL AUTO_INCREMENT  , ADD UNIQUE INDEX `family_member_pk_UNIQUE` (`family_member_pk` ASC) ;
--- Add family members
 
+-- Add family members
 INSERT INTO `test`.`family_members` (`fname`, `lname`, `description`, `dob`) VALUES ('Mike', 'Shoemake', 'Dad', '1972-09-09');
 
+-- Change to family_member_quotes table.
+ALTER TABLE `test`.`user_quotes` CHANGE COLUMN `user_quotes_pk` `family_member_quotes_pk` INT(11) NOT NULL  , CHANGE COLUMN `user_pk` `family_member_pk` INT(11) NOT NULL  , RENAME TO  `test`.`family_member_quotes` ;
