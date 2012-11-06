@@ -9,7 +9,6 @@ import java.net.URL;
 import mjs.core.AbstractTest;
 import mjs.database.Field;
 import mjs.database.FieldDefs;
-import mjs.setup.SetupServlet;
 import mjs.utils.LogUtils;
 import mjs.xml.CastorObjectConverter;
 
@@ -35,7 +34,7 @@ public class CastorTest extends AbstractTest {
         	items.add(next);
         	items.add(next2);
         	defs.setItems(items);
-            URL mappingUrl = SetupServlet.class.getResource("/mjs/database/FieldDefMapping.xml");
+            URL mappingUrl = CastorTest.class.getResource("/mjs/database/FieldDefMapping.xml");
         	
         	String xml = CastorObjectConverter.convertObjectToXML(defs, mappingUrl);
         	System.out.println(xml);

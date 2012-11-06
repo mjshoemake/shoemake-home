@@ -1,16 +1,16 @@
 package mjs.admin;
 
+import lombok.Data;
 import mjs.aggregation.OrderedMap;
 import mjs.core.AbstractForm;
 import mjs.model.BusinessObject;
-//import mjs.utils.FormatUtils;
 import mjs.view.ValidationErrorList;
 
 /**
  * This is the data object or suitcase for a Meal. This data object should
  * not contain any business logic.
  */
-public class MealCategoryForm extends AbstractForm implements BusinessObject {
+public @Data class MealCategoryForm extends AbstractForm implements BusinessObject {
 	static final long serialVersionUID = -4174504602386548113L;
 
 	/**
@@ -23,36 +23,6 @@ public class MealCategoryForm extends AbstractForm implements BusinessObject {
 	 * The name.
 	 */
 	private String name = "";
-
-	/**
-	 * Constructor.
-	 */
-	public MealCategoryForm(String pk, String name) {
-		this.meal_categories_pk = pk;
-		this.name = name;
-	}
-
-	/**
-	 * Constructor.
-	 */
-	public MealCategoryForm() {
-	}
-
-	/**
-	 * The primary key. This is how users should be referenced in the
-	 * database.
-	 */
-	public String getMeal_categories_pk() {
-		return meal_categories_pk;
-	}
-
-	/**
-	 * The primary key. This is how users should be referenced in the
-	 * database.
-	 */
-	public void setMeal_categories_pk(String value) {
-	   meal_categories_pk = value;
-	}
 
 	/**
 	 * The primary key. Implemented from BusinessObject interface which allows
@@ -93,21 +63,6 @@ public class MealCategoryForm extends AbstractForm implements BusinessObject {
 	 */
 	public ValidationErrorList validate(OrderedMap mapping) {
 		ValidationErrorList errors = new ValidationErrorList();
-
-		/*
-		 * if (uid.equals("")) errors.addError("user_ID",
-		 * "This is a required field."); if (firstName.equals(""))
-		 * errors.addError("fname", "This is a required field."); if
-		 * (lastName.equals("")) errors.addError("lname",
-		 * "This is a required field.");
-		 * 
-		 * // Phone format. FieldDefinition def =
-		 * (FieldDefinition)mapping.get("phone");
-		 * 
-		 * if (! FormatUtils.isValidString(phone, def)) errors.addError("phone",
-		 * "Input does not match the required format: " + def.getFormat() +
-		 * ".");
-		 */
 		return errors;
 	}
 

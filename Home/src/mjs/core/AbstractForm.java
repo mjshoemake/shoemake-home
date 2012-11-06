@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import mjs.aggregation.OrderedMap;
 import mjs.database.DataLayerException;
 import mjs.database.Field;
+import mjs.database.FormatUtils;
 import mjs.exceptions.ValidationException;
 import mjs.utils.BeanUtils;
-import mjs.utils.FormatUtils;
 import mjs.view.ValidationErrorList;
 
 /**

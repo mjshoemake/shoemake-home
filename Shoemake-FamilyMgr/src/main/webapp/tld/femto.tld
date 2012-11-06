@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE taglib
+	PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+	"http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+	
+<taglib>
+   <tlibversion>1.0</tlibversion>
+   <jspversion>1.1</jspversion>
+   <shortname>f</shortname>
+   <info>
+      JSP tags for the Femto project.
+   </info>
+   <tag>
+      <name>startsWith</name>
+      <tagclass>mjs.tags.StartsWithTag</tagclass>
+      <attribute>
+         <name>testVar</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>startsWith</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>var</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+   <tag>
+      <name>showException</name>
+      <tagclass>mjs.tags.ShowExceptionTag</tagclass>
+      <attribute>
+         <name>var</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+   <tag>
+      <name>breadcrumbs</name>
+      <tagclass>mjs.tags.BreadcrumbsTag</tagclass>
+   </tag>
+
+   <tag>
+      <name>topNav</name>
+      <tagclass>mjs.tags.TopNavTag</tagclass>
+   </tag>
+
+   <tag>
+      <name>leftNav</name>
+      <tagclass>mjs.tags.LeftNavTag</tagclass>
+      <attribute>
+         <name>expr</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+   <tag>
+      <name>showError</name>
+      <tagclass>mjs.tags.ShowErrorTag</tagclass>
+      <attribute>
+         <name>property</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+<!--
+   <tag>
+      <name>urlOut</name>
+      <tagclass>mjs.tags.UrlOutTag</tagclass>
+      <attribute>
+         <name>expr</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+-->
+
+   <tag>
+      <name>url</name>
+      <tagclass>mjs.tags.UrlTag</tagclass>
+      <attribute>
+         <name>value</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+   <tag>
+      <name>traceAttributes</name>
+      <tagclass>mjs.tags.TraceAttributesTag</tagclass>
+   </tag>
+
+   <tag>
+      <name>defaultHeader</name>
+      <tagclass>mjs.tags.DefaultHeaderTag</tagclass>
+   </tag>
+
+   <tag>
+      <name>showAttributes</name>
+      <tagclass>mjs.tags.ShowAttributesTag</tagclass>
+   </tag>
+
+   <tag>
+      <name>showPaginatedList</name>
+      <tagclass>mjs.tags.ShowPaginatedListTag</tagclass>
+      <attribute>
+         <name>view</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>url</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>formName</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+   <tag>
+      <name>log</name>
+      <tagclass>mjs.tags.LogTag</tagclass>
+      <attribute>
+         <name>traceObject</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>message</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>priority</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+         <name>category</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   </tag>
+
+</taglib>
+

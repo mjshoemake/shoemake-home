@@ -10,6 +10,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 import mjs.aggregation.OrderedMap;
 import mjs.database.FieldDefMappingLoader;
@@ -18,9 +20,9 @@ import mjs.database.Field;
 import mjs.setup.MainProperties;
 import mjs.utils.BeanUtils;
 import mjs.exceptions.CoreException;
-import mjs.utils.FormatUtils;
 import mjs.utils.LogUtils;
 import org.apache.log4j.Logger;
+import org.apache.struts.action.DynaActionForm;
 
 
 /**
@@ -29,7 +31,8 @@ import org.apache.log4j.Logger;
  * map of ResultSets to beans. Drivers can manage connections serially
  * or do a connection pool.
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class DatabaseDriver
 {
 	private String PROP_URL = "db.url";
@@ -467,9 +470,11 @@ public class DatabaseDriver
    {
       String fieldName = null;
       String fieldType = null;
+      String fieldPattern = null;
       String propertyName = null;
       Field fieldDef = null;
       Object[] args = new Object[1];
+      boolean isaMap = false;
 
       try
       {
@@ -482,152 +487,281 @@ public class DatabaseDriver
          if (type == null)
             throw new DataLayerException("Error generating bean from result set.  Bean type is null.");
 
+         isaMap = DatabaseDriver.isaMap(type);
+         log.debug("Bean isaMap=" + isaMap + "  type: " + type.getName());
          Properties cols = getColumnNames(rs);
+         if (! isaMap) {
+             PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(type, mapping);
 
-         PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(type, mapping);
+             if (pds == null || pds.length == 0)
+                throw new DataLayerException("Bean Descriptors are missing.");
 
-         if (pds == null || pds.length == 0)
-            throw new DataLayerException("Bean Descriptors are missing.");
+             // Loop through the properties of the bean.
+             for (int i = 0; i < pds.length; i++)
+             {
+                propertyName = pds[i].getName();
+                if (! cols.containsKey(propertyName.toLowerCase()))
+                {
+                   // This isn't a field in the result set.  Go to next item.
+                   continue;
+                }
 
-         // Loop through the properties of the bean.
-         for (int i = 0; i < pds.length; i++)
-         {
-            propertyName = pds[i].getName();
-            if (! cols.containsKey(propertyName.toLowerCase()))
-            {
-               // This isn't a field in the result set.  Go to next item.
-               continue;
-            }
+                // Get the setter method for this property.
+                Method method = pds[i].getWriteMethod();
 
-            // Get the setter method for this property.
-            Method method = pds[i].getWriteMethod();
+                // Use hashtable to figure out the type.
+                fieldDef = (Field)(mapping.get(propertyName.toLowerCase()));
+                fieldType = fieldDef.getType().toLowerCase();
+                fieldName = cols.getProperty(propertyName.toLowerCase());
 
-            // Use hashtable to figure out the type.
-            fieldDef = (Field)(mapping.get(propertyName.toLowerCase()));
-            fieldType = fieldDef.getType().toLowerCase();
-            fieldName = cols.getProperty(propertyName.toLowerCase());
+                if (fieldType == null || fieldType.equals(""))
+                {
+                   // Field not found in mapping.  Throw exception.
+                   throw new DataLayerException("Error loading bean.  Datatype for fieldname " + fieldName + " not found in mapping file.");
+                }
+                else if (fieldType.equals("string"))
+                {
+                   // String.  Do formatting.  No conversion required.
+                   args[0] = FormatUtils.formatString(rs.getString(fieldName), fieldDef);
+                }
+                else if (fieldType.equals("boolean"))
+                {
+                   // Read as a boolean.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (boolean)...");
 
-            if (fieldType == null)
-            {
-               // Field not found in mapping.  Throw exception.
-               throw new DataLayerException("Error loading bean.  Datatype for fieldname " + fieldName + " not found in mapping file.");
-            }
-            else if (fieldType.equals("string"))
-            {
-               // String.  Do formatting.  No conversion required.
-               args[0] = FormatUtils.formatString(rs.getString(fieldName), fieldDef);
-            }
-            else if (fieldType.equals("boolean"))
-            {
-               // Read as a boolean.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (boolean)...");
+                   String value = rs.getString(fieldName).toLowerCase();
+                   Boolean booleanValue = null;
 
-               String value = rs.getString(fieldName).toLowerCase();
-               Boolean booleanValue = null;
+                   if (value.startsWith("t") || value.startsWith("y") || value.startsWith("1"))
+                      booleanValue = new Boolean(true);
+                   else if (value.startsWith("f") || value.startsWith("n") || value.startsWith("0"))
+                      booleanValue = new Boolean(false);
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type boolean (" + rs.getString(fieldName) + ".  Valid values are T or F, Y or N, 1 or 0.");
 
-               if (value.startsWith("t") || value.startsWith("y") || value.startsWith("1"))
-                  booleanValue = new Boolean(true);
-               else if (value.startsWith("f") || value.startsWith("n") || value.startsWith("0"))
-                  booleanValue = new Boolean(false);
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type boolean (" + rs.getString(fieldName) + ".  Valid values are T or F, Y or N, 1 or 0.");
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatBoolean(booleanValue, fieldDef);
+                   else if (pds[i].getPropertyType().getName().equals("boolean"))
+                      args[0] = booleanValue;
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type boolean (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected boolean or String).");
+                }
+                else if (fieldType.equals("int"))
+                {
+                   // Read as an int.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (int)...");
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatBoolean(booleanValue, fieldDef);
-               else if (pds[i].getPropertyType().getName().equals("boolean"))
-                  args[0] = booleanValue;
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type boolean (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected boolean or String).");
-            }
-            else if (fieldType.equals("int"))
-            {
-               // Read as an int.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (int)...");
+                   Integer intValue = new Integer(rs.getInt(fieldName));
 
-               Integer intValue = new Integer(rs.getInt(fieldName));
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatInteger(intValue, fieldDef);
+                   else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = intValue;
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type int (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected int or String).");
+                }
+                else if (fieldType.equals("key"))
+                {
+                   // Read as an string.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (key)...");
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatInteger(intValue, fieldDef);
-               else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = intValue;
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type int (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected int or String).");
-            }
-            else if (fieldType.equals("key"))
-            {
-               // Read as an string.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (key)...");
+                   String stringValue = rs.getString(fieldName);
 
-               String stringValue = rs.getString(fieldName);
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatString(stringValue, fieldDef);
+                   else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = new Integer(Integer.parseInt(stringValue));
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type key (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected int or String).");
+                }
+                else if (fieldType.equals("long"))
+                {
+                   // Read as a long.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (long)...");
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatString(stringValue, fieldDef);
-               else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = new Integer(Integer.parseInt(stringValue));
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type key (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected int or String).");
-            }
-            else if (fieldType.equals("long"))
-            {
-               // Read as a long.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (long)...");
+                   Long longValue = new Long(rs.getLong(fieldName));
 
-               Long longValue = new Long(rs.getLong(fieldName));
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatLong(longValue, fieldDef);
+                   else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = longValue;
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type long (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected long or String).");
+                }
+                else if (fieldType.equals("double") || fieldType.equals("float"))
+                {
+                   // Read as a double.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (float)...");
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatLong(longValue, fieldDef);
-               else if (Integer.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = longValue;
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type long (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected long or String).");
-            }
-            else if (fieldType.equals("double") || fieldType.equals("float"))
-            {
-               // Read as a double.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (float)...");
+                   BigDecimal floatValue = rs.getBigDecimal(fieldName);
 
-               BigDecimal floatValue = rs.getBigDecimal(fieldName);
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatBigDecimal(floatValue, fieldDef);
+                   else if (BigDecimal.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = floatValue;
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type float (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected BigDecimal or String).");
+                }
+                else if (fieldType.equals("date"))
+                {
+                   // Read as a Date.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (date)...");
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatBigDecimal(floatValue, fieldDef);
-               else if (BigDecimal.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = floatValue;
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type float (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected BigDecimal or String).");
-            }
-            else if (fieldType.equals("date"))
-            {
-               // Read as a Date.
-               log.debug("Formatting " + propertyName.toLowerCase() + " (date)...");
+                   Date dateValue = rs.getTimestamp(fieldName);
 
-               Date dateValue = rs.getTimestamp(fieldName);
+                   if (String.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = FormatUtils.formatDate(dateValue, fieldDef);
+                   else if (Date.class.isAssignableFrom(pds[i].getPropertyType()))
+                      args[0] = dateValue;
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type date (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected Date or String).");
+                }
+                else
+                {
+                   // Throw exception.  Invalid data type.
+                   throw new DataLayerException("Error parsing value for field " + fieldName + ".  Invalid field type: " + fieldType + ".");
+                }
 
-               if (String.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = FormatUtils.formatDate(dateValue, fieldDef);
-               else if (Date.class.isAssignableFrom(pds[i].getPropertyType()))
-                  args[0] = dateValue;
-               else
-                  throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type date (" + rs.getString(fieldName) + ".  Incorrect data type in bean (expected Date or String).");
-            }
-            else
-            {
-               // Throw exception.  Invalid data type.
-               throw new DataLayerException("Error parsing value for field " + fieldName + ".  Invalid field type: " + fieldType + ".");
-            }
+                if (args[0] == null)
+                   continue;
 
-            if (args[0] == null)
-               continue;
+                if (method == null)
+                   throw new DataLayerException("Error generating bean from result set.  Write method for property " + fieldType + " is null.");
 
-            if (method == null)
-               throw new DataLayerException("Error generating bean from result set.  Write method for property " + fieldType + " is null.");
+                try {
+                    method.invoke(bean, args);
+                } catch (Exception e) {
+                    throw new DataLayerException("Failure to invoke " +  method.getName() + " method on bean of class " + bean.getClass().getName() + " with " + args.length + " arguments.", e);
+                }
+             }
+             
+         } else {
+             log.debug("Processing map... fieldCount=" + mapping.size());
+             // Loop through the properties of the bean.
+             Iterator it = mapping.iterator();
+             while (it.hasNext()) {
+                fieldDef = (Field)it.next();
+                fieldName = fieldDef.getName();
+                fieldPattern = fieldDef.getPattern();
+                fieldType = fieldDef.getType().toLowerCase();
+                log.debug("   " + fieldName + "  pattern=" + fieldPattern + " type=" + fieldType);
+                if (fieldPattern != null && ! fieldPattern.trim().equals("")) {
+                    //patternFields.put(fieldName, fieldPattern);
+                    log.debug("continuing... A");
+                    continue;
+                }
+                
+                fieldType = fieldDef.getType();
+                if (fieldType == null || fieldType.equals(""))
+                {
+                   // Field not found in mapping.  Throw exception.
+                   throw new DataLayerException("Error loading bean.  Datatype for fieldname " + fieldName + " not found in mapping file.");
+                }
 
-            try {
-                method.invoke(bean, args);
-            } catch (Exception e) {
-            	throw new DataLayerException("Failure to invoke " +  method.getName() + " method on bean of class " + bean.getClass().getName() + " with " + args.length + " arguments.", e);
-            }
+                propertyName = fieldDef.getName();
+                //fieldName = cols.getProperty(propertyName.toLowerCase());
+                if (! cols.containsKey(propertyName.toLowerCase()))
+                {
+                    // This isn't a field in the result set.  Go to next item.
+                    log.debug("continuing... B");
+                    continue;
+                } //else if (fieldDef.getType().toLowerCase().trim().equals("key")) {
+                //    // This is a primary key.  Go to the next item.
+                //    log.debug("continuing... C");
+                //    continue;
+                //}
+
+                if (fieldType.equals("string"))
+                {
+                   // String.  Do formatting.  No conversion required.
+                   String value = rs.getString(fieldName);
+                   log.debug("String found:       raw: " + fieldName + ": " + value);
+                   args[0] = FormatUtils.formatString(value, fieldDef);
+                   log.debug("String found: formatted: " + fieldName + ": " + args[0]);
+                }
+                else if (fieldType.equals("boolean"))
+                {
+                   // Read as a boolean.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (boolean)...");
+
+                   String value = rs.getString(fieldName).toLowerCase();
+                   Boolean booleanValue = null;
+                   if (value.startsWith("t") || value.startsWith("y") || value.startsWith("1"))
+                      booleanValue = new Boolean(true);
+                   else if (value.startsWith("f") || value.startsWith("n") || value.startsWith("0"))
+                      booleanValue = new Boolean(false);
+                   else
+                      throw new DataLayerException("Error parsing value for field " + fieldName + ".  Unexpected value for type boolean (" + rs.getString(fieldName) + ".  Valid values are T or F, Y or N, 1 or 0.");
+                   args[0] = FormatUtils.formatBoolean(booleanValue, fieldDef);
+                }
+                else if (fieldType.equals("int"))
+                {
+                   // Read as an int.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (int)...");
+                   Integer intValue = new Integer(rs.getInt(fieldName));
+                   args[0] = FormatUtils.formatInteger(intValue, fieldDef);
+                }
+                else if (fieldType.equals("key"))
+                {
+                   // Read as an string.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (key)...");
+                   String stringValue = rs.getString(fieldName);
+                   log.debug("Key found:          raw: " + fieldName + ": " + stringValue);
+                   args[0] = FormatUtils.formatString(stringValue, fieldDef);
+                   log.debug("Key found:    formatted: " + fieldName + ": " + args[0]);
+                }
+                else if (fieldType.equals("long"))
+                {
+                   // Read as a long.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (long)...");
+                   Long longValue = new Long(rs.getLong(fieldName));
+                   args[0] = FormatUtils.formatLong(longValue, fieldDef);
+                }
+                else if (fieldType.equals("double") || fieldType.equals("float"))
+                {
+                   // Read as a double.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (float)...");
+                   BigDecimal floatValue = rs.getBigDecimal(fieldName);
+                   args[0] = FormatUtils.formatBigDecimal(floatValue, fieldDef);
+                }
+                else if (fieldType.equals("date"))
+                {
+                   // Read as a Date.
+                   log.debug("Formatting " + propertyName.toLowerCase() + " (date)...");
+                   Date dateValue = rs.getTimestamp(fieldName);
+                   args[0] = FormatUtils.formatDate(dateValue, fieldDef);
+                   log.debug("Date found:   formatted: " + fieldName + ": " + args[0]);
+                }
+                else
+                {
+                   // Throw exception.  Invalid data type.
+                   throw new DataLayerException("Error parsing value for field " + fieldName + ".  Invalid field type: " + fieldType + ".");
+                }
+
+                if (args[0] == null)
+                   continue;
+                try {
+                    if (bean instanceof Map) {
+                        Map map = (Map)bean;
+                        map.put(fieldName, args[0]);
+                    } else if (bean instanceof DynaActionForm) {
+                        DynaActionForm form = (DynaActionForm)bean;
+                        form.set(fieldName, args[0]);
+                    } else {
+                        throw new DataLayerException("Failed to set field " + fieldName + " with value " + args[0] + ".  Type not recognized as a Map (" + bean.getClass().getName() + ").");
+                    }
+                } catch (DataLayerException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new DataLayerException("Failed to set field " + fieldName + " with value " + args[0] + ". " + e.getMessage(), e);
+                }
+             }
+             
+             // Deal with patterns.
+             
          }
 
+    
          log.debug("RETURNING bean: " + bean.toString());
          return bean;
       }
@@ -657,6 +791,7 @@ public class DatabaseDriver
 
       try
       {
+         log.debug("getColumnNames():");
          ResultSetMetaData rmd = rs.getMetaData();
          int numcols = rmd.getColumnCount();
 
@@ -675,7 +810,7 @@ public class DatabaseDriver
                // Use the original field name.
                baseField = field;
             }
-
+            log.debug("   " + baseField.toLowerCase() + "  field=" + field);
             cols.setProperty(baseField.toLowerCase(), field);
          }
       }
@@ -735,7 +870,6 @@ public class DatabaseDriver
     * @return                   Description of Return Value
     * @exception CoreException  Description of Exception
     */
-   @SuppressWarnings("unchecked")
    public OrderedMap loadMapping(String mappingFile) throws CoreException
    {
       if (mappingCache.containsKey(mappingFile))
@@ -756,6 +890,28 @@ public class DatabaseDriver
          return newMapping;
       }
    }
+   
+   /**
+    * Is the specified class a Map or DynaActionForm?
+    * @param type Class
+    * @return boolean
+    * @throws DataLayerException
+    */
+   public static boolean isaMap(Class type) throws DataLayerException {
+       Object bean = null;
+       boolean result = false;
+       try {
+           bean = type.newInstance();
+       } catch (Exception e) {
+           throw new DataLayerException("Unable to create an instance of the specified type (" + type.getName() + "). " + e.getMessage(), e);
+       }
+       if (bean == null) { 
+           throw new DataLayerException("Unable to create an instance of the specified type (" + type.getName() + ").");
+       }    
+       result = (bean instanceof Map || bean instanceof DynaActionForm);
+       return result;
+   }
+  
 }
 
 // Change Log:

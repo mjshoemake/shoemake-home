@@ -7,12 +7,12 @@ import mjs.core.Form;
 import mjs.exceptions.ActionException;
 import mjs.database.PaginatedList;
 import mjs.database.TableDataManager;
-import mjs.recipes.RecipeForm;
 import mjs.utils.Constants;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 
 public class UpdateFamilyMemberAction extends AbstractAction {
     /**
@@ -29,20 +29,19 @@ public class UpdateFamilyMemberAction extends AbstractAction {
                                         ActionForm form,
                                         HttpServletRequest req,
                                         HttpServletResponse res) throws Exception {
-        metrics.startEvent("UpdateRecipe", "action");
-        Form myForm = (Form) form;
-        RecipeForm recipeForm = (RecipeForm) form;
+        metrics.startEvent("UpdateFamilyMember", "action");
+        DynaActionForm actionForm = (DynaActionForm)form;
 
         try {
-            TableDataManager dbMgr = getTable("RecipeMapping.xml");
-            ValidationErrorList errors = dbMgr.validateForm(myForm);
+            TableDataManager dbMgr = getTable("FamilyMemberMapping.xml");
+            ValidationErrorList errors = dbMgr.validateForm((Form)form);
             if (errors.isEmpty()) {
                 log.debug("Form validated successfully.");
                 // Update recipe.
                 try {
                     dbMgr.open();
-                    String whereClause = "where recipes_pk = " + recipeForm.getRecipes_pk();
-                    dbMgr.updateBean(recipeForm, whereClause);
+                    String whereClause = "where family_member_pk = " + actionForm.getString("family_member_pk");
+                    dbMgr.updateBean(form, whereClause);
                     dbMgr.close(true);
                 } catch (Exception e) {
                     dbMgr.close(false);
@@ -65,7 +64,7 @@ public class UpdateFamilyMemberAction extends AbstractAction {
             ActionException ex = new ActionException("Error trying to save a new recipe.", e);
             throw ex;
         } finally {
-            metrics.endEvent("UpdateRecipe", "action");
+            metrics.endEvent("UpdateFamilyMember", "action");
             metrics.writeMetricsToLog();
         }
     }

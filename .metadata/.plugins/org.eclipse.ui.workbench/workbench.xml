@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="37" version="2.0">
+<workbench progressCount="30" version="2.0">
 <workbenchAdvisor/>
 <window height="598" maximized="true" width="827" x="179" y="89">
 <fastViewData fastViewLocation="1024"/>
@@ -18,10 +18,12 @@
 <coolItem id="org.eclipse.wst.server.ui.internal.webbrowser.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.ws.explorer.explorer" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="61" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.m2e.editor.MavenPomEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.css.core.csssource.source" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -34,7 +36,7 @@
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1338018639450" focus="true" label="Workspace - Debug">
+<page aggregateWorkingSetId="Aggregate for window 1338018639450" focus="true" label="Workspace - Java">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -44,25 +46,28 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ShowErrorTag.java" partName="ShowErrorTag.java" path="C:/Work/shoemake-home/Home/src/mjs/tags/ShowErrorTag.java" title="ShowErrorTag.java" tooltip="Home/src/mjs/tags/ShowErrorTag.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Home/src/mjs/tags/ShowErrorTag.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2108" selectionTopPixel="604"/>
+<editor id="org.eclipse.m2e.editor.MavenPomEditor" name="pom.xml" partName="StrutsWebUI/pom.xml" path="C:/Work/shoemake-home/WebUI/WebUI/pom.xml" title="StrutsWebUI/pom.xml" tooltip="StrutsWebUI/pom.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StrutsWebUI/pom.xml"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FamilyMemberForm.java" partName="FamilyMemberForm.java" path="C:/Work/shoemake-home/Home/src/mjs/users/FamilyMemberForm.java" title="FamilyMemberForm.java" tooltip="Home/src/mjs/users/FamilyMemberForm.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Home/src/mjs/users/FamilyMemberForm.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4339" selectionTopPixel="2593"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddRecipeAction.java" partName="AddRecipeAction.java" path="C:/Work/shoemake-home/FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java" title="AddRecipeAction.java" tooltip="FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DateUtils.java" partName="DateUtils.java" path="C:/Work/shoemake-home/Home/src/mjs/utils/DateUtils.java" title="DateUtils.java" tooltip="Home/src/mjs/utils/DateUtils.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Home/src/mjs/utils/DateUtils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1354" selectionTopPixel="435"/>
+<editor id="org.eclipse.m2e.editor.MavenPomEditor" name="pom.xml" partName="FamilyMgr/pom.xml" path="C:/Work/shoemake-home/FamilyMgr/pom.xml" title="FamilyMgr/pom.xml" tooltip="FamilyMgr/pom.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FamilyMgr/pom.xml"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddFamilyMemberActionTest.java" partName="AddFamilyMemberActionTest.java" path="C:/Work/shoemake-home/Home/test/mjs/actions/AddFamilyMemberActionTest.java" title="AddFamilyMemberActionTest.java" tooltip="Home/test/mjs/actions/AddFamilyMemberActionTest.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Home/test/mjs/actions/AddFamilyMemberActionTest.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2128" selectionTopPixel="366"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractDataManager.java" partName="AbstractDataManager.java" path="C:/Work/shoemake-home/WebUI/WebUI/src/main/java/mjs/database/AbstractDataManager.java" title="AbstractDataManager.java" tooltip="StrutsWebUI/src/main/java/mjs/database/AbstractDataManager.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StrutsWebUI/src/main/java/mjs/database/AbstractDataManager.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SetupServlet.java" partName="SetupServlet.java" path="C:/Work/shoemake-home/WebUI/WebUI/src/main/java/mjs/setup/SetupServlet.java" title="SetupServlet.java" tooltip="StrutsWebUI/src/main/java/mjs/setup/SetupServlet.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StrutsWebUI/src/main/java/mjs/setup/SetupServlet.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -78,13 +83,13 @@
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
-<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
-<viewState/>
-</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
 <viewState/>
 </view>
-<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
@@ -103,6 +108,19 @@
 </view>
 <view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" partName="Snippets"/>
 <view id="org.eclipse.ui.views.PropertySheet" partName="Properties"/>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="182" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="480"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
 <view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" partName="Data Source Explorer"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
@@ -140,24 +158,11 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
-<viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<sorter groupBy="CATEGORY_QUERY">&#x0A;<sorter>&#x0A;<sort0 sortDirection="1" sortKey="PRIORITY"/>
-<sort1 sortDirection="1" sortKey="RANK"/>
-<sort2 sortDirection="1" sortKey="DATE_CREATED"/>
-<sort3 sortDirection="1" sortKey="NONE"/>
-<sort4 sortDirection="1" sortKey="NONE"/>
-<sort5 sortDirection="1" sortKey="NONE"/>
-<sort6 sortDirection="1" sortKey="NONE"/>
-<sort7 sortDirection="1" sortKey="NONE"/>
-</sorter>
-</sorter>
-<filteredTreeFindHistory/>
-</viewState>
+<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers">
+<viewState CommonNavigator.LINKING_ENABLED="0"/>
 </view>
-<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.debug.ui.DebugPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jst.j2ee.internal.perspective.J2EEPerspective" id="org.eclipse.jst.j2ee.J2EEPerspective" label="Java EE"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -215,53 +220,69 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
-<view id="org.eclipse.ui.views.AllMarkersView"/>
-<view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.wst.server.ui.ServersView"/>
-<view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>
-<view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
-<fastViewBars/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="1024" id="bottomRight" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
+<fastViews>
+<view id="org.eclipse.ui.views.AllMarkersView" ratio="0.3"/>
+<view id="org.eclipse.ui.views.PropertySheet" ratio="0.3"/>
+<view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" ratio="0.3"/>
+<view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackagesView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="1"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="1"/>
 <part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1eea96c" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1eea96c" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottomRight" ratio="0.69860893" ratioLeft="452" ratioRight="195" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.AllMarkersView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.AllMarkersView" label="Markers"/>
-<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
-<page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
-<page content="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" label="Data Source Explorer"/>
-<page content="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" label="Snippets"/>
+<info part="org.eclipse.ui.editorss" ratio="0.27013832" ratioLeft="332" ratioRight="897" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomRight" ratio="0.69860893" ratioLeft="452" ratioRight="195" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.AllMarkersView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
-<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="topRight" ratio="0.7" ratioLeft="525" ratioRight="225" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<info folder="true" part="topRight" ratio="0.7" ratioLeft="525" ratioRight="225" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@5d0d2d1a" ratio="0.74962294" ratioLeft="497" ratioRight="166" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -330,17 +351,18 @@
 <view id="org.eclipse.jdt.junit.ResultView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars>
-<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.search.ui.views.SearchView" style="0">
+<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.ui.views.ProblemView" style="0">
 <fastViews>
 <view id="org.eclipse.debug.ui.DebugView" ratio="0.3"/>
 <view id="org.eclipse.search.ui.views.SearchView" ratio="0.29864255"/>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.29864255"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="left">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="JUnit"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
@@ -446,31 +468,22 @@
 <view id="org.eclipse.debug.ui.BreakpointView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7493858" ratioLeft="915" ratioRight="306" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.7493858" ratioLeft="915" ratioRight="306" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74962294" ratioLeft="497" ratioRight="166" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74962294" ratioLeft="497" ratioRight="166" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="JUnit"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
@@ -479,31 +492,24 @@
 <page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
 <page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
 <page content="org.eclipse.wst.xsl.jaxp.debug.ui.view1" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.44869214" ratioLeft="223" ratioRight="274" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7493858" ratioLeft="915" ratioRight="306" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7493858" ratioLeft="915" ratioRight="306" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.4995905" ratioLeft="610" ratioRight="611" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.4995905" ratioLeft="610" ratioRight="611" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -515,166 +521,123 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/users/FamilyMemberForm.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/recipes/RecipeManager.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Home/C:\/Program Files\/Java\/jdk1.6.0_32\/jre\/lib\/rt.jar&lt;sun.reflect(NativeMethodAccessorImpl.class"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/utils/DateUtils.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/database/TableDataManager.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/users/AddFamilyMemberAction.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/core/AbstractAction.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/test/mjs/actions/AddFamilyMemberActionTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/users/FamilyMemberForm.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Home/src/mjs/utils/DateUtils.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/Common/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Common/src/main/java/mjs/utils/BeanUtils.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/StrutsWebUI/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/tags/AbstractNavTag.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Common/src/main/java/mjs/aggregation/OrderedMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Common/src/main/java/mjs/model/BusinessObjectImpl.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Common/src/main/java/mjs/aggregation/OrderedMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Common/src/main/java/mjs/xml/CastorObjectConverter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/FamilyMgr/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/Common/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FamilyMgr/src/main/java/mjs/aggregation/OrderedMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/FamilyMgr/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/Common/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/FamilyMgr/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/Common/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/core/AbstractAction.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/tags/BreadcrumbsTag.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" path="/FamilyMgr/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/core/AbstractDispatchAction.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/core/AbstractMappingDispatchAction.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/database/AbstractDataManager.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/StrutsWebUI/src/main/java/mjs/setup/SetupServlet.java"/>
 </editors>
-<item historyLabel="NativeMethodAccessorImpl.class" index="2">
+<item historyLabel="AbstractNavTag.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4167" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1181" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1254" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2277" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="7869" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
-</item>
-<item historyLabel="RecipeManager.java" index="1">
-<position info="not_deleted" x="1186" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="3506" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="3">
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="OrderedMap.java" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="BeanUtils.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1181" y="0"/>
+<item historyLabel="BusinessObjectImpl.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1231" y="0"/>
+<item historyLabel="BeanUtils.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1798" y="0"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="OrderedMap.java" index="6">
+<position info="not_deleted" x="28" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1847" y="0"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="CastorObjectConverter.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1912" y="0"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="1958" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="9"/>
+<item historyLabel="Common/pom.xml" index="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="9"/>
+<item historyLabel="Common/pom.xml" index="10"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2003" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="9"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2062" y="0"/>
+<item historyLabel="Common/pom.xml" index="10"/>
+<item historyLabel="OrderedMap.java" index="11">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2133" y="0"/>
+<item historyLabel="Common/pom.xml" index="10"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4375" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="12"/>
+<item historyLabel="Common/pom.xml" index="13"/>
+<item historyLabel="FamilyMgr/pom.xml" index="12"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4548" y="669"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="3717" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="14"/>
+<item historyLabel="Common/pom.xml" index="15"/>
+<item historyLabel="FamilyMgr/pom.xml" index="14"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="AbstractAction.java" index="16">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4301" y="0"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="BreadcrumbsTag.java" index="17">
+<position info="not_deleted" x="3" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2062" y="0"/>
+<item historyLabel="AddRecipeAction.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DateUtils.java" index="3">
-<position info="not_deleted" x="2133" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="18"/>
+<item historyLabel="AbstractDispatchAction.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4375" y="0"/>
+<item historyLabel="AbstractMappingDispatchAction.java" index="20">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="4412" y="0"/>
+<item historyLabel="AbstractDispatchAction.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FamilyMemberForm.java" index="0">
-<position info="not_deleted" x="5186" y="0"/>
+<item historyLabel="FamilyMgr/pom.xml" index="18"/>
+<item historyLabel="StrutsWebUI/pom.xml" index="2"/>
+<item historyLabel="AbstractDataManager.java" index="21">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="TableDataManager.java" index="4">
-<position info="not_deleted" x="7060" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="1326" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="1396" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2275" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2330" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2406" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2445" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2708" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2768" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberAction.java" index="5">
-<position info="not_deleted" x="2445" y="0"/>
-</item>
-<item historyLabel="AbstractAction.java" index="6">
-<position info="not_deleted" x="7757" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberActionTest.java" index="7">
-<position info="not_deleted" x="1551" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberActionTest.java" index="7">
-<position info="not_deleted" x="1605" y="0"/>
-</item>
-<item historyLabel="AddFamilyMemberActionTest.java" index="7">
-<position info="not_deleted" x="1817" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="8">
-<position info="not_deleted" x="5186" y="0"/>
-</item>
-<item historyLabel="FamilyMemberForm.java" index="8">
-<position info="not_deleted" x="4301" y="0"/>
-</item>
-<item historyLabel="DateUtils.java" index="9">
-<position info="not_deleted" x="2208" y="0"/>
-</item>
-<item active="true" historyLabel="DateUtils.java" index="9">
-<position info="not_deleted" x="1108" y="9"/>
+<item active="true" historyLabel="SetupServlet.java" index="22">
+<position info="not_deleted" x="3" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -691,54 +654,49 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
 <trimItem IMemento.internal.id="bottom"/>
+<trimItem IMemento.internal.id="bottomRight"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TableDataManager.java" tooltip="Home/src/mjs/database/TableDataManager.java">
-<persistable path="/Home/src/mjs/database/TableDataManager.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SetupServlet.java" tooltip="StrutsWebUI/src/main/java/mjs/setup/SetupServlet.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/setup/SetupServlet.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DateUtils.java" tooltip="Home/src/mjs/utils/DateUtils.java">
-<persistable path="/Home/src/mjs/utils/DateUtils.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractDataManager.java" tooltip="StrutsWebUI/src/main/java/mjs/database/AbstractDataManager.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/database/AbstractDataManager.java"/>
 </file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="NativeMethodAccessorImpl.class" tooltip="sun.reflect.NativeMethodAccessorImpl">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Home/C:\/Program Files\/Java\/jdk1.6.0_32\/jre\/lib\/rt.jar&lt;sun.reflect(NativeMethodAccessorImpl.class"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractMappingDispatchAction.java" tooltip="StrutsWebUI/src/main/java/mjs/core/AbstractMappingDispatchAction.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/core/AbstractMappingDispatchAction.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Form.java" tooltip="Home/src/mjs/core/Form.java">
-<persistable path="/Home/src/mjs/core/Form.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractDispatchAction.java" tooltip="StrutsWebUI/src/main/java/mjs/core/AbstractDispatchAction.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/core/AbstractDispatchAction.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DatabaseConfig.java" tooltip="Home/src/mjs/database/DatabaseConfig.java">
-<persistable path="/Home/src/mjs/database/DatabaseConfig.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" name="pom.xml" tooltip="FamilyMgr/pom.xml">
+<persistable path="/FamilyMgr/pom.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SetupServlet.java" tooltip="Home/src/mjs/setup/SetupServlet.java">
-<persistable path="/Home/src/mjs/setup/SetupServlet.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BreadcrumbsTag.java" tooltip="StrutsWebUI/src/main/java/mjs/tags/BreadcrumbsTag.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/tags/BreadcrumbsTag.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ServletStarter.java" tooltip="Home/test/mjs/framework/ServletStarter.java">
-<persistable path="/Home/test/mjs/framework/ServletStarter.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.m2e.editor.MavenPomEditor" name="pom.xml" tooltip="Common/pom.xml">
+<persistable path="/Common/pom.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataManager.java" tooltip="Home/src/mjs/database/DataManager.java">
-<persistable path="/Home/src/mjs/database/DataManager.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddRecipeAction.java" tooltip="FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java">
+<persistable path="/FamilyMgr/src/main/java/mjs/recipes/AddRecipeAction.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RecipeManager.java" tooltip="Home/src/mjs/recipes/RecipeManager.java">
-<persistable path="/Home/src/mjs/recipes/RecipeManager.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OrderedMap.java" tooltip="FamilyMgr/src/main/java/mjs/aggregation/OrderedMap.java">
+<persistable path="/FamilyMgr/src/main/java/mjs/aggregation/OrderedMap.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SessionManager.java" tooltip="Home/src/mjs/users/SessionManager.java">
-<persistable path="/Home/src/mjs/users/SessionManager.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractNavTag.java" tooltip="StrutsWebUI/src/main/java/mjs/tags/AbstractNavTag.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/tags/AbstractNavTag.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddFamilyMemberActionTest.java" tooltip="Home/test/mjs/actions/AddFamilyMemberActionTest.java">
-<persistable path="/Home/test/mjs/actions/AddFamilyMemberActionTest.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractTag.java" tooltip="StrutsWebUI/src/main/java/mjs/tags/AbstractTag.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/tags/AbstractTag.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.css.core.csssource.source" name="gallery.css" tooltip="Home/Tomcat6/webapps/home/css/gallery.css">
-<persistable path="/Home/Tomcat6/webapps/home/css/gallery.css"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DynaForm.java" tooltip="StrutsWebUI/src/main/java/mjs/core/DynaForm.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/core/DynaForm.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.css.core.csssource.source" name="style.css" tooltip="Home/Tomcat6/webapps/home/css/style.css">
-<persistable path="/Home/Tomcat6/webapps/home/css/style.css"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FamilyMemberForm.java" tooltip="Home/src/mjs/users/FamilyMemberForm.java">
-<persistable path="/Home/src/mjs/users/FamilyMemberForm.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jst.jsp.core.jspsource.source" name="new-family-member.jsp" tooltip="Home/Tomcat6/webapps/home/jsp/new-family-member.jsp">
-<persistable path="/Home/Tomcat6/webapps/home/jsp/new-family-member.jsp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AbstractForm.java" tooltip="StrutsWebUI/src/main/java/mjs/core/AbstractForm.java">
+<persistable path="/StrutsWebUI/src/main/java/mjs/core/AbstractForm.java"/>
 </file>
 </mruList>
 </workbench>

@@ -14,9 +14,10 @@ import mjs.database.DataLayerException;
 import mjs.database.Field;
 import mjs.utils.BeanUtils;
 import mjs.utils.DateUtils;
-import mjs.utils.FormatUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.DynaActionForm;
+
+import com.mysql.jdbc.StringUtils;
 
 /**
  * The DataManager class is the class that retrieves from and sends data to the
@@ -596,34 +597,58 @@ public abstract class AbstractDataManager {
         // Object[] args = {};
         // Object newobj = null;
         StringBuffer sql = new StringBuffer("update ");
-
         sql.append(table);
         sql.append(" set ");
 
         try {
             PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(type, mapping);
 
-            if (pds == null || pds.length == 0)
-                throw new DataLayerException(
-                    "Error creating Insert SQL. Bean Discriptors are missing.");
+            Object temp = type.newInstance();
+            if (!(temp instanceof Map || temp instanceof DynaActionForm)) {
+                if (pds == null || pds.length == 0)
+                    throw new DataLayerException(
+                        "Error creating Insert SQL. Bean Discriptors are missing.");
 
-            boolean first = true;
+                boolean first = true;
 
-            for (int i = 0; i < pds.length; i++) {
-                String name = pds[i].getName();
-                Field fielddef = (Field) mapping.get(name);
-                if (!fielddef.getType().equals("key")) {
-                    if (!first)
-                        sql.append(", ");
-                    else
-                        first = false;
+                for (int i = 0; i < pds.length; i++) {
+                    String name = pds[i].getName();
+                    Field fielddef = (Field) mapping.get(name);
+                    if (!fielddef.getType().equals("key")) {
+                        if (!first)
+                            sql.append(", ");
+                        else
+                            first = false;
 
-                    sql.append(pds[i].getName());
-                    sql.append("=?");
+                        sql.append(pds[i].getName());
+                        sql.append("=?");
+                    }
                 }
+                sql.append(" ");
+                sql.append(whereClause);
+            } else {
+                log.debug("Bean is a Map (" + type.getClass().getName() + ").  Field count=" + mapping.size());  
+                boolean first = true;
+                Iterator it = mapping.iterator();
+                while (it.hasNext()) {
+                    Field fieldDef = (Field)it.next();
+                    if ((! fieldDef.getType().toLowerCase().equals("key")) &&
+                        (fieldDef.getPattern() == null || fieldDef.getPattern().trim().equals(""))) {
+                        if (!first) {
+                            sql.append(", ");
+                        } else {
+                            first = false;
+                        }    
+                        sql.append(fieldDef.getName());
+                        sql.append("=?");
+                    } else {
+                        log.debug("Skipping " + fieldDef.getName() + "... pattern=" + fieldDef.getPattern() + 
+                                  " type=" + fieldDef.getType());
+                    }
+                }                
+                sql.append(" ");
+                sql.append(whereClause);
             }
-            sql.append(" ");
-            sql.append(whereClause);
         } catch (Exception e) {
             throw new DataLayerException("Failed in getInsertSqlGeneric()", e);
         }
@@ -647,29 +672,48 @@ public abstract class AbstractDataManager {
                                 OrderedMap mapping,
                                 String whereClause) throws DataLayerException {
         StringBuffer sql = new StringBuffer("select ");
-
+        PropertyDescriptor[] pds = null;
+        boolean isaMap = false;
+        
         try {
-            PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(type, mapping);
-
-            if (pds == null || pds.length == 0) {
-                if (type == null)
-                    throw new DataLayerException(
-                        "Error creating Insert SQL. Bean Discriptors are missing.  Type is NULL.");
-                else
-                    throw new DataLayerException(
-                        "Error creating Insert SQL. Bean Discriptors are missing.  Type = "
-                            + type.getName());
-            }
-
-            boolean first = true;
-
-            for (int i = 0; i < pds.length; i++) {
-                if (!first)
-                    sql.append(", ");
-                else
-                    first = false;
-
-                sql.append(pds[i].getName());
+            isaMap = DatabaseDriver.isaMap(type);           
+            if (! isaMap) {
+                // POJO
+                pds = BeanUtils.getPropertyDescriptors(type, mapping);
+                if (pds == null || pds.length == 0) {
+                    if (type == null) {
+                        throw new DataLayerException(
+                            "Error creating Insert SQL. Bean Discriptors are missing.  Type is NULL.");
+                    } else {
+                        throw new DataLayerException(
+                            "Error creating Insert SQL. Bean Discriptors are missing.  Type = "
+                                + type.getName());
+                    }     
+                }
+                boolean first = true;
+                for (int i = 0; i < pds.length; i++) {
+                    if (!first)
+                        sql.append(", ");
+                    else
+                        first = false;
+                    sql.append(pds[i].getName());
+                }
+            } else {
+                // Map
+                boolean first = true;
+                Iterator it = mapping.iterator();
+                log.debug("Selecting columns:");
+                while (it.hasNext()) {
+                    Field field = (Field)it.next();
+                    if (StringUtils.isNullOrEmpty(field.getPattern())) {
+                        log.debug("   " + field.getName());
+                        if (! first)
+                            sql.append(", ");
+                        else
+                            first = false;
+                        sql.append(field.getName());
+                    } 
+                }
             }
 
             sql.append(" from ");
@@ -1040,4 +1084,5 @@ public abstract class AbstractDataManager {
      * 
      * return sql.toString(); }
      */
+
 }

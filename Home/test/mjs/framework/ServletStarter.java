@@ -5,7 +5,7 @@ import javax.servlet.ServletConfig;
 
 
 import mjs.mocks.MockServletConfig;
-import mjs.setup.SetupServlet;
+import mjs.server.SetupServlet;
 import mjs.core.AbstractTest;
 
 @SuppressWarnings("unchecked")

@@ -15,4 +15,12 @@
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="mjs.utils.DateUtils"/>
 <fullyQualifiedTypeName name="mjs.users.FamilyMemberForm"/>
+<fullyQualifiedTypeName name="mjs.utils.FormatUtils"/>
+<fullyQualifiedTypeName name="mjs.utils.SingletonInstanceManager"/>
+<fullyQualifiedTypeName name="mjs.core.DynaForm"/>
+<fullyQualifiedTypeName name="mjs.exceptions.ValidationException"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.StringUtils"/>
+<fullyQualifiedTypeName name="mjs.database.DatabaseDriver"/>
+<fullyQualifiedTypeName name="lombok.EqualsAndHashCode"/>
+<fullyQualifiedTypeName name="mjs.model.BusinessObjectImpl"/>
 </qualifiedTypeNameHistroy>

@@ -10,7 +10,6 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import mjs.exceptions.CoreException;
-import mjs.setup.SetupServlet;
 import mjs.utils.FileUtils;
 import mjs.utils.SingletonInstanceManager;
 import mjs.utils.StringUtils;
@@ -195,7 +194,7 @@ public class DatabaseConfig {
         
         String xml = StringUtils.inputStreamToString(stream);          
     	
-        URL mappingURL = SetupServlet.class.getResource("/mjs/database/DatabaseMapping.xml");
+        URL mappingURL = DatabaseConfig.class.getResource("/mjs/database/DatabaseMapping.xml");
 	    DatabaseConfig dbConfig = (DatabaseConfig)CastorObjectConverter.convertXMLToObject(xml, 
 	                                                                                       DatabaseConfig.class, 
 	                                                                                       mappingURL);
