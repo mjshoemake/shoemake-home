@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="@recipes_pk"            type="key"/>
+   <field name="@name"                  type="string"  caption="Name"           isLink="true"    listColumnWidth="260px"/>
+   <field name="@cookbook"              type="int"     caption="Cookbook"                        listColumnWidth="190px"/>
+   <field name="@meal"                  type="int"     caption="Meal"                            listColumnWidth="75px"/>
+   <field name="@meal_category"         type="int"     caption="Food Category"                   listColumnWidth="110px"/>
+   <field name="@favorite"              type="string"  caption="Favorite?"                       listColumnWidth="80px"/>
+   <field name="@calories_per_serving"  type="int"     caption="Cal. p/ Serv. (Ex. '&lt; 200')"  listColumnWidth="75px"/>
+</fielddef>
+
+     

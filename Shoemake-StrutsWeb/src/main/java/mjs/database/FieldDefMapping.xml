@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN" "http://castor.exolab.org/mapping.dtd">
+<mapping>
+   <class name="mjs.database.FieldDefs">
+      <map-to xml="fielddef"/>
+
+      <field name="items"
+             type="mjs.database.Field"
+              collection="arraylist">
+        <bind-xml name="field"/>
+      </field>
+   </class>
+
+   <class name="mjs.database.Field">
+      <map-to xml="field"/>
+
+         <field name="name" type="java.lang.String">
+            <bind-xml name ="name" node="attribute"/>
+         </field>
+
+         <field name="type" type="java.lang.String">
+            <bind-xml name="type" node="attribute"/>
+         </field>
+
+         <field name="caption" type="java.lang.String">
+            <bind-xml name="caption" node="attribute"/>
+         </field>
+
+         <field name="format" type="java.lang.String">
+            <bind-xml name="format" node="attribute"/>
+         </field>
+
+         <field name="maxLen" type="integer">
+            <bind-xml name="maxLen" node="attribute"/>
+         </field>
+
+         <field name="isPercent" type="boolean">
+            <bind-xml name="isPercent" node="attribute"/>
+         </field>
+
+         <field name="isRequired" type="boolean">
+            <bind-xml name="isRequired" node="attribute"/>
+         </field>
+
+         <field name="isLink" type="boolean">
+            <bind-xml name="isLink" node="attribute"/>
+         </field>
+
+         <field name="listColumnWidth" type="java.lang.String">
+            <bind-xml name="listColumnWidth" node="attribute"/>
+         </field>
+
+         <field name="pattern" type="java.lang.String">
+            <bind-xml name="pattern" node="attribute"/>
+         </field>
+
+   </class>
+</mapping>
