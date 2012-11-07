@@ -12,6 +12,7 @@ import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.users.AddFamilyMemberAction;
+import mjs.users.FamilyMemberForm;
 import mjs.utils.Constants;
 import mjs.utils.SingletonInstanceManager;
 
@@ -68,13 +69,12 @@ public class AddFamilyMemberActionTest extends ServletStarter {
             MockHttpServletRequest request = new MockHttpServletRequest();
             MockHttpServletResponse response = new MockHttpServletResponse();
             request.getSession().setAttribute("userID", "mjshoemake");
-            DynaForm form = new DynaForm();
-            form.set("family_member_pk", null);
-            form.set("fname", "Test");
-            form.set("lname", "Child");
-            form.set("description", "Test Child");
-            form.set("dob", "2/22/1973");
-            request.getSession().setAttribute(Constants.ATT_PAGINATED_LIST_CACHE, new PaginatedList(DynaForm.class, 20, 200, "Success")); 
+            FamilyMemberForm form = new FamilyMemberForm();
+            form.setFname("Test");
+            form.setLname("Child");
+            form.setDescription("Test Child");
+            form.setDob("2/22/1973");
+            request.getSession().setAttribute(Constants.ATT_PAGINATED_LIST_CACHE, new PaginatedList(FamilyMemberForm.class, 20, 200, "Success")); 
             
             AddFamilyMemberAction action = new AddFamilyMemberAction();
             action.execute(mapping, form, request, response);
@@ -91,12 +91,11 @@ public class AddFamilyMemberActionTest extends ServletStarter {
     
 	public void testDateValidation() {
         try {
-            DynaForm form = new DynaForm();
-            form.set("family_member_pk", null);
-            form.set("fname", "Test");
-            form.set("lname", "Child");
-            form.set("description", "Test Child");
-            form.set("dob", "19730202");
+            FamilyMemberForm form = new FamilyMemberForm();
+            form.setFname("Test");
+            form.setLname("Child");
+            form.setDescription("Test Child");
+            form.setDob("19730202");
             String mappingFile = "/mjs/users/FamilyMemberMapping.xml";
             SingletonInstanceManager imgr = SingletonInstanceManager.getInstance();
             DatabaseDriver driver = (DatabaseDriver)imgr.getInstanceForKey(DatabaseDriver.class.getName());

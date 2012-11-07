@@ -2976,3 +2976,150 @@ org.eclipse.core.runtime.CoreException: Could not read maven project
 2012-11-06 10:00:10,933 [Worker-141] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
 2012-11-06 10:00:18,003 [Worker-141] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-FamilyMgr
 2012-11-06 10:00:18,006 [Worker-141] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 15:28:19,328 [Worker-156] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Shoemake:shoemake-database:1.0.1 @ C:\Work\shoemake-home\Shoemake-Database\pom.xml.
+2012-11-06 15:28:26,719 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:26,722 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\main\resources
+2012-11-06 15:28:26,726 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:26,728 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\test\resources
+2012-11-06 15:28:31,767 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:31,825 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 15:28:31,884 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:31,884 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 15:28:39,914 [Worker-163] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:39,915 [Worker-163] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\main\resources
+2012-11-06 15:28:39,918 [Worker-163] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:39,924 [Worker-163] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\test\resources
+2012-11-06 15:28:49,285 [Worker-160] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:49,286 [Worker-160] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\main\resources
+2012-11-06 15:28:49,288 [Worker-160] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 15:28:49,289 [Worker-160] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\test\resources
+2012-11-06 15:29:46,804 [Worker-163] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-Database
+2012-11-06 15:29:46,804 [Worker-163] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:00:00,567 [Worker-167] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Shoemake:shoemake-strutsWeb:1.0.1 @ C:\Work\shoemake-home\Shoemake-StrutsWeb\pom.xml.
+2012-11-06 16:01:48,595 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,596 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\main\resources
+2012-11-06 16:01:48,598 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,599 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\test\resources
+2012-11-06 16:01:48,623 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,623 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\main\resources
+2012-11-06 16:01:48,626 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,626 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\test\resources
+2012-11-06 16:01:48,661 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,663 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\main\resources
+2012-11-06 16:01:48,666 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,670 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\test\resources
+2012-11-06 16:01:48,704 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,706 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-06 16:01:48,709 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:01:48,709 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 16:03:49,554 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:03:49,557 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\main\resources
+2012-11-06 16:03:49,560 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:03:49,563 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\test\resources
+2012-11-06 16:03:58,916 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:03:58,919 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\main\resources
+2012-11-06 16:03:58,922 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:03:58,925 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\test\resources
+2012-11-06 16:04:03,623 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:04:03,637 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\main\resources
+2012-11-06 16:04:03,640 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:04:03,645 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\test\resources
+2012-11-06 16:04:18,006 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:04:18,088 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 16:04:18,714 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:04:18,719 [Worker-169] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 16:04:50,338 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-StrutsWeb
+2012-11-06 16:04:50,339 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:05:49,310 [Worker-166] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-Common
+2012-11-06 16:05:49,310 [Worker-166] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:06:57,630 [Worker-162] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:06:57,633 [Worker-162] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\main\resources
+2012-11-06 16:06:57,636 [Worker-162] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:06:57,639 [Worker-162] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Common\src\test\resources
+2012-11-06 16:07:21,871 [Worker-170] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:07:21,872 [Worker-170] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\main\resources
+2012-11-06 16:07:21,874 [Worker-170] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:07:21,875 [Worker-170] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\test\resources
+2012-11-06 16:07:50,702 [Worker-169] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-Database
+2012-11-06 16:07:50,703 [Worker-169] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:08:37,902 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:08:37,917 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 16:08:37,930 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:08:37,930 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 16:08:46,284 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-FamilyMgr
+2012-11-06 16:08:46,284 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:16:20,178 [Worker-171] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-Database
+2012-11-06 16:16:20,179 [Worker-171] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:17:25,981 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Work\shoemake-home\Shoemake-Database
+2012-11-06 16:17:25,982 [Worker-164] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-11-06 16:55:00,980 [Worker-179] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Shoemake:shoemake-familyMgr:1.0.1 @ C:\Work\shoemake-home\Shoemake-FamilyMgr\pom.xml.
+2012-11-06 16:55:01,284 [New I/O client worker #20-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo1.maven.org/maven2/xerces/xerces/2.4.0/xerces-2.4.0.pom
+2012-11-06 16:55:01,285 [New I/O client worker #20-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo1.maven.org/maven2/xerces/xerces/2.4.0/xerces-2.4.0.pom
+2012-11-06 16:55:01,628 [New I/O client worker #21-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.pom
+2012-11-06 16:55:01,629 [New I/O client worker #21-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.pom
+2012-11-06 16:55:02,302 [Worker-179] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact xerces:xerces:jar:2.4.0 has been relocated to xerces:xercesImpl:jar:2.4.0
+2012-11-06 16:55:02,498 [New I/O client worker #22-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.jar
+2012-11-06 16:55:02,963 [New I/O client worker #22-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.jar
+2012-11-06 16:55:07,358 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:55:07,363 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-06 16:55:07,364 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:55:07,365 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 16:55:17,494 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:55:17,525 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 16:55:17,784 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:55:17,787 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 16:58:48,187 [New I/O client worker #23-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo1.maven.org/maven2/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8-sources.jar
+2012-11-06 16:58:48,528 [New I/O client worker #23-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo1.maven.org/maven2/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8-sources.jar
+2012-11-06 16:58:49,814 [Worker-180] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.apache.struts:struts-core:1.3.8
+2012-11-06 16:58:52,811 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:58:52,814 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\main\resources
+2012-11-06 16:58:52,815 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 16:58:52,817 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-StrutsWeb\src\test\resources
+2012-11-06 17:03:04,932 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:03:04,933 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-06 17:03:04,934 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:03:04,934 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 17:09:05,356 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:09:05,376 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 17:09:05,392 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:09:05,396 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 17:11:35,091 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:11:35,108 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 17:11:35,127 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:11:35,128 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-06 17:40:40,847 [Worker-199] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:40:40,852 [Worker-199] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-06 17:40:40,857 [Worker-199] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-06 17:40:40,857 [Worker-199] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 00:48:59,324 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:48:59,334 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2012-11-07 00:48:59,340 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:48:59,340 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 00:49:51,657 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:49:51,663 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 00:49:51,664 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:49:51,666 [Worker-224] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 00:50:58,316 [Worker-227] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:50:58,322 [Worker-227] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 00:50:58,323 [Worker-227] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 00:50:58,328 [Worker-227] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 08:50:47,080 [Worker-229] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 08:50:47,101 [Worker-229] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 08:50:47,105 [Worker-229] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 08:50:47,105 [Worker-229] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 09:34:49,068 [Worker-244] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:34:49,074 [Worker-244] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 09:34:49,078 [Worker-244] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:34:49,083 [Worker-244] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 09:35:43,934 [Worker-232] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:35:43,943 [Worker-232] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 09:35:43,947 [Worker-232] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:35:43,948 [Worker-232] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
+2012-11-07 09:45:43,565 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:45:43,631 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-11-07 09:45:43,936 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:45:43,941 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-Database\src\test\resources
+2012-11-07 09:47:42,988 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:47:42,989 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-11-07 09:47:42,991 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-11-07 09:47:42,991 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Work\shoemake-home\Shoemake-FamilyMgr\src\test\resources
