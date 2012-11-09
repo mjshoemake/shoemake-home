@@ -36,7 +36,7 @@ public class BeanUtils {
     * 
     * @param type The class.
     * @return The value of the PropertyDescriptors property.
-    * @throws DataLayerException
+    * @throws ModelException
     */
    public static PropertyDescriptor[] getPropertyDescriptors(Class type) throws CoreException {
       try {
@@ -57,7 +57,7 @@ public class BeanUtils {
     * @param type The class.
     * @param mapping Description of Parameter
     * @return The value of the PropertyDescriptors property.
-    * @throws DataLayerException
+    * @throws ModelException
     */
    @SuppressWarnings("unchecked")
    public static PropertyDescriptor[] getPropertyDescriptors(Class type, OrderedMap mapping) throws CoreException {
