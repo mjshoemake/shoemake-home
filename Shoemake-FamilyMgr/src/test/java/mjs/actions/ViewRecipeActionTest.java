@@ -6,7 +6,7 @@ import mjs.framework.ServletStarter;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
-import mjs.recipes.RecipeForm;
+import mjs.model.RecipeForm;
 import mjs.recipes.ViewRecipeAction;
 
 //@SuppressWarnings("rawtypes")

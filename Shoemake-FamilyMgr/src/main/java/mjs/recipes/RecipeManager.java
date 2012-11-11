@@ -2,24 +2,11 @@ package mjs.recipes;
 
 import java.sql.Connection;
 import org.apache.log4j.Logger;
-//import java.util.ArrayList;
-//import java.util.Hashtable;
-//import javax.naming.Context;
-//import javax.naming.NameNotFoundException;
-//import javax.naming.directory.Attribute;
-//import javax.naming.directory.Attributes;
-//import javax.naming.directory.DirContext;
-//import javax.naming.directory.InitialDirContext;
-//import mjs.database.AbstractDataManager;
 import mjs.database.DataLayerException;
 import mjs.database.DatabaseDriver;
 import mjs.database.TableDataManager;
-//import mjs.database.fielddef.FieldDefinition;
-//import mjs.database.fielddef.impl.FieldDefinitionImpl;
-//import mjs.utils.FormatUtils;
+import mjs.model.RecipeForm;
 import mjs.utils.Loggable;
-//import mjs.utils.StringUtils;
-//import com.accenture.core.view.SelectOption;
 
 /**
  * The data manager class for Tax Account Codes.

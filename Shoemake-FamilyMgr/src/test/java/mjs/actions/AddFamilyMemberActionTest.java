@@ -4,15 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import mjs.aggregation.OrderedMap;
-import mjs.core.DynaForm;
 import mjs.database.DatabaseDriver;
 import mjs.database.PaginatedList;
 import mjs.framework.ServletStarter;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
+import mjs.model.FamilyMemberForm;
 import mjs.users.AddFamilyMemberAction;
-import mjs.users.FamilyMemberForm;
 import mjs.utils.Constants;
 import mjs.utils.SingletonInstanceManager;
 

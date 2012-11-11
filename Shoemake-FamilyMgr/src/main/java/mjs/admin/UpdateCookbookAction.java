@@ -2,10 +2,10 @@ package mjs.admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mjs.admin.CookbookForm;
 import mjs.core.AbstractAction;
 import mjs.database.TableDataManager;
 import mjs.exceptions.ActionException;
+import mjs.model.CookbookForm;
 import mjs.model.Form;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;

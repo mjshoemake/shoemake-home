@@ -7,6 +7,8 @@ import mjs.core.AbstractAction;
 import mjs.database.DatabaseConfig;
 import mjs.database.TableDataManager;
 import mjs.exceptions.ActionException;
+import mjs.model.LoginForm;
+import mjs.model.User;
 import mjs.utils.Constants;
 import mjs.utils.SingletonInstanceManager;
 import mjs.view.ValidationErrorList;

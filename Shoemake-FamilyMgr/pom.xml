@@ -43,6 +43,11 @@
     </dependency>
     <dependency>
       <groupId>Shoemake</groupId>
+      <artifactId>shoemake-model</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>Shoemake</groupId>
       <artifactId>shoemake-strutsWeb</artifactId>
       <version>1.0.1</version>
     </dependency>

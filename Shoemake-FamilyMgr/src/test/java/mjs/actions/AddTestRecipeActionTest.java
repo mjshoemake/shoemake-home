@@ -11,7 +11,7 @@ import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.recipes.AddTestRecipeAction;
-import mjs.recipes.RecipeForm;
+import mjs.model.RecipeForm;
 import mjs.utils.Constants;
 
 //@SuppressWarnings("rawtypes")

@@ -7,7 +7,7 @@ import mjs.exceptions.ActionException;
 import mjs.database.PaginatedList;
 import mjs.database.TableDataManager;
 import mjs.model.Form;
-import mjs.recipes.RecipeForm;
+import mjs.model.RecipeForm;
 import mjs.utils.Constants;
 import mjs.view.ValidationErrorList;
 import org.apache.struts.action.ActionForm;

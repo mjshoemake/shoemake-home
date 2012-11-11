@@ -1,10 +1,10 @@
 package mjs.admin;
 
 import java.sql.Connection;
-import mjs.admin.MealCategoryForm;
 import mjs.database.DataLayerException;
 import mjs.database.DatabaseDriver;
 import mjs.database.TableDataManager;
+import mjs.model.MealCategoryForm;
 import mjs.utils.Loggable;
 
 /**

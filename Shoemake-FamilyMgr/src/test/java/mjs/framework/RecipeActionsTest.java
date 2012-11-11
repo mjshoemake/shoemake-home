@@ -5,8 +5,8 @@ import org.junit.Test;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
+import mjs.model.RecipeForm;
 import mjs.recipes.AddTestRecipeAction;
-import mjs.recipes.RecipeForm;
 import mjs.recipes.GetRecipesByLetterAction;
 import mjs.recipes.ViewRecipeAction;
 

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import mjs.core.AbstractAction;
 import mjs.database.DataManager;
 import mjs.exceptions.ActionException;
-import mjs.recipes.RecipeForm;
+import mjs.model.RecipeForm;
 import mjs.utils.Constants;
 import mjs.view.SelectOption;
 import org.apache.struts.action.ActionForm;

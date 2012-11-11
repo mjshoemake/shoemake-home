@@ -4,6 +4,7 @@ import java.sql.Connection;
 import mjs.database.DataLayerException;
 import mjs.database.DatabaseDriver;
 import mjs.database.TableDataManager;
+import mjs.model.MealForm;
 import mjs.utils.Loggable;
 
 /**

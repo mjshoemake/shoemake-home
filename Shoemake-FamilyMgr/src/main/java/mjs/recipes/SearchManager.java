@@ -6,9 +6,9 @@ import java.util.HashMap;
 import mjs.database.DataLayerException;
 import mjs.database.PaginatedList;
 import mjs.database.SearchDataManager;
-import mjs.recipes.RecipeForm;
-import mjs.recipes.RecipeSearchForm;
-import mjs.users.UserForm;
+import mjs.model.RecipeForm;
+import mjs.model.RecipeSearchForm;
+import mjs.model.UserForm;
 
 /**
  * The data manager class for Tax Account Codes.
