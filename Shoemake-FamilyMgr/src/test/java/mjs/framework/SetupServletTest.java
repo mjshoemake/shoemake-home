@@ -5,11 +5,12 @@ import java.sql.Connection;
 import org.junit.Before;
 import org.junit.Test;
 
+import mjs.core.ServletStarterTest;
 import mjs.database.DatabaseDriver;
 import mjs.setup.SetupServlet;
 import mjs.utils.SingletonInstanceManager;
 
-public class SetupServletTest extends ServletStarter {
+public class SetupServletTest extends ServletStarterTest {
 
     SetupServlet setupServlet = new SetupServlet();
 

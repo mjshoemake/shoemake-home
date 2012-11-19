@@ -6,14 +6,14 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.net.URL;
 
-import mjs.core.AbstractTest;
+import mjs.core.ServletStarterTest;
 import mjs.database.Field;
-import mjs.database.FieldDefs;
 import mjs.setup.SetupServlet;
+import mjs.utils.FieldDefs;
 import mjs.utils.LogUtils;
 import mjs.xml.CastorObjectConverter;
 
-public class CastorTest extends AbstractTest {
+public class CastorTest extends ServletStarterTest {
 
     @Before
     public void setUp() throws Exception {

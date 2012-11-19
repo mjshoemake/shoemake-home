@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="family_member_quotes_pk"   type="key"/>
+   <field name="quote_date"                type="date"     isRequired="true"  format="MM/dd/yyyy"/>
+   <field name="quote"                     type="string"   isRequired="true"/>
+   <field name="family_member_pk"          type="int"      isRequired="true"/>
+</fielddef>
+
+     

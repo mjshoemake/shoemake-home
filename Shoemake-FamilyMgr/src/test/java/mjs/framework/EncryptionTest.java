@@ -3,12 +3,12 @@ package mjs.framework;
 import org.junit.Before;
 import org.junit.Test;
 
-import mjs.core.AbstractTest;
+import mjs.core.ServletStarterTest;
 import mjs.crypto.EncryptionManager;
 import mjs.crypto.Encryptor;
 import mjs.crypto.JCEStringEncrypter;
 
-public class EncryptionTest extends AbstractTest {
+public class EncryptionTest extends ServletStarterTest {
 
     @Before
     public void setUp() throws Exception {

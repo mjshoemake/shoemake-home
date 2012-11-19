@@ -2,7 +2,8 @@ package mjs.actions;
 
 import org.junit.Before;
 import org.junit.Test;
-import mjs.framework.ServletStarter;
+
+import mjs.core.ServletStarterTest;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
@@ -10,7 +11,7 @@ import mjs.model.RecipeForm;
 import mjs.recipes.ViewRecipeAction;
 
 //@SuppressWarnings("rawtypes")
-public class ViewRecipeActionTest extends ServletStarter {
+public class ViewRecipeActionTest extends ServletStarterTest {
 
 	@Before
 	public void setUp() throws Exception {

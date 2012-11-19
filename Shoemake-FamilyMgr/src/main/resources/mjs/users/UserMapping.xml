@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="user_pk"     type="key"/>
+   <field name="fname"       type="string"/>
+   <field name="lname"       type="string"/>
+   <field name="username"    type="string"/>
+   <field name="password"    type="string"/>
+</fielddef>
+
+     

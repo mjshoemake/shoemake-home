@@ -2,6 +2,8 @@ package mjs.framework;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import mjs.core.ServletStarterTest;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
@@ -10,7 +12,7 @@ import mjs.recipes.AddTestRecipeAction;
 import mjs.recipes.GetRecipesByLetterAction;
 import mjs.recipes.ViewRecipeAction;
 
-public class RecipeActionsTest extends ServletStarter {
+public class RecipeActionsTest extends ServletStarterTest {
 
 	@Before
 	public void setUp() throws Exception {

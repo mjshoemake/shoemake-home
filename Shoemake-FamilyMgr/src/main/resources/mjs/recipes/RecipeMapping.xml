@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="recipes_pk"              type="key"/>
+   <field name="name"                    type="string"/>
+   <field name="directions"              type="string"/>
+   <field name="servings"                type="string"/>
+   <field name="cookbook_pk"             type="int"/>
+   <field name="nutrition"               type="string"/>
+   <field name="picture_filename"        type="string"/>
+   <field name="meals_pk"                type="int"/>
+   <field name="meal_categories_pk"      type="int"/>
+   <field name="notes"                   type="string"/>
+   <field name="created_by"              type="int"/>
+   <field name="serving_size"            type="string"/>
+   <field name="calories_per_serving"    type="int"/>
+   <field name="ingredients"             type="string"/>
+   <field name="favorite"                type="string"/>
+</fielddef>
+
+     

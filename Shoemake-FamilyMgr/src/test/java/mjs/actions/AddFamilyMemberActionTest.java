@@ -4,9 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import mjs.aggregation.OrderedMap;
+import mjs.core.ServletStarterTest;
 import mjs.database.DatabaseDriver;
 import mjs.database.PaginatedList;
-import mjs.framework.ServletStarter;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
@@ -16,7 +16,7 @@ import mjs.utils.Constants;
 import mjs.utils.SingletonInstanceManager;
 
 //@SuppressWarnings("rawtypes")
-public class AddFamilyMemberActionTest extends ServletStarter {
+public class AddFamilyMemberActionTest extends ServletStarterTest {
 
 	@Before
 	public void setUp() throws Exception {

@@ -5,8 +5,9 @@ import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import mjs.core.ServletStarterTest;
 import mjs.database.PaginatedList;
-import mjs.framework.ServletStarter;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
@@ -15,7 +16,7 @@ import mjs.model.RecipeForm;
 import mjs.utils.Constants;
 
 //@SuppressWarnings("rawtypes")
-public class AddTestRecipeActionTest extends ServletStarter {
+public class AddTestRecipeActionTest extends ServletStarterTest {
 
 	@Before
 	public void setUp() throws Exception {

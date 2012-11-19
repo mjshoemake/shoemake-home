@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="mjs.users.User" table="users">
+    <property name="user_pk" type="int" column="user_pk"/>
+    <property name="username" type="string" not-null="false"/>
+    <property name="fname" type="string" not-null="true"/>
+    <property name="lname" type="string" not-null="false"/>
+    <property name="password" type="string" not-null="true"/>
+    <property name="login_enabled" type="string" not-null="false"/>
+  </class>
+
+  <query name="mjs.users.getUser">
+    <![CDATA[
+        from users as user
+        where user.user_pk == :pk
+      ]]>
+  </query>
+
+</hibernate-mapping>

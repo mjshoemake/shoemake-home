@@ -2,14 +2,13 @@ package mjs.framework;
 
 import org.junit.Before;
 import org.junit.Test;
+import mjs.core.AbstractLoggableTest;
 
-import mjs.core.AbstractTest;
-
-public class StringUtilsTest extends AbstractTest {
+public class StringUtilsTest extends AbstractLoggableTest {
 
     @Before
     public void setUp() throws Exception {
-//        setUpEnvironment();
+        super.setUp();
     }
 
     /**

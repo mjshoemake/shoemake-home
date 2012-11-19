@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<project name="shoemake" default="deploy" basedir=".">
+  <property file="build.properties"/>
+
+  <target name="compile">
+    <echo message="Creating common jar with Maven..."/>
+    <exec dir="${mjs-common}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+    <echo message="Creating model jar with Maven..."/>
+    <exec dir="${mjs-model}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+    <echo message="Creating strutsWeb jar with Maven..."/>
+    <exec dir="${mjs-strutsWeb}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+    <echo message="Creating hibernate jar with Maven..."/>
+    <exec dir="${mjs-hibernate}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+    <echo message="Creating database jar with Maven..."/>
+    <exec dir="${mjs-database}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+    <echo message="Creating familyMgr jar with Maven..."/>
+    <exec dir="${mjs-familyMgr}" executable="cmd">
+      <arg value="/c"/>
+      <arg value="${maven}\bin\mvn.bat"/>
+      <arg line="${mvn-goals}" />
+    </exec>
+  </target>
+
+  <!-- Deploy the distribution to Tomcat webapps directory. -->
+  <target name="deploy" depends="compile">
+    <echo message="Creating deploy directory..."/>
+    <delete dir="${webapp}"/>
+    <mkdir dir="${webapp}"/>
+
+    <copy todir="${webapp}" filtering="no"><fileset dir="${websrc}"/></copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-Common/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-Model/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-Hibernate/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-StrutsWeb/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-Database/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy todir="${webapplib}">
+      <fileset dir="${home}/Shoemake-FamilyMgr/target">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+</project>

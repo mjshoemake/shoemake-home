@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="@user_pk" 		        type="key"/>
+   <field name="@username"              type="string"   caption="Login"          isLink="true"    listColumnWidth="260px"/>
+   <field name="@fname"                 type="string"   caption="First Name"                      listColumnWidth="260px"/>
+   <field name="@lname"                 type="string"   caption="Last Name"                       listColumnWidth="260px"/>
+   <field name="@login_enabled"         type="boolean"  caption="Login Enabled"                   listColumnWidth="200px"/>
+</fielddef>
+
+     

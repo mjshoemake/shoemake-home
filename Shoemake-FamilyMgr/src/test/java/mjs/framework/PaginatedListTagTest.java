@@ -3,11 +3,11 @@ package mjs.framework;
 import org.junit.Before;
 import org.junit.Test;
 
-import mjs.core.AbstractTest;
+import mjs.core.ServletStarterTest;
 import mjs.database.Field;
 import mjs.tags.ShowPaginatedListTag;
 
-public class PaginatedListTagTest extends AbstractTest {
+public class PaginatedListTagTest extends ServletStarterTest {
 
     @Before
     public void setUp() throws Exception {

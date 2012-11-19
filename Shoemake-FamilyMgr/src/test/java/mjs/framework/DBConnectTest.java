@@ -2,13 +2,12 @@ package mjs.framework;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.sql.*;
 
-import mjs.core.AbstractTest;
+import mjs.core.ServletStarterTest;
 import mjs.database.DBConnectionPool;
 
-public class DBConnectTest extends AbstractTest {
+public class DBConnectTest extends ServletStarterTest {
 
     @Before
     public void setUp() throws Exception {

@@ -7,31 +7,31 @@
 
    <table tableName="meals" 
           mappingFileName="/mjs/admin/MealsMapping.xml" 
-          className="mjs.admin.MealForm" />
+          className="mjs.model.MealForm" />
 
    <table tableName="cookbooks" 
           mappingFileName="/mjs/admin/CookbooksMapping.xml" 
-          className="mjs.admin.CookbookForm" />
+          className="mjs.model.CookbookForm" />
 
    <table tableName="users" 
           mappingFileName="/mjs/users/LoginMapping.xml" 
-          className="mjs.users.User" />
+          className="mjs.model.User" />
 
    <table tableName="users" 
           mappingFileName="/mjs/users/UserMapping.xml" 
-          className="mjs.users.User" />
+          className="mjs.model.User" />
 
    <table tableName="users" 
           mappingFileName="/mjs/users/PersonMapping.xml" 
-          className="mjs.users.User" />
+          className="mjs.model.User" />
 
    <table tableName="recipes" 
           mappingFileName="/mjs/recipes/RecipeMapping.xml" 
-          className="mjs.recipes.RecipeForm" />
+          className="mjs.model.RecipeForm" />
 
    <table tableName="recipes" 
           mappingFileName="/mjs/recipes/RecipeSearchMapping.xml" 
-          className="mjs.recipes.RecipeSearchForm" />
+          className="mjs.model.RecipeSearchForm" />
 
    <table tableName="family_members" 
           mappingFileName="/mjs/users/FamilyMemberMapping.xml" 

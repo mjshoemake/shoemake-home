@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fielddef>
+   <field name="family_member_pk"   type="key"/>
+   <field name="fname"              type="string"   isRequired="true"/>
+   <field name="lname"              type="string"   isRequired="true"/>
+   <field name="description"        type="string"   isRequired="true"/>
+   <field name="dob"                type="date"     isRequired="true"  format="MM/dd/yyyy"/>
+   <field name="name"               pattern="${fname} {lname}"/>
+   <field name="pk"                 pattern="${family_member_pk}"/>
+</fielddef>
+
+     

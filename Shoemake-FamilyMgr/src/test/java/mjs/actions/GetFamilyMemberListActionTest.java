@@ -2,14 +2,15 @@ package mjs.actions;
 
 import org.junit.Before;
 import org.junit.Test;
-import mjs.framework.ServletStarter;
+
+import mjs.core.ServletStarterTest;
 import mjs.mocks.MockActionMapping;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.users.GetFamilyMemberListAction;
 
 //@SuppressWarnings("rawtypes")
-public class GetFamilyMemberListActionTest extends ServletStarter {
+public class GetFamilyMemberListActionTest extends ServletStarterTest {
 
 	@Before
 	public void setUp() throws Exception {

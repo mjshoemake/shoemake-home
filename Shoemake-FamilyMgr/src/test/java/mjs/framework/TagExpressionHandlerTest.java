@@ -4,19 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
-import mjs.core.AbstractTest;
+import mjs.core.AbstractLoggableTest;
 import mjs.tags.TagExpressionHandler;
 import mjs.mocks.MockHttpServletRequest;
 import mjs.mocks.MockHttpServletResponse;
 import mjs.mocks.MockPageContext;
 import mjs.mocks.MockServletConfig;
-//import com.accenture.ebar.tests.IntegrationTestCase;
 
 
 /**
  * Unit test.
  */
-public class TagExpressionHandlerTest extends AbstractTest
+public class TagExpressionHandlerTest extends AbstractLoggableTest
 {
 
    public final void testTagExpressionHandler()
